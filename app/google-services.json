@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773321505939",
+    "project_id": "wirajasa-bisnis",
+    "storage_bucket": "wirajasa-bisnis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773321505939:android:53a2288c4e62d356ee2166",
+        "android_client_info": {
+          "package_name": "com.wirajasa.wirajasabisnis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773321505939-ncj7ns29k4ju69t61ln3bsetsoosrshb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMx3evXidMuiKGfRrtcUTmj2av_lYOPIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773321505939-ncj7ns29k4ju69t61ln3bsetsoosrshb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
