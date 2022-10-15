@@ -16,6 +16,13 @@
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
         <activity
+            android:name=".ui.register_buyyer.RegisterBuyyerActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.reset_password.ResetPasswordActivity"
             android:exported="false">
             <meta-data
