@@ -3,14 +3,12 @@ package com.wirajasa.wirajasabisnis.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.ui.main_activity.MainActivity
 import com.wirajasa.wirajasabisnis.ui.register_buyyer.RegisterBuyyerActivity
 import com.wirajasa.wirajasabisnis.ui.reset_password.ResetPasswordActivity
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 
@@ -31,34 +29,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
-        binding.apply {
-            btnResetPassword.setOnClickListener(this@LoginActivity)
-            btnLogin.setOnClickListener(this@LoginActivity)
-            btnRegister.setOnClickListener(this@LoginActivity)
-        }
-
-        viewModel.loginStatus.observe(this) {
-            when (it) {
-                is NetworkResponse.FirebaseException -> Toast.makeText(
-                    this,
-                    "${it.e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                NetworkResponse.Loading -> Toast.makeText(this, "Loading", Toast.LENGTH_SHORT)
-                    .show()
-                NetworkResponse.NetworkException -> Toast.makeText(
-                    this,
-                    "Cek internet",
-                    Toast.LENGTH_SHORT
-                ).show()
-                is NetworkResponse.Success -> {
-                    Toast.makeText(this, "Sukses Login", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                }
-                else -> return@observe
-            }
-        }
     }
 
     override fun onClick(v: View?) {
@@ -66,14 +36,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val password = binding.edtPassword.text.toString()
 
         when (v?.id) {
-            binding.btnLogin.id -> viewModel.signInWithEmailAndPassword(email, password, Dispatchers.IO)
-            binding.btnResetPassword.id -> startActivity(
-                Intent(
-                    this,
-                    ResetPasswordActivity::class.java
-                ).also { finish() }
+            binding.btnLogin.id -> viewModel.signInWithEmailAndPassword(
+                email,
+                password,
+                Dispatchers.IO
             )
-            binding.btnRegister.id -> startActivity(Intent(this, RegisterBuyyerActivity::class.java))
+            binding.tvForgotPassword.id -> startActivity(
+                Intent(this, ResetPasswordActivity::class.java)
+            )
+            binding.btnRegister.id -> startActivity(
+                Intent(this, RegisterBuyyerActivity::class.java)
+            )
         }
     }
 
