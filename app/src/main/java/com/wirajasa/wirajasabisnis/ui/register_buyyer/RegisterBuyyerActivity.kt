@@ -1,62 +1,28 @@
 package com.wirajasa.wirajasabisnis.ui.register_buyyer
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBuyyerBinding
-import com.wirajasa.wirajasabisnis.ui.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 
 @AndroidEntryPoint
 class RegisterBuyyerActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var _binding: ActivityRegisterBuyyerBinding? = null
+    private var _binding: ActivityRegisterBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<RegisterBuyyerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityRegisterBuyyerBinding.inflate(layoutInflater)
+        _binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
             btnRegister.setOnClickListener(this@RegisterBuyyerActivity)
-        }
-
-        viewModel.registerStatus.observe(this) {
-            when (it) {
-                is NetworkResponse.FirebaseException -> Toast.makeText(
-                    this,
-                    "${it.e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                NetworkResponse.Loading -> Toast.makeText(this, "Loading", Toast.LENGTH_SHORT)
-                    .show()
-                NetworkResponse.NetworkException -> Toast.makeText(
-                    this,
-                    "Cek internet",
-                    Toast.LENGTH_SHORT
-                ).show()
-                is NetworkResponse.Success -> {
-                    Toast.makeText(this, "Sukses Register", Toast.LENGTH_SHORT).show()
-                    if (viewModel.getCurrentUser() != null)
-                        startActivity(Intent(this, MainActivity::class.java))
-                }
-                else -> return@observe
-            }
-        }
-
-        lifecycleScope.launchWhenCreated {
-            viewModel.emailError.collect(){
-                binding.edtEmail.error = it
-            }
         }
     }
 
