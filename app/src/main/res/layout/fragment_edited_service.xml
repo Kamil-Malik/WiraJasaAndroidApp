@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".service.EditedServiceFragment">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/inter_bold"
+                android:lineHeight="24.2sp"
+                android:text="@string/edit_service"
+                android:textColor="@color/dark_blue"
+                android:textFontWeight="800"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:targetApi="p" />
+
+            <EditText
+                android:importantForAutofill="no"
+                android:id="@+id/editText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:fontFamily="@font/inter"
+                android:hint="@string/service_name"
+                android:lineHeight="14.52dp"
+                android:minHeight="48dp"
+                android:paddingStart="12dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="9dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                android:inputType="text|textMultiLine"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:targetApi="p" />
+
+            <EditText
+                android:importantForAutofill="no"
+                android:id="@+id/editText2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@color/white"
+                android:fontFamily="@font/inter"
+                android:hint="@string/address"
+                android:inputType="text|textMultiLine"
+                android:lineHeight="14.52dp"
+                android:minHeight="48dp"
+                android:paddingStart="12dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="9dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/editText"
+                tools:targetApi="p" />
+
+            <EditText
+                android:importantForAutofill="no"
+                android:id="@+id/editText3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:fontFamily="@font/inter"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress|textMultiLine"
+                android:lineHeight="14.52dp"
+                android:minHeight="48dp"
+                android:paddingStart="12dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="9dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/editText2"
+                tools:targetApi="p" />
+
+            <EditText
+                android:importantForAutofill="no"
+                android:id="@+id/editText4"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:fontFamily="@font/inter"
+                android:hint="@string/phone_number"
+                android:inputType="number|textMultiLine"
+                android:lineHeight="14.52dp"
+                android:minHeight="48dp"
+                android:paddingStart="12dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="9dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/editText3"
+                tools:targetApi="p" />
+
+            <ImageView
+                android:contentDescription="@string/service_photo"
+                android:id="@+id/ivService"
+                android:layout_width="300dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="17dp"
+                android:src="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+            <TextView
+                android:id="@+id/tvIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_photos"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivService"
+                app:layout_constraintEnd_toEndOf="@+id/ivService"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="@+id/ivService"
+                app:layout_constraintTop_toTopOf="@+id/ivService"
+                app:layout_constraintVertical_bias="0.65999997" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_image"
+                android:id="@+id/ivIcon"
+                android:contentDescription="@string/image_icon"
+                app:layout_constraintBottom_toTopOf="@+id/tvIcon"
+                app:layout_constraintEnd_toEndOf="@+id/ivService"
+                app:layout_constraintStart_toStartOf="@+id/ivService"
+                app:layout_constraintTop_toTopOf="@+id/ivService"
+                app:layout_constraintVertical_bias="0.72" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="@string/save"
+                android:textColor="#FF9800"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/ivService"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</ScrollView>
