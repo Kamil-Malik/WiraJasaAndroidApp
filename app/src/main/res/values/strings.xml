@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">WiraJasa Bisnis</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="serivce_register">Serivce Register</string>
+    <string name="service_name">Service Name</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="upload_photos">Upload Photos</string>
+    <string name="open_service">OPEN SERVICE</string>
+    <string name="save">SAVE</string>
+    <string name="service_photo">Service Photo</string>
+    <string name="image_icon">Image Icon</string>
+    <string name="edit_service">Edit Service</string>
 </resources>
