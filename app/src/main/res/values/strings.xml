@@ -22,4 +22,7 @@
     <string name="have_an_account">Have an account?</string>
     <string name="forgot_password_2">Forgot Password</string>
     <string name="send_reset_link">Send Reset Link</string>
+    <string name="input_address">Input address</string>
+    <string name="input_phone_number">Input phone number</string>
+    <string name="submit">Submit</string>
 </resources>
