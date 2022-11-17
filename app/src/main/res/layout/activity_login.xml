@@ -1,112 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
-    tools:context=".ui.login.LoginActivity">
+    android:background="@color/orange">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/login"
-            android:textColor="?android:attr/textColorHint"
-            android:textSize="16sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="@string/email"
-            android:textColorHint="?android:attr/textColorHint"
-            app:startIconDrawable="@drawable/ic_email"
-            app:startIconTint="?attr/startIconTint">
+            android:padding="24dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_email"
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/login"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_layout_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="8dp"
+                android:hint="@string/email"
+                android:textColorHint="@color/dark_blue"
+                app:boxStrokeColor="@color/dark_blue"
+                app:hintTextColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_login"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="?attr/startIconTint">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/password"
-            android:textColorHint="?android:attr/textColorHint"
-            app:boxStrokeColor="@color/dark_blue"
-            app:endIconMode="password_toggle"
-            app:endIconTint="?attr/endIconTint"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:startIconTint="?attr/startIconTint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_layout_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="16dp"
+                android:hint="@string/password"
+                android:textColorHint="@color/dark_blue"
+                app:boxStrokeColor="@color/dark_blue"
+                app:endIconMode="password_toggle"
+                app:endIconTint="?attr/endIconTint"
+                app:hintTextColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_layout_email"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="?attr/startIconTint">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/dark_blue"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/login"
-            android:textColor="@color/orange"
-            app:cornerRadius="0dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="?android:attr/textColorPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
-            android:text="@string/or"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/dark_blue"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_layout_password"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_register"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/register"
-            android:textColor="@color/dark_blue"
-            app:cornerRadius="0dp"
-            app:elevation="0dp"
-            app:strokeColor="@color/dark_blue"
-            app:strokeWidth="1dp" />
+            <TextView
+                android:id="@+id/tv_or"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:text="@string/or"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/btn_login"
+                app:layout_constraintStart_toStartOf="@id/btn_login"
+                app:layout_constraintTop_toBottomOf="@id/btn_login"/>
 
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
-            android:text="@string/forgot_password"
-            android:textColor="@color/dark_blue" />
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_register"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/register"
+                android:textColor="?android:attr/textColorSecondary"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="@id/btn_login"
+                app:layout_constraintStart_toStartOf="@id/btn_login"
+                app:layout_constraintTop_toBottomOf="@id/tv_or"
+                app:strokeColor="@color/dark_blue"
+                app:strokeWidth="1dp"/>
+
+            <TextView
+                android:id="@+id/tv_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:text="@string/forgot_password"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintEnd_toEndOf="@id/btn_register"
+                app:layout_constraintStart_toStartOf="@id/btn_register"
+                app:layout_constraintTop_toBottomOf="@id/btn_register" />
+
+            <ProgressBar
+                android:id="@+id/circle_loading"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/dark_blue"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_forgot_password"
+                app:layout_constraintEnd_toEndOf="@+id/btn_login"
+                app:layout_constraintStart_toStartOf="@id/btn_login"
+                app:layout_constraintTop_toTopOf="@id/btn_login" />
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/loading"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/circle_loading"
+                app:layout_constraintStart_toStartOf="@id/circle_loading"
+                app:layout_constraintTop_toBottomOf="@id/circle_loading" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
