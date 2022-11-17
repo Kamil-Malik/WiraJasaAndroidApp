@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.ui.main_activity
+package com.wirajasa.wirajasabisnis.presentation.main_activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
-import com.wirajasa.wirajasabisnis.ui.login.LoginActivity
+import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
