@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".service.EditedServiceFragment">
+    tools:context=".presentation.service.EditedServiceFragment">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,11 +14,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="48dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/inter_bold"
                 android:lineHeight="24.2sp"
                 android:text="@string/edit_service"
@@ -31,14 +34,15 @@
                 tools:targetApi="p" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/editText"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@color/white"
                 android:fontFamily="@font/inter"
                 android:hint="@string/service_name"
+                android:importantForAutofill="no"
+                android:inputType="text|textMultiLine"
                 android:lineHeight="14.52dp"
                 android:minHeight="48dp"
                 android:paddingStart="12dp"
@@ -49,22 +53,20 @@
                 android:textColorHint="@color/grey"
                 android:textFontWeight="400"
                 android:textSize="12sp"
-                android:inputType="text|textMultiLine"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 tools:targetApi="p" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/editText2"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:background="@color/white"
                 android:fontFamily="@font/inter"
                 android:hint="@string/address"
+                android:importantForAutofill="no"
                 android:inputType="text|textMultiLine"
                 android:lineHeight="14.52dp"
                 android:minHeight="48dp"
@@ -77,20 +79,19 @@
                 android:textFontWeight="400"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/editText"
                 tools:targetApi="p" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/editText3"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/inter"
                 android:hint="@string/email"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress|textMultiLine"
                 android:lineHeight="14.52dp"
                 android:minHeight="48dp"
@@ -103,20 +104,19 @@
                 android:textFontWeight="400"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/editText2"
                 tools:targetApi="p" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/editText4"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/inter"
                 android:hint="@string/phone_number"
+                android:importantForAutofill="no"
                 android:inputType="number|textMultiLine"
                 android:lineHeight="14.52dp"
                 android:minHeight="48dp"
@@ -129,17 +129,16 @@
                 android:textFontWeight="400"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/editText3"
                 tools:targetApi="p" />
 
             <ImageView
-                android:contentDescription="@string/service_photo"
                 android:id="@+id/ivService"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="130dp"
                 android:layout_marginTop="17dp"
+                android:contentDescription="@string/service_photo"
                 android:src="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
@@ -172,13 +171,15 @@
                 app:layout_constraintVertical_bias="0.72" />
 
             <Button
+
                 android:id="@+id/btnSave"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="160dp"
                 android:backgroundTint="@color/dark_blue"
                 android:text="@string/save"
                 android:textColor="#FF9800"
+                app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
