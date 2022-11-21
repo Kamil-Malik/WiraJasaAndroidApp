@@ -46,4 +46,6 @@
     <string name="register_as_seller">Register as Seller</string>
     <string name="profile">Profile</string>
     <string name="photo_profil">photo_profil</string>
+    <string name="save_profile">save</string>
+    <string name="change_password">Change Password ?</string>
 </resources>
