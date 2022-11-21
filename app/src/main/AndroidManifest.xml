@@ -16,21 +16,21 @@
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
         <activity      
-        android:name=".UserValidation"
+        android:name=".ui.user.UserValidation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".BuyerDashboard"
+            android:name=".ui.dashboard.BuyerDashboard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SellerDashboard"
+            android:name=".ui.dashboard.SellerDashboard"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
