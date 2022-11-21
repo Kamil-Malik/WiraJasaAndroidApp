@@ -48,4 +48,5 @@
     <string name="photo_profil">photo_profil</string>
     <string name="save_profile">save</string>
     <string name="change_password">Change Password ?</string>
+    <string name="notification">Notification</string>
 </resources>
