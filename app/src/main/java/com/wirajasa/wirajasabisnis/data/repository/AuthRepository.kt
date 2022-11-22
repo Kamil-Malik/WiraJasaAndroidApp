@@ -17,6 +17,10 @@ interface AuthRepository {
 
     fun registerDefaultProfile() : Flow<NetworkResponse<UserProfile>>
 
+    fun getUserProfile(): Flow<NetworkResponse<UserProfile>>
+
+    fun getLocalProfile(): UserProfile
+
     fun resetPasswordWithEmail(
         email: String
     ): Flow<NetworkResponse<Boolean>>

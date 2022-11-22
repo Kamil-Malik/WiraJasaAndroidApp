@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange">
@@ -18,60 +19,79 @@
         android:id="@+id/img_profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="105dp"
+        android:layout_marginTop="64dp"
         android:contentDescription="@string/photo_profil"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_profile"
+        tools:src="@drawable/default_image" />
 
     <TextView
-        android:id="@+id/username"
-        android:layout_width="81dp"
-        android:layout_height="19dp"
+        android:id="@+id/tv_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/inter_bold"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/img_profile"
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="@+id/img_profile"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/img_profile"
+        tools:text="Kamil Malik" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="267dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="172dp"
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        tools:text="12987319823" />
 
     <TextView
-        android:id="@+id/email"
-        android:layout_width="267dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/tv_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        tools:text="test@gmail.com" />
 
     <TextView
-        android:id="@+id/phonenumber"
-        android:layout_width="267dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="80dp"
+        android:id="@+id/tv_phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_email"
+        tools:text="082259997760" />
 
     <TextView
-        android:id="@+id/address"
-        android:layout_width="267dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="128dp"
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_phonenumber"
+        tools:text="Jl. Kolonel Abunjani NO.32 Rt.21" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_edit"
@@ -85,6 +105,8 @@
         app:layout_constraintBottom_toTopOf="@id/btn_register_seller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintVertical_chainStyle="packed"
         app:rippleColor="#004869" />
 
     <com.google.android.material.button.MaterialButton
@@ -101,6 +123,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_edit"
+        app:layout_constraintVertical_chainStyle="packed"
         app:strokeColor="@color/dark_blue"
         app:strokeWidth="1dp" />
 

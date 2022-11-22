@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.login
+package com.wirajasa.wirajasabisnis.presentation.register
 
 import android.content.Context
 import android.content.Intent
@@ -12,44 +12,35 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
+import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
-import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity(), View.OnClickListener {
+class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val viewModel by viewModels<LoginViewModel>()
+    private val viewModel by viewModels<RegisterViewModel>()
     private val binding by lazy {
-        ActivityLoginBinding.inflate(layoutInflater)
+        ActivityRegisterBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        if (viewModel.getCurrentUser() != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-
         binding.apply {
-            btnLogin.setOnClickListener(this@LoginActivity)
-            btnRegister.setOnClickListener(this@LoginActivity)
-            tvForgotPassword.setOnClickListener(this@LoginActivity)
+            btnRegister.setOnClickListener(this@RegisterActivity)
+            tvClickHaveAccount.setOnClickListener(this@RegisterActivity)
         }
     }
 
     override fun onClick(v: View?) {
         val email = binding.edtEmail.text.toString()
         val password = binding.edtPassword.text.toString()
-
+        val confirmedPassword = binding.edtConfirmPassword.text.toString()
         when (v?.id) {
-            binding.btnLogin.id -> {
+            binding.btnRegister.id -> {
                 (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
                     currentFocus?.windowToken, 0
                 )
@@ -57,43 +48,47 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 if (!Validate().email(email)) binding.edtEmail.error =
                     getString(R.string.empty_invalid_email)
 
-                if (!Validate().password(password)) Snackbar.make(
-                    binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT
-                ).show().also { return }
+                if (!Validate().password(password)) {
+                    showSnack(getString(R.string.empty_password))
+                    return
+                }
 
-                viewModel.signInWithEmailAndPassword(email, password).observe(this) { response ->
+                if (!Validate().password(confirmedPassword)) {
+                    showSnack(getString(R.string.empty_confirmation_password))
+                    return
+                }
+
+                if (password != confirmedPassword) {
+                    showSnack(getString(R.string.different_password))
+                    return
+                }
+
+                viewModel.signUpWithEmailAndPassword(email, password).observe(this) { response ->
                     when (response) {
                         is NetworkResponse.GenericException -> {
                             response.cause?.let { showToast(it) }
                             showLoading(false)
                         }
                         NetworkResponse.Loading -> showLoading(true)
-                        is NetworkResponse.Success -> getProfile()
+                        is NetworkResponse.Success -> registerDefaultUser()
                     }
                 }
             }
-            binding.btnRegister.id -> {
-                val intent = Intent(this, RegisterActivity::class.java)
-                startActivity(intent)
-            }
-            binding.tvForgotPassword.id -> {
-                val intent = Intent(this, ResetPasswordActivity::class.java)
-                startActivity(intent)
-            }
+            binding.tvClickHaveAccount.id -> finish()
         }
     }
 
-    private fun getProfile() {
-        viewModel.getProfile().observe(this) { response ->
+    private fun registerDefaultUser() {
+        viewModel.registerDefaultProfile().observe(this) { response ->
             when (response) {
                 is NetworkResponse.GenericException -> {
                     response.cause?.let { showToast(it) }
-                    showLoading(false)
                     Firebase.auth.signOut()
-                    binding.tvLoading.text = getString(R.string.signing_in)
+                    showToast("Sorry for inconvenience, please login again")
+                    finish()
                 }
                 NetworkResponse.Loading -> binding.tvLoading.text =
-                    getString(R.string.getting_profile)
+                    getString(R.string.uploading_profile)
                 is NetworkResponse.Success -> {
                     showToast(getString(R.string.welcome_user, response.data.username))
                     val intent = Intent(this, MainActivity::class.java)
@@ -108,19 +103,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun showSnack(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
+
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
-            btnLogin.visibility = View.INVISIBLE
-            tvOr.visibility = View.INVISIBLE
             btnRegister.visibility = View.INVISIBLE
-            tvForgotPassword.visibility = View.INVISIBLE
+            layoutClickLogin.visibility = View.INVISIBLE
             circleLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
-            btnLogin.visibility = View.VISIBLE
-            tvOr.visibility = View.VISIBLE
             btnRegister.visibility = View.VISIBLE
-            tvForgotPassword.visibility = View.VISIBLE
+            layoutClickLogin.visibility = View.VISIBLE
             circleLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }

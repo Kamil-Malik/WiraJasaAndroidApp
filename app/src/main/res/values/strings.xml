@@ -51,4 +51,8 @@
     <string name="notification">Notification</string>
     <string name="logout">Logout</string>
     <string name="welcome_user">Welcome %s</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="getting_profile">Getting profile…</string>
+    <string name="signing_up">Creating account…</string>
+    <string name="uploading_profile">Creating profile…</string>
 </resources>

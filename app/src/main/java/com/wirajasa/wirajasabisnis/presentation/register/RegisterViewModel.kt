@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.register_buyyer
+package com.wirajasa.wirajasabisnis.presentation.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
