@@ -68,15 +68,25 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                             binding.root, it.cause.toString(), Snackbar.LENGTH_LONG
                         ).show().also { showLoading(false) }
                         NetworkResponse.Loading -> showLoading(true)
-                        is NetworkResponse.Success -> Toast.makeText(
-                            this,
-                            getString(R.string.register_success),
-                            Toast.LENGTH_SHORT
-                        ).show().also {
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
-                        }
+                        is NetworkResponse.Success -> registerDefaultUser()
                     }
+                }
+            }
+        }
+    }
+
+    private fun registerDefaultUser() {
+        viewModel.registerDefaultProfile().observe(this){
+            when(it){
+                is NetworkResponse.GenericException -> Unit
+                NetworkResponse.Loading -> Unit
+                is NetworkResponse.Success -> Toast.makeText(
+                    this,
+                    getString(R.string.welcome_user, it.data.username),
+                    Toast.LENGTH_SHORT
+                ).show().also {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 }
             }
         }

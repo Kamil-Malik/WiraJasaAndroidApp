@@ -49,4 +49,6 @@
     <string name="save_profile">save</string>
     <string name="change_password">Change Password ?</string>
     <string name="notification">Notification</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_user">Welcome %s</string>
 </resources>
