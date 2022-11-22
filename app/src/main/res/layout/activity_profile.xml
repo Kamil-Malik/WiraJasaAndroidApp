@@ -3,16 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF731D">
+    android:background="@color/orange">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/profile"
+        app:titleTextColor="@color/white" />
 
     <ImageView
         android:id="@+id/img_profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="105dp"
-        android:contentDescription="@string/photo_profil"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="105dp"
+        android:contentDescription="@string/photo_profil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,43 +73,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="148dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="18dp"
-        android:background="#004869"
-        android:backgroundTint="#004869"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_blue"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/edit_profile"
-        android:textSize="12sp"
+        android:textColor="@color/white"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_register_seller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
         app:rippleColor="#004869" />
 
-    <Button
-        android:id="@+id/register_seller"
-        android:layout_width="148dp"
-        android:layout_height="56dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register_seller"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/register_as_seller"
-        android:textSize="12sp"
+        android:textColor="@color/dark_blue"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit" />
-
-    <TextView
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/profile"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:strokeColor="@color/dark_blue"
+        app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
