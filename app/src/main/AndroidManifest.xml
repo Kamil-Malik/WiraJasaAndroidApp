@@ -45,7 +45,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.register_buyyer.RegisterActivity"
+            android:name=".presentation.register.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

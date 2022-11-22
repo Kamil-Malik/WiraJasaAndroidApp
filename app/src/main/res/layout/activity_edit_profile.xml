@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/tv_username"
         android:layout_width="81dp"
         android:layout_height="19dp"
         android:layout_marginTop="24dp"
@@ -29,47 +29,47 @@
         app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/tv_name"
         android:layout_width="267dp"
         android:layout_height="33dp"
         android:layout_marginTop="172dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
         android:autofillHints="name"
-        android:labelFor="@id/name"
+        android:labelFor="@id/tv_name"
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/tv_email"
         android:layout_width="267dp"
         android:layout_height="33dp"
         android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
         android:autofillHints="email"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/phonenumber"
+        android:id="@+id/tv_phonenumber"
         android:layout_width="267dp"
         android:layout_height="33dp"
         android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
         android:autofillHints="phone number"
         android:inputType="phone"/>
 
     <EditText
-        android:id="@+id/address"
+        android:id="@+id/tv_address"
         android:layout_width="267dp"
         android:layout_height="33dp"
         android:layout_marginTop="128dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
         android:autofillHints="address"
         android:inputType="textMultiLine"/>
 
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
         app:layout_constraintVertical_bias="0.326" />
 
     <TextView
@@ -105,8 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/change_password"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
