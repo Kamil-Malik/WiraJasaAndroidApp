@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.service
+package com.wirajasa.wirajasabisnis.presentation.product
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddedServiceFragment.newInstance] factory method to
+ * Use the [EditedServiceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddedServiceFragment : Fragment() {
+class EditingProductFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class AddedServiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_added_service, container, false)
+        return inflater.inflate(R.layout.fragment_editing_product, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class AddedServiceFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AddedServiceFragment.
+         * @return A new instance of fragment EditedServiceFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AddedServiceFragment().apply {
+            EditingProductFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
