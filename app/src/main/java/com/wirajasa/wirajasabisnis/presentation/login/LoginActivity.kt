@@ -14,6 +14,7 @@ import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
 import com.wirajasa.wirajasabisnis.presentation.register_buyyer.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         if (viewModel.getCurrentUser() != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, SellerBaseActivity::class.java))
             finish()
         }
 
@@ -67,7 +68,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         ).show().also { showLoading(false) }
                         NetworkResponse.Loading -> showLoading(true)
                         is NetworkResponse.Success -> startActivity(Intent(
-                            this, MainActivity::class.java
+                            this, SellerBaseActivity::class.java
                         ).also { finish() })
                     }
                 }
