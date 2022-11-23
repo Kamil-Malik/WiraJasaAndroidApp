@@ -64,4 +64,8 @@
     <string name="signing_up">Creating account…</string>
     <string name="uploading_profile">Creating profile…</string>
     <string name="app_logo">App Logo</string>
+    <string name="form_have_to_be_filled">Form have to be filled</string>
+    <string name="success_add_data">Successfully Added Data</string>
+    <string name="image_type">image/*</string>
+    <string name="choose_a_picture">Choose a Picture</string>
 </resources>

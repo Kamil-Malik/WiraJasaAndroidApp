@@ -60,7 +60,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener {
                     || phoneNumber.isEmpty() || getUri == null
                 ) {
                     Toast.makeText(
-                        this@AddingServiceActivity, "Form have to be filled",
+                        this@AddingServiceActivity, getString(R.string.form_have_to_be_filled),
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -76,7 +76,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener {
                             is NetworkResponse.Loading -> showLoading(true)
                             is NetworkResponse.Success -> {
                                 Toast.makeText(
-                                    this@AddingServiceActivity, "Success",
+                                    this@AddingServiceActivity, getString(R.string.success_add_data),
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 val intent = Intent(
@@ -98,8 +98,8 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener {
     private fun startGallery() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        intent.type = getString(R.string.image_type)
+        val chooser = Intent.createChooser(intent, getString(R.string.choose_a_picture))
         launcherIntentGallery.launch(chooser)
     }
 
