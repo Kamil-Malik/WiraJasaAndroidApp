@@ -24,8 +24,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAuthRepository(@ApplicationContext mContext: Context): AuthRepository {
-        val auth = Firebase.auth
-        return AuthRepositoryImpl(mContext, auth, Dispatchers.IO)
+        return AuthRepositoryImpl(mContext, Firebase.auth, Firebase.firestore, Dispatchers.IO)
     }
 
     @Provides

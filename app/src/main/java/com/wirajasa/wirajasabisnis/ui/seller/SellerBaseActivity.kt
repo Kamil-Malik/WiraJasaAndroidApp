@@ -27,11 +27,9 @@ class SellerBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        actionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-
         _binding = ActivitySellerBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         if (viewModel.getCurrentUser() == null) {
             startActivity(Intent(this, LoginActivity::class.java))

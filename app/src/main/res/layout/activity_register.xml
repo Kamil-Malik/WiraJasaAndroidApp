@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    tools:context=".presentation.register_buyyer.RegisterActivity">
+    tools:context=".presentation.register.RegisterActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -149,9 +149,26 @@
                 android:indeterminateTint="@color/dark_blue"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/layout_click_login"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_loading"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/btn_register"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/signing_up"
+                android:textColor="@color/dark_blue"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/circle_loading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/circle_loading"
+                app:layout_constraintTop_toTopOf="@id/circle_loading"
                 tools:visibility="gone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

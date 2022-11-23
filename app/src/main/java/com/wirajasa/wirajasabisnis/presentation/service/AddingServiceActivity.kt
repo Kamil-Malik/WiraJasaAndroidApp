@@ -3,8 +3,10 @@ package com.wirajasa.wirajasabisnis.presentation.service
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,7 +32,6 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityAddingServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        actionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         if (loginViewModel.getCurrentUser() == null) {
             val intent = Intent(this@AddingServiceActivity, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

@@ -50,4 +50,18 @@
     <string name="title_dashboard">Home</string>
     <string name="title_notifications">Notifications</string>
     <string name="unit">Unit</string>
+    <string name="edit_profile">Edit</string>
+    <string name="register_as_seller">Register as Seller</string>
+    <string name="profile">Profile</string>
+    <string name="photo_profil">photo_profil</string>
+    <string name="save_profile">save</string>
+    <string name="change_password">Change Password ?</string>
+    <string name="notification">Notification</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_user">Welcome %s</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="getting_profile">Getting profile…</string>
+    <string name="signing_up">Creating account…</string>
+    <string name="uploading_profile">Creating profile…</string>
+    <string name="app_logo">App Logo</string>
 </resources>
