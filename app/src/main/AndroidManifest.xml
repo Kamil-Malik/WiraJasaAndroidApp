@@ -15,10 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
+        <activity android:name=".presentation.service.AddingServiceActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <activity
             android:name=".presentation.profile.ProfileActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.seller.SellerBaseActivity"
+            android:exported="false"
+            android:label="@string/title_activity_seller_base">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -79,5 +92,4 @@
                 android:value="" />
         </activity>
     </application>
-
 </manifest>

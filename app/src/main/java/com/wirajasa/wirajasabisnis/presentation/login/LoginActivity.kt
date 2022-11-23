@@ -16,6 +16,7 @@ import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
 import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,6 +69,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             showLoading(false)
                         }
                         NetworkResponse.Loading -> showLoading(true)
+
                         is NetworkResponse.Success -> getProfile()
                     }
                 }
