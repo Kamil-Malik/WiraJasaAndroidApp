@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
-import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
+import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
+import com.wirajasa.wirajasabisnis.ui.dashboard.BuyerDashboard
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +21,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarMain)
         setContentView(binding.root)
         binding.btnLogout.setOnClickListener {
-            Firebase.auth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java)).also { finish() }
+            startActivity(Intent(this, BuyerDashboard::class.java))
         }
     }
 

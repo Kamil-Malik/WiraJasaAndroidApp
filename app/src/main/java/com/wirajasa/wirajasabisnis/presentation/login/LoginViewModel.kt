@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.google.firebase.auth.FirebaseUser
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.data.repository.AuthRepository
+import com.wirajasa.wirajasabisnis.data.repository.UserRepository
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     fun signInWithEmailAndPassword(
@@ -24,7 +26,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun getProfile(): LiveData<NetworkResponse<UserProfile>> {
-        return authRepository.getUserProfile().asLiveData(Dispatchers.Main)
+        return userRepository.getUserProfile().asLiveData(Dispatchers.Main)
     }
 
     fun getCurrentUser(): FirebaseUser? = authRepository.getCurrentUser()
