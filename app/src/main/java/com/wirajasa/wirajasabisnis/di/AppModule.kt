@@ -5,6 +5,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.wirajasa.wirajasabisnis.data.local.CryptoPref
 import com.wirajasa.wirajasabisnis.data.repository.*
 import dagger.Module
 import dagger.Provides
@@ -30,7 +31,7 @@ object AppModule {
         val auth = Firebase.auth
         val storage = Firebase.storage.reference
         val firestoreDb = Firebase.firestore
-        return ProductRepositoryImpl(mContext, auth,storage, firestoreDb,Dispatchers.IO)
+        return ProductRepositoryImpl(mContext, auth, storage, firestoreDb, Dispatchers.IO)
     }
 
     @Provides
@@ -41,7 +42,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(@ApplicationContext mContext: Context, authRepository: AuthRepository) : UserRepository {
-        return UserRepositoryImpl(Firebase.storage, Firebase.firestore, authRepository, mContext, Dispatchers.IO)
+    fun provideUserRepository(
+        @ApplicationContext mContext: Context,
+        authRepository: AuthRepository
+    ): UserRepository {
+        return UserRepositoryImpl(
+            storage = Firebase.storage,
+            fireStore = Firebase.firestore,
+            authRepository = authRepository,
+            context = mContext,
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = CryptoPref(mContext)
+        )
     }
 }

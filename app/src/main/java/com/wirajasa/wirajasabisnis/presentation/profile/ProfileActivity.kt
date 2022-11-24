@@ -1,16 +1,12 @@
 package com.wirajasa.wirajasabisnis.presentation.profile
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
-import android.os.Build.VERSION
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -20,15 +16,13 @@ import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
+import com.wirajasa.wirajasabisnis.presentation.edit_profile.EditProfileActivity
 import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
-import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
-import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
-class ProfileActivity : AppCompatActivity(), View.OnClickListener,
-    EasyPermissions.PermissionCallbacks {
+class ProfileActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var profile: UserProfile
     private val viewModel: ProfileViewModel by viewModels()
@@ -53,7 +47,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener,
             tvPhonenumber.text = profile.phone_number
             tvName.text = profile.uid
 
-            if (profile.seller) {
+            if (profile.sellerStatus) {
                 btnRegisterSeller.visibility = View.GONE
                 spacerBottom.visibility = View.VISIBLE
             } else {
@@ -63,7 +57,6 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener,
 
             btnEdit.setOnClickListener(this@ProfileActivity)
             btnRegisterSeller.setOnClickListener(this@ProfileActivity)
-            btnEditPhoto.setOnClickListener(this@ProfileActivity)
             fabUpload.setOnClickListener(this@ProfileActivity)
         }
     }
@@ -91,7 +84,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            binding.btnEditPhoto.id -> startGallery()
+            binding.btnEdit.id -> startActivity(Intent(this, EditProfileActivity::class.java))
             binding.fabUpload.id -> {
                 viewModel.uploadImage(profile.uid).observe(this) { response ->
                     when (response) {
@@ -137,11 +130,9 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener,
     private fun isLoading(loading: Boolean) {
         if (loading) {
             binding.fabUpload.visibility = View.INVISIBLE
-            binding.btnEditPhoto.visibility = View.INVISIBLE
             binding.circleLoading.visibility = View.VISIBLE
             binding.tvLoading.visibility = View.VISIBLE
         } else {
-            binding.btnEditPhoto.visibility = View.VISIBLE
             binding.circleLoading.visibility = View.GONE
             binding.tvLoading.visibility = View.GONE
         }
@@ -149,70 +140,5 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun shortMessage(message:String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private val launcherIntentGallery: ActivityResultLauncher<Intent> = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val selectedImg: Uri = result.data?.data as Uri
-            Glide.with(this).load(selectedImg).fitCenter().circleCrop().into(binding.imgProfile)
-            viewModel.setNewImageUri(selectedImg)
-            binding.fabUpload.visibility = View.VISIBLE
-        }
-    }
-
-    private fun startGallery() {
-        when {
-            VERSION.SDK_INT >= 33 -> {
-                if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_MEDIA_IMAGES)) {
-                    launcherIntentGallery.launch(
-                        Intent.createChooser(
-                            Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                            getString(R.string.select_image)
-                        )
-                    )
-                } else {
-                    EasyPermissions.requestPermissions(
-                        this,
-                        getString(R.string.gallery_permission_title),
-                        READ_EXTERNAL,
-                        Manifest.permission.READ_MEDIA_IMAGES
-                    )
-                }
-            }
-            else -> {
-                if (EasyPermissions.hasPermissions(
-                        this, Manifest.permission.READ_EXTERNAL_STORAGE
-                    )
-                ) {
-                    launcherIntentGallery.launch(
-                        Intent.createChooser(
-                            Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                            getString(R.string.select_image)
-                        )
-                    )
-                } else {
-                    EasyPermissions.requestPermissions(
-                        this,
-                        getString(R.string.gallery_permission_title),
-                        READ_EXTERNAL,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    )
-                }
-            }
-        }
-    }
-
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        when (requestCode) {
-            READ_EXTERNAL -> startGallery()
-        }
-    }
-
-    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        when (requestCode) {
-            READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
-        }
     }
 }

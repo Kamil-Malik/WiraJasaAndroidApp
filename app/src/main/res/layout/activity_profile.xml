@@ -36,7 +36,6 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="24dp"
                 android:contentDescription="@string/profile_picture"
-                app:layout_constraintBottom_toTopOf="@id/tv_username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +82,6 @@
                 android:fontFamily="@font/inter_medium"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@id/tv_phonenumber"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username"
@@ -160,18 +158,6 @@
                 android:layout_height="24dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
-
-            <ImageButton
-                android:id="@+id/btn_edit_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                android:contentDescription="@string/btn_edit_picture"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintBottom_toBottomOf="@id/img_profile"
-                app:layout_constraintEnd_toEndOf="@id/img_profile"
-                app:tint="@color/white"
-                tools:ignore="TouchTargetSizeCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

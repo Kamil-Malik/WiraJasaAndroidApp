@@ -11,7 +11,9 @@ interface UserRepository {
 
     fun registerDefaultProfile() : Flow<NetworkResponse<UserProfile>>
 
-    fun updateProfile(userProfile: UserProfile) : Flow<NetworkResponse<Boolean>>
+    fun updateProfileWithoutNewImage(userProfile: UserProfile) : Flow<NetworkResponse<Boolean>>
+
+    fun updateProfileWithNewImage(userProfile: UserProfile): Flow<NetworkResponse<Boolean>>
 
     fun getUserProfile(): Flow<NetworkResponse<UserProfile>>
 

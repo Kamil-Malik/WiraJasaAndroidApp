@@ -50,7 +50,7 @@ class ProductRepositoryImpl @Inject constructor(
                         phoneNumber,
                         downloadUrlTask.result.toString()
                     )
-                    val serviceId = auth.currentUser?.uid + name.lowercase().replace(" ","")
+                    val serviceId = auth.currentUser?.uid + name.lowercase().trim()
                     firestoreDb.collection("service").document(serviceId).set(servicePost)
                 }.await()
             emit(NetworkResponse.Success(data = true))

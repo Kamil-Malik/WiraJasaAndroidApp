@@ -22,16 +22,12 @@ class ProfileViewModel @Inject constructor(
        return repository.getLocalProfile()
     }
 
-    fun setNewImageUri(uri: Uri) {
-        imageUri = uri.toString()
-    }
-
     fun uploadImage(uid: String) : LiveData<NetworkResponse<Uri>> {
         val file = Uri.parse(imageUri)
         return repository.uploadProfileImage(file, uid).asLiveData(Dispatchers.Main)
     }
 
     fun updateProfile(profile: UserProfile) : LiveData<NetworkResponse<Boolean>> {
-        return repository.updateProfile(profile).asLiveData(Dispatchers.Main)
+        return repository.updateProfileWithNewImage(profile).asLiveData(Dispatchers.Main)
     }
 }
