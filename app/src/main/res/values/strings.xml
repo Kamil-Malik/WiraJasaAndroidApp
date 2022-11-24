@@ -2,7 +2,7 @@
     <string name="app_name">WiraJasa Bisnis</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="serivce_register">Serivce Register</string>
+    <string name="service_register">Service Register</string>
     <string name="service_name">Service Name</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
@@ -42,6 +42,14 @@
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="title">Title</string>
     <string name="price">Rp. 00.000.00.,-</string>
+    <string name="title_activity_seller">SellerActivity</string>
+    <string name="price_rupiah">Price (Rupiah)</string>
+    <string name="title_activity_seller_base">SellerBaseActivity</string>
+    <string name="title_activity_bottom_navigation_seller">BottomNavigationSellerActivity</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_dashboard">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="unit">Unit</string>
     <string name="edit_profile">Edit</string>
     <string name="register_as_seller">Register as Seller</string>
     <string name="profile">Profile</string>
@@ -55,4 +63,9 @@
     <string name="getting_profile">Getting profile…</string>
     <string name="signing_up">Creating account…</string>
     <string name="uploading_profile">Creating profile…</string>
+    <string name="app_logo">App Logo</string>
+    <string name="form_have_to_be_filled">Form have to be filled</string>
+    <string name="success_add_data">Successfully Added Data</string>
+    <string name="image_type">image/*</string>
+    <string name="choose_a_picture">Choose a Picture</string>
 </resources>
