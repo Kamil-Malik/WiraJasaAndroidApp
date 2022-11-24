@@ -1,7 +1,6 @@
 package com.wirajasa.wirajasabisnis.data.repository
 
 import android.net.Uri
-import com.google.firebase.auth.FirebaseUser
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -16,4 +15,6 @@ interface ProductRepository {
         phoneNumber: String,
         photo: Uri?
     ): Flow<NetworkResponse<Boolean>>
+
+//    fun getService() : Flow<NetworkResponse<List<ServicePost>>>
 }

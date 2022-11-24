@@ -25,15 +25,4 @@
         <item name="android:textColorHint">@color/dark_blue</item>
         <item name="startIconTint">@color/dark_blue</item>
     </style>
-
-    <style name="Theme.Auth" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="colorPrimaryDark">@color/orange</item>
-        <item name="background">@color/orange</item>
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="android:textColorPrimary">@color/black</item>
-        <item name="android:textColorSecondary">@color/dark_blue</item>
-        <item name="android:textColorHint">@color/dark_blue</item>
-        <item name="startIconTint">@color/dark_blue</item>
-    </style>
 </resources>
