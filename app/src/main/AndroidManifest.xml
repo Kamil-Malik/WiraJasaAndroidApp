@@ -31,14 +31,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.BuyerDashboard"
+            android:name=".ui.dashboard.BuyerDashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.SellerDashboard"
+            android:name=".ui.dashboard.SellerDashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
