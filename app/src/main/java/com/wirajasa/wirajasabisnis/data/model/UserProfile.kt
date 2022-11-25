@@ -1,5 +1,6 @@
 package com.wirajasa.wirajasabisnis.data.model
 
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.PropertyName
 
 data class UserProfile(
@@ -9,7 +10,7 @@ data class UserProfile(
     @get:PropertyName(PHONE_NUMBER) @set:PropertyName(PHONE_NUMBER) var phone_number: String = "",
     @get:PropertyName(PHOTO) @set:PropertyName(PHOTO) var image: String = "",
     @get:PropertyName(SELLER) @set:PropertyName(SELLER) var sellerStatus: Boolean = false,
-    @get:PropertyName(CREATED_AT) @set:PropertyName(CREATED_AT) var createdAt: String = ""
+    @get:PropertyName(CREATED_AT) @set:PropertyName(CREATED_AT) var createdAt: Timestamp = Timestamp.now()
 ) {
     companion object {
         private const val USERID = "id"
