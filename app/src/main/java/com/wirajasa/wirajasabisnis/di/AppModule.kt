@@ -21,38 +21,46 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(@ApplicationContext mContext: Context): AuthRepository {
-        return AuthRepositoryImpl(mContext, Firebase.auth, Dispatchers.IO)
+    fun provideCryptoPref(@ApplicationContext mContext: Context) : CryptoPref {
+        return CryptoPref(mContext)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref): AuthRepository {
+        return AuthRepositoryImpl(
+            context = mContext,
+            auth = Firebase.auth,
+            fireStore = Firebase.firestore,
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
+        )
     }
 
     @Provides
     @Singleton
     fun provideProductRepository(@ApplicationContext mContext: Context): ProductRepository {
-        val auth = Firebase.auth
-        val storage = Firebase.storage.reference
-        val firestoreDb = Firebase.firestore
-        return ProductRepositoryImpl(mContext, auth, storage, firestoreDb, Dispatchers.IO)
-    }
-
-    @Provides
-    @Singleton
-    fun provideStorageRepository(@ApplicationContext mContext: Context): StorageRepository {
-        return StorageRepositoryImpl(Firebase.storage, mContext, Dispatchers.IO)
+        return ProductRepositoryImpl(
+            context = mContext,
+            auth = Firebase.auth,
+            storage = Firebase.storage.reference,
+            firestoreDb = Firebase.firestore,
+            ioDispatcher = Dispatchers.IO
+        )
     }
 
     @Provides
     @Singleton
     fun provideUserRepository(
         @ApplicationContext mContext: Context,
-        authRepository: AuthRepository
+        cryptoPref: CryptoPref
     ): UserRepository {
         return UserRepositoryImpl(
             storage = Firebase.storage,
             fireStore = Firebase.firestore,
-            authRepository = authRepository,
             context = mContext,
             ioDispatcher = Dispatchers.IO,
-            cryptoPref = CryptoPref(mContext)
+            cryptoPref = cryptoPref
         )
     }
 }

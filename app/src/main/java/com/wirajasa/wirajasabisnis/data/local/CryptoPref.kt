@@ -6,7 +6,6 @@ import androidx.security.crypto.MasterKey
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.ADDRESS
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CREATED_AT
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.PHONE_NUMBER
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.PHOTO_URL
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.SELLER
@@ -36,8 +35,7 @@ class CryptoPref(mContext: Context) {
             address = preferences.getString(ADDRESS, notSetup) as String,
             phone_number = preferences.getString(PHONE_NUMBER, notSetup) as String,
             image = preferences.getString(PHOTO_URL, "") as String,
-            sellerStatus = preferences.getBoolean(SELLER, false),
-            createdAt = preferences.getString(CREATED_AT, "") as String
+            sellerStatus = preferences.getBoolean(SELLER, false)
         )
     }
 
@@ -49,7 +47,6 @@ class CryptoPref(mContext: Context) {
             .putString(PHONE_NUMBER, profile.phone_number)
             .putString(PHOTO_URL, profile.image)
             .putBoolean(SELLER, profile.sellerStatus)
-            .putString(CREATED_AT, profile.createdAt)
             .apply()
     }
 

@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
@@ -69,33 +67,20 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                             response.cause?.let { showToast(it) }
                             showLoading(false)
                         }
-                        NetworkResponse.Loading -> showLoading(true)
-                        is NetworkResponse.Success -> registerDefaultUser()
+                        is NetworkResponse.Loading -> {
+                            response.status?.let { binding.tvLoading.text = it }
+                            if (binding.circleLoading.visibility != View.VISIBLE) showLoading(true)
+                        }
+                        is NetworkResponse.Success -> {
+                            showToast(getString(R.string.welcome_user, response.data.username))
+                            val intent = Intent(this, MainActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                        }
                     }
                 }
             }
             binding.tvClickHaveAccount.id -> finish()
-        }
-    }
-
-    private fun registerDefaultUser() {
-        viewModel.registerDefaultProfile().observe(this) { response ->
-            when (response) {
-                is NetworkResponse.GenericException -> {
-                    response.cause?.let { showToast(it) }
-                    Firebase.auth.signOut()
-                    showToast("Sorry for inconvenience, please login again")
-                    finish()
-                }
-                NetworkResponse.Loading -> binding.tvLoading.text =
-                    getString(R.string.uploading_profile)
-                is NetworkResponse.Success -> {
-                    showToast(getString(R.string.welcome_user, response.data.username))
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
         }
     }
 

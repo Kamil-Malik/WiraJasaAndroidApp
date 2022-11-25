@@ -9,14 +9,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
 import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
-import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +30,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (viewModel.getCurrentUser() != null) {
+        if (currentUser() != null) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -68,9 +65,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             response.cause?.let { showToast(it) }
                             showLoading(false)
                         }
-                        NetworkResponse.Loading -> showLoading(true)
-
-                        is NetworkResponse.Success -> getProfile()
+                        is NetworkResponse.Loading -> {
+                            response.status?.let { binding.tvLoading.text = it }
+                            if (binding.circleLoading.visibility == View.GONE) showLoading(true)
+                        }
+                        is NetworkResponse.Success -> {
+                            showToast(getString(R.string.welcome_user, response.data.username))
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
@@ -85,26 +89,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun getProfile() {
-        viewModel.getProfile().observe(this) { response ->
-            when (response) {
-                is NetworkResponse.GenericException -> {
-                    response.cause?.let { showToast(it) }
-                    showLoading(false)
-                    Firebase.auth.signOut()
-                    binding.tvLoading.text = getString(R.string.signing_in)
-                }
-                NetworkResponse.Loading -> binding.tvLoading.text =
-                    getString(R.string.getting_profile)
-                is NetworkResponse.Success -> {
-                    showToast(getString(R.string.welcome_user, response.data.username))
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-        }
-    }
+    private fun currentUser() = viewModel.getCurrentUser()
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

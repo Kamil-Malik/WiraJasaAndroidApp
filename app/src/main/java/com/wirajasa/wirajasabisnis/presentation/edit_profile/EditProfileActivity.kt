@@ -1,6 +1,7 @@
 package com.wirajasa.wirajasabisnis.presentation.edit_profile
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -10,12 +11,14 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
-import com.wirajasa.wirajasabisnis.utility.Constant
+import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
@@ -35,11 +38,17 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         setContentView(binding.root)
         profile = viewModel.getProfile()
         binding.apply {
-            Glide.with(this@EditProfileActivity)
+            if (profile.image.isNotBlank()) Glide.with(this@EditProfileActivity)
                 .load(profile.image)
                 .fitCenter()
                 .circleCrop()
                 .into(imgProfile)
+            else Glide.with(this@EditProfileActivity)
+                .load(R.drawable.default_image)
+                .fitCenter()
+                .circleCrop()
+                .into(imgProfile)
+
             edtUsername.setText(profile.username)
             edtAddress.setText(profile.address)
             edtPhoneNumber.setText(profile.phone_number)
@@ -65,32 +74,27 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         when (v?.id) {
             binding.btnEditPhoto.id -> startGallery()
             binding.btnSave.id -> {
-                if (viewModel.getProfile().image.isBlank() || viewModel.getProfile().image != profile.image) {
-                    viewModel.updateProfileWithNewImage(userProfile).observe(this) { response ->
-                        when (response) {
-                            is NetworkResponse.GenericException -> {
-                                isLoading(false)
-                                response.cause?.let { shortMessage(it) }
-                            }
-                            NetworkResponse.Loading -> isLoading(true)
-                            is NetworkResponse.Success -> {
-                                isLoading(false)
-                                shortMessage("Profile Updated")
-                            }
+                viewModel.updateProfile(userProfile).observe(this) { response ->
+                    when (response) {
+                        is NetworkResponse.GenericException -> {
+                            isLoading(false)
+                            response.cause?.let { shortMessage(it) }
                         }
-                    }
-                } else {
-                    viewModel.updateProfileWithoutNewImage(userProfile).observe(this) { response ->
-                        when (response) {
-                            is NetworkResponse.GenericException -> {
-                                isLoading(false)
-                                response.cause?.let { shortMessage(it) }
-                            }
-                            NetworkResponse.Loading -> isLoading(true)
-                            is NetworkResponse.Success -> {
-                                isLoading(false)
-                                shortMessage("Profile Updated")
-                            }
+                        is NetworkResponse.Loading -> {
+                            response.status?.let { binding.tvLoading.text = it }
+                            if (binding.circleLoading.visibility != View.VISIBLE) isLoading(true)
+                        }
+                        is NetworkResponse.Success -> {
+                            Glide.with(this)
+                                .load(viewModel.getProfile().image)
+                                .fitCenter()
+                                .circleCrop()
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .into(binding.imgProfile)
+
+                            isLoading(false)
+                            shortMessage("Profile Updated")
+                            setResult(Activity.RESULT_OK)
                         }
                     }
                 }
@@ -118,49 +122,60 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
             Glide.with(this).load(selectedImg)
                 .fitCenter()
                 .circleCrop()
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(binding.imgProfile)
             viewModel.setNewImageUri(selectedImg)
         }
     }
 
+    private fun openGallery() {
+        launcherIntentGallery.launch(
+            Intent.createChooser(
+                Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
+                getString(R.string.select_image)
+            )
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestMediaPermission() {
+        EasyPermissions.requestPermissions(
+            this,
+            getString(R.string.gallery_permission_title),
+            READ_EXTERNAL,
+            Manifest.permission.READ_MEDIA_IMAGES
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun checkMediaPermission(): Boolean {
+        return EasyPermissions
+            .hasPermissions(this, Manifest.permission.READ_MEDIA_IMAGES)
+    }
+
+    private fun requestExternalAccessPermission() {
+        EasyPermissions.requestPermissions(
+            this,
+            getString(R.string.gallery_permission_title),
+            READ_EXTERNAL,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
+    private fun checkExternalAccessPermission(): Boolean {
+        return EasyPermissions
+            .hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+    }
+
     private fun startGallery() {
         when {
             Build.VERSION.SDK_INT >= 33 -> {
-                if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_MEDIA_IMAGES)) {
-                    launcherIntentGallery.launch(
-                        Intent.createChooser(
-                            Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                            getString(R.string.select_image)
-                        )
-                    )
-                } else {
-                    EasyPermissions.requestPermissions(
-                        this,
-                        getString(R.string.gallery_permission_title),
-                        Constant.READ_EXTERNAL,
-                        Manifest.permission.READ_MEDIA_IMAGES
-                    )
-                }
+                if (checkMediaPermission()) openGallery()
+                else requestMediaPermission()
             }
             else -> {
-                if (EasyPermissions.hasPermissions(
-                        this, Manifest.permission.READ_EXTERNAL_STORAGE
-                    )
-                ) {
-                    launcherIntentGallery.launch(
-                        Intent.createChooser(
-                            Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                            getString(R.string.select_image)
-                        )
-                    )
-                } else {
-                    EasyPermissions.requestPermissions(
-                        this,
-                        getString(R.string.gallery_permission_title),
-                        Constant.READ_EXTERNAL,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    )
-                }
+                if (checkExternalAccessPermission()) openGallery()
+                else requestExternalAccessPermission()
             }
         }
     }
@@ -171,13 +186,13 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            Constant.READ_EXTERNAL -> startGallery()
+            READ_EXTERNAL -> openGallery()
         }
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            Constant.READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
+            READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
         }
     }
 }

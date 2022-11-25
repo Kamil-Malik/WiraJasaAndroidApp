@@ -46,7 +46,7 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
                         is NetworkResponse.GenericException -> Snackbar.make(
                             binding.root, it.cause.toString(), Snackbar.LENGTH_LONG
                         ).show().also { showLoading(false) }
-                        NetworkResponse.Loading -> showLoading(true)
+                        is NetworkResponse.Loading -> showLoading(true)
                         is NetworkResponse.Success -> Toast.makeText(
                             this,
                             getString(R.string.reset_success),

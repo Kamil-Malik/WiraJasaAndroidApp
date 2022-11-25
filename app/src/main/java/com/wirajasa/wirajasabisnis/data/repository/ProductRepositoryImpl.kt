@@ -55,7 +55,7 @@ class ProductRepositoryImpl @Inject constructor(
                 }.await()
             emit(NetworkResponse.Success(data = true))
         } catch (e: Exception) {
-            emit(NetworkResponse.GenericException(HandleException().getMessage(e, context)))
+            emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
         }
-    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)
+    }.onStart { emit(NetworkResponse.Loading(null)) }.flowOn(ioDispatcher)
 }

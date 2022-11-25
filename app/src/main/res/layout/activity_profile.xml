@@ -160,47 +160,4 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@string/btn_upload_picture"
-        android:src="@drawable/ic_upload"
-        android:visibility="invisible"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/dark_blue"
-        tools:visibility="visible" />
-
-    <ProgressBar
-        android:id="@+id/circle_loading"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/dark_blue"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_upload"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fab_upload"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/tv_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/loading_status_uploading_image"
-        android:textColor="@color/white"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/circle_loading"
-        app:layout_constraintStart_toEndOf="@id/circle_loading"
-        app:layout_constraintTop_toTopOf="@id/circle_loading"
-        tools:ignore="TextContrastCheck"
-        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

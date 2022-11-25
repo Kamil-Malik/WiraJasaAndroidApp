@@ -24,9 +24,8 @@ class EditProfileViewModel @Inject constructor(
 
     fun getProfile() = userRepository.getLocalProfile()
 
-    fun updateProfileWithoutNewImage(profile: UserProfile): LiveData<NetworkResponse<Boolean>> =
-        userRepository.updateProfileWithoutNewImage(profile).asLiveData(Dispatchers.Main)
-
-    fun updateProfileWithNewImage(profile: UserProfile): LiveData<NetworkResponse<Boolean>> =
-        userRepository.updateProfileWithNewImage(profile).asLiveData(Dispatchers.Main)
+    fun updateProfile(profile: UserProfile): LiveData<NetworkResponse<Boolean>> {
+        if(imageUri.isNotBlank()) profile.image = imageUri
+        return userRepository.updateProfile(profile).asLiveData(Dispatchers.Main)
+    }
 }

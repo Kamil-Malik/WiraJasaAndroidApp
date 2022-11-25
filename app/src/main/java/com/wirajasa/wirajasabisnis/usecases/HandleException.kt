@@ -7,9 +7,9 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.wirajasa.wirajasabisnis.R
 import java.io.IOException
 
-class HandleException {
+class HandleException (private val context: Context) {
 
-    fun getMessage(exception: Exception, context: Context): String {
+    fun getMessage(exception: Exception): String {
         return when (exception) {
             is IOException -> context.getString(R.string.connection_error)
             is FirebaseAuthEmailException -> context.getString(R.string.invalid_email)
