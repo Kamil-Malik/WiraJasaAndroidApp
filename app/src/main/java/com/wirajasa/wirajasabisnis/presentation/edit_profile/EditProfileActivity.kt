@@ -2,10 +2,12 @@ package com.wirajasa.wirajasabisnis.presentation.edit_profile
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -68,8 +70,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
             address = address,
             phone_number = phoneNumber,
             image = profile.image,
-            sellerStatus = profile.sellerStatus,
-            createdAt = profile.createdAt
+            isSeller = profile.isSeller,
+            isAdmin = profile.isAdmin
         )
         when (v?.id) {
             binding.btnEditPhoto.id -> startGallery()
@@ -119,10 +121,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
+            Log.d(ContentValues.TAG, " URI: $selectedImg")
             Glide.with(this).load(selectedImg)
                 .fitCenter()
                 .circleCrop()
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(binding.imgProfile)
             viewModel.setNewImageUri(selectedImg)
         }

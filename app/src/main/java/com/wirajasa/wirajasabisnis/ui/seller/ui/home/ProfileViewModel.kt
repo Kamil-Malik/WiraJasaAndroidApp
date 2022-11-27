@@ -1,13 +1,24 @@
 package com.wirajasa.wirajasabisnis.ui.seller.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.data.model.UserProfile
+import com.wirajasa.wirajasabisnis.data.repository.SellerRepository
+import com.wirajasa.wirajasabisnis.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val sellerRepository: SellerRepository,
+    private val userRepository: UserRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun getProfile(): UserProfile {
+        return userRepository.getLocalProfile()
     }
-    val text: LiveData<String> = _text
+
+    fun getSellerProfile(): SellerApplication {
+       return sellerRepository.getSellerData()
+    }
 }
