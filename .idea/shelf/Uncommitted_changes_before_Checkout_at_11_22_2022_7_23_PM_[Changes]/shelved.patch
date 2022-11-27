@@ -1,0 +1,115 @@
+Index: app/src/main/res/layout/activity_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#FF731D\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/img_profile\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"150dp\"\r\n        android:layout_marginStart=\"105dp\"\r\n        android:contentDescription=\"@string/photo_profil\"\r\n        android:layout_marginTop=\"136dp\"\r\n        android:layout_marginEnd=\"105dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.549\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/username\"\r\n        android:layout_width=\"81dp\"\r\n        android:layout_height=\"19dp\"\r\n        android:layout_marginTop=\"24dp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/img_profile\"\r\n        app:layout_constraintHorizontal_bias=\"0.463\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/img_profile\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/img_profile\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/name\"\r\n        android:layout_width=\"267dp\"\r\n        android:layout_height=\"33dp\"\r\n        android:layout_marginTop=\"172dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/email\"\r\n        android:layout_width=\"267dp\"\r\n        android:layout_height=\"33dp\"\r\n        android:layout_marginTop=\"36dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/phonenumber\"\r\n        android:layout_width=\"267dp\"\r\n        android:layout_height=\"33dp\"\r\n        android:layout_marginTop=\"80dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/address\"\r\n        android:layout_width=\"267dp\"\r\n        android:layout_height=\"33dp\"\r\n        android:layout_marginTop=\"128dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/username\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/edit\"\r\n        android:layout_width=\"148dp\"\r\n        android:layout_height=\"56dp\"\r\n        android:layout_marginTop=\"18dp\"\r\n        android:background=\"#004869\"\r\n        android:backgroundTint=\"#004869\"\r\n        android:text=\"@string/edit_profile\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/name\"\r\n        app:rippleColor=\"#004869\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/register_seller\"\r\n        android:layout_width=\"148dp\"\r\n        android:layout_height=\"56dp\"\r\n        android:layout_marginTop=\"6dp\"\r\n        android:text=\"@string/register_as_seller\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.505\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/edit\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/profile\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"56dp\"\r\n        android:text=\"@string/profile\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.087\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+diff --git a/app/src/main/res/layout/activity_profile.xml b/app/src/main/res/layout/activity_profile.xml
+--- a/app/src/main/res/layout/activity_profile.xml	
++++ b/app/src/main/res/layout/activity_profile.xml	
+@@ -3,16 +3,26 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="#FF731D">
++    android:background="@color/orange">
++
++    <com.google.android.material.appbar.MaterialToolbar
++        android:id="@+id/toolbar_profile"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@android:color/transparent"
++        android:elevation="0dp"
++        app:layout_constraintTop_toTopOf="parent"
++        app:title="@string/profile"
++        app:titleTextColor="@color/white" />
+ 
+     <ImageView
+         android:id="@+id/img_profile"
+         android:layout_width="150dp"
+         android:layout_height="150dp"
+         android:layout_marginStart="105dp"
+-        android:contentDescription="@string/photo_profil"
+         android:layout_marginTop="136dp"
+         android:layout_marginEnd="105dp"
++        android:contentDescription="@string/photo_profil"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.549"
+         app:layout_constraintStart_toStartOf="parent"
+@@ -57,50 +67,41 @@
+ 
+     <TextView
+         android:id="@+id/address"
+-        android:layout_width="267dp"
+-        android:layout_height="33dp"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
+         android:layout_marginTop="128dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/username" />
+ 
+-    <Button
+-        android:id="@+id/edit"
+-        android:layout_width="148dp"
+-        android:layout_height="56dp"
+-        android:layout_marginTop="18dp"
+-        android:background="#004869"
+-        android:backgroundTint="#004869"
++    <com.google.android.material.button.MaterialButton
++        android:id="@+id/btn_edit"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:backgroundTint="@color/dark_blue"
++        android:fontFamily="@font/inter_bold"
+         android:text="@string/edit_profile"
+-        android:textSize="12sp"
++        android:textColor="@color/white"
++        app:cornerRadius="5dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/name"
+-        app:rippleColor="#004869" />
++        app:layout_constraintTop_toBottomOf="@id/address" />
+ 
+-    <Button
+-        android:id="@+id/register_seller"
+-        android:layout_width="148dp"
+-        android:layout_height="56dp"
+-        android:layout_marginTop="6dp"
++    <com.google.android.material.button.MaterialButton
++        android:id="@+id/btn_register_seller"
++        android:layout_width="200dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:backgroundTint="@color/white"
++        android:fontFamily="@font/inter_bold"
+         android:text="@string/register_as_seller"
+-        android:textSize="12sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.505"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/edit" />
+-
+-    <TextView
+-        android:id="@+id/profile"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="56dp"
+-        android:text="@string/profile"
+-        android:textSize="20sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.087"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-
++        android:textColor="@color/dark_blue"
++        app:cornerRadius="5dp"
++        app:layout_constraintEnd_toEndOf="@+id/btn_edit"
++        app:layout_constraintStart_toStartOf="@+id/btn_edit"
++        app:layout_constraintTop_toBottomOf="@id/btn_edit"
++        app:strokeColor="@color/dark_blue"
++        app:strokeWidth="1dp" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.register_buyyer
+package com.wirajasa.wirajasabisnis.presentation.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -18,12 +18,8 @@ class RegisterViewModel @Inject constructor(
     fun signUpWithEmailAndPassword(
         email: String,
         password: String
-    ): LiveData<NetworkResponse<Boolean>> {
+    ): LiveData<NetworkResponse<UserProfile>> {
         return authRepository.signUpWithEmailAndPassword(email, password)
             .asLiveData(Dispatchers.Main)
-    }
-
-    fun registerDefaultProfile(): LiveData<NetworkResponse<UserProfile>> {
-        return authRepository.registerDefaultProfile().asLiveData(Dispatchers.Main)
     }
 }

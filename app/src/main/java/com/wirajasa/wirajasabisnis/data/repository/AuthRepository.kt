@@ -9,13 +9,11 @@ interface AuthRepository {
 
     fun signInWithEmailAndPassword(
         email: String, password: String
-    ): Flow<NetworkResponse<FirebaseUser>>
+    ): Flow<NetworkResponse<UserProfile>>
 
     fun signUpWithEmailAndPassword(
         email: String, password: String
-    ): Flow<NetworkResponse<Boolean>>
-
-    fun registerDefaultProfile() : Flow<NetworkResponse<UserProfile>>
+    ): Flow<NetworkResponse<UserProfile>>
 
     fun resetPasswordWithEmail(
         email: String

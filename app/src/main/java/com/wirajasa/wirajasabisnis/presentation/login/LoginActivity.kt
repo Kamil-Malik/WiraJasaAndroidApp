@@ -3,37 +3,46 @@ package com.wirajasa.wirajasabisnis.presentation.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
+import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.presentation.register_buyyer.RegisterActivity
+import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
+import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
+import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var _binding: ActivityLoginBinding? = null
-    private val binding get() = _binding!!
-
     private val viewModel by viewModels<LoginViewModel>()
+    private val binding by lazy {
+        ActivityLoginBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityLoginBinding.inflate(layoutInflater)
-        window.statusBarColor = getColor(R.color.orange)
-        supportActionBar?.hide()
         setContentView(binding.root)
 
-        if (viewModel.getCurrentUser() != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+        if (currentUser() != null) {
+            val localProfile: UserProfile = viewModel.getProfile()
+            val intent : Intent = if (localProfile.isAdmin) {
+                Intent(this, MainActivity::class.java)
+            } else if (localProfile.isSeller) {
+                Intent(this, SellerBaseActivity::class.java)
+            } else {
+                Intent(this, MainActivity::class.java)
+            }
+            startActivity(intent)
             finish()
         }
 
@@ -50,39 +59,57 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         when (v?.id) {
             binding.btnLogin.id -> {
-                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                    .hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+                    currentFocus?.windowToken, 0
+                )
 
-                if (!validateEmail(email)) binding.edtEmail.error =
+                if (!Validate().email(email)) binding.edtEmail.error =
                     getString(R.string.empty_invalid_email)
 
-                if (!validatePassword(password)) Snackbar.make(
+                if (!Validate().password(password)) Snackbar.make(
                     binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT
                 ).show().also { return }
 
-                viewModel.signInWithEmailAndPassword(email, password).observe(this) {
-                    when (it) {
-                        is NetworkResponse.GenericException -> Snackbar.make(
-                            binding.root, it.cause.toString(), Snackbar.LENGTH_LONG
-                        ).show().also { showLoading(false) }
-                        NetworkResponse.Loading -> showLoading(true)
-                        is NetworkResponse.Success -> startActivity(Intent(
-                            this, MainActivity::class.java
-                        ).also { finish() })
+                viewModel.signInWithEmailAndPassword(email, password).observe(this) { response ->
+                    when (response) {
+                        is NetworkResponse.GenericException -> {
+                            response.cause?.let { showToast(it) }
+                            showLoading(false)
+                        }
+                        is NetworkResponse.Loading -> {
+                            response.status?.let { binding.tvLoading.text = it }
+                            if (binding.circleLoading.visibility == View.GONE) showLoading(true)
+                        }
+                        is NetworkResponse.Success -> {
+                            showToast(getString(R.string.welcome_user, response.data.username))
+                            val intent = if (response.data.isSeller) {
+                                Intent(this, SellerBaseActivity::class.java)
+                            } else if (response.data.isAdmin) {
+                                Intent(this, ProfileActivity::class.java)
+                            } else {
+                                Intent(this, MainActivity::class.java)
+                            }
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
             binding.btnRegister.id -> {
-                startActivity(
-                    Intent(
-                        this, RegisterActivity::class.java
-                    )
-                )
+                val intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
             }
             binding.tvForgotPassword.id -> {
-                startActivity(Intent(this, ResetPasswordActivity::class.java))
+                val intent = Intent(this, ResetPasswordActivity::class.java)
+                startActivity(intent)
             }
         }
+    }
+
+    private fun currentUser() = viewModel.getCurrentUser()
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -101,20 +128,5 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             circleLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
-    }
-
-    private fun validateEmail(email: String): Boolean {
-        return if (email.isEmpty()) false
-        else Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun validatePassword(password: String): Boolean {
-        return if (password.isEmpty()) false
-        else password.length >= 8
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

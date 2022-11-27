@@ -4,8 +4,9 @@ import android.content.Context
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.wirajasa.wirajasabisnis.data.repository.AuthRepository
-import com.wirajasa.wirajasabisnis.data.repository.AuthRepositoryImpl
+import com.google.firebase.storage.ktx.storage
+import com.wirajasa.wirajasabisnis.data.local.CryptoPref
+import com.wirajasa.wirajasabisnis.data.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,58 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(@ApplicationContext mContext: Context): AuthRepository {
-        return AuthRepositoryImpl(mContext, Firebase.auth, Firebase.firestore, Dispatchers.IO)
+    fun provideCryptoPref(@ApplicationContext mContext: Context) : CryptoPref {
+        return CryptoPref(mContext)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref): AuthRepository {
+        return AuthRepositoryImpl(
+            context = mContext,
+            auth = Firebase.auth,
+            db = Firebase.firestore,
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductRepository(@ApplicationContext mContext: Context): ProductRepository {
+        return ProductRepositoryImpl(
+            context = mContext,
+            auth = Firebase.auth,
+            storage = Firebase.storage.reference,
+            firestoreDb = Firebase.firestore,
+            ioDispatcher = Dispatchers.IO
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(
+        @ApplicationContext mContext: Context,
+        cryptoPref: CryptoPref
+    ): UserRepository {
+        return UserRepositoryImpl(
+            storage = Firebase.storage,
+            db = Firebase.firestore,
+            context = mContext,
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSellerRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref) : SellerRepository {
+        return SellerRepositoryImpl(
+            db = Firebase.firestore,
+            storage = Firebase.storage,
+            ioDispatcher = Dispatchers.IO,
+            context = mContext,
+            cryptoPref = cryptoPref
+        )
     }
 }
