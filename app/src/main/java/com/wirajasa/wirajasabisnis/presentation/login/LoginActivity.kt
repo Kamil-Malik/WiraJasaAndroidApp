@@ -10,10 +10,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
+import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
+import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
 import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +34,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         if (currentUser() != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            val localProfile: UserProfile = viewModel.getProfile()
+            val intent : Intent = if (localProfile.isAdmin) {
+                Intent(this, MainActivity::class.java)
+            } else if (localProfile.isSeller) {
+                Intent(this, SellerBaseActivity::class.java)
+            } else {
+                Intent(this, MainActivity::class.java)
+            }
+            startActivity(intent)
             finish()
         }
 
@@ -71,7 +82,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         is NetworkResponse.Success -> {
                             showToast(getString(R.string.welcome_user, response.data.username))
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = if (response.data.isSeller) {
+                                Intent(this, SellerBaseActivity::class.java)
+                            } else if (response.data.isAdmin) {
+                                Intent(this, ProfileActivity::class.java)
+                            } else {
+                                Intent(this, MainActivity::class.java)
+                            }
                             startActivity(intent)
                             finish()
                         }

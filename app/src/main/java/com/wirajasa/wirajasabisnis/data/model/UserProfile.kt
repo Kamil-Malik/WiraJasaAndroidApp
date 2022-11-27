@@ -1,22 +1,36 @@
 package com.wirajasa.wirajasabisnis.data.model
 
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.PropertyName
 
 data class UserProfile(
+
     @get:PropertyName(USERID) @set:PropertyName(USERID) var uid: String = "",
     var username: String = "",
+
     var address: String = "",
-    @get:PropertyName(PHONE_NUMBER) @set:PropertyName(PHONE_NUMBER) var phone_number: String = "",
-    @get:PropertyName(PHOTO) @set:PropertyName(PHOTO) var image: String = "",
-    @get:PropertyName(SELLER) @set:PropertyName(SELLER) var sellerStatus: Boolean = false,
-    @get:PropertyName(CREATED_AT) @set:PropertyName(CREATED_AT) var createdAt: Timestamp = Timestamp.now()
+
+    @get:PropertyName(PHONE_NUMBER) @set:PropertyName(PHONE_NUMBER)
+    var phone_number: String = "",
+
+    @get:PropertyName(PHOTO) @set:PropertyName(PHOTO)
+    var image: String = "",
+
+    @get:PropertyName(SELLER) @set:PropertyName(SELLER)
+    var isSeller: Boolean = false,
+
+    @get:PropertyName(VERIFIED) @set:PropertyName(VERIFIED)
+    var isVerified: Boolean = false,
+
+    @get:PropertyName(ADMIN) @set:PropertyName(ADMIN)
+    var isAdmin: Boolean = false
+
 ) {
     companion object {
-        private const val USERID = "id"
+        const val USERID = "id"
         private const val PHOTO = "photo_url"
         private const val PHONE_NUMBER = "phone_number"
-        private const val CREATED_AT = "created_at"
         private const val SELLER = "seller"
+        private const val VERIFIED = "verified"
+        private const val ADMIN = "admin"
     }
 }

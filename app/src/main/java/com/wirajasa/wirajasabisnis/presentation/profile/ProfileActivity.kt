@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
 import com.wirajasa.wirajasabisnis.presentation.edit_profile.EditProfileContract
 import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
+import com.wirajasa.wirajasabisnis.ui.user.UserValidation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,7 +56,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             tvPhonenumber.text = profile.phone_number
             tvName.text = profile.uid
 
-            if (profile.sellerStatus) {
+            if (profile.isSeller) {
                 btnRegisterSeller.visibility = View.GONE
                 spacerBottom.visibility = View.VISIBLE
             } else {
@@ -66,6 +68,31 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     private val editProfileContract = registerForActivityResult(EditProfileContract()) { updated ->
         if (updated) setView()
+    }
+
+    private fun isDataFilled(): Boolean {
+        val currentProfile = viewModel.getUser()
+
+        if (!validateAddress(currentProfile.address)) {
+            longMessage(getString(R.string.please_fill_current_Profile))
+            return false
+        }
+
+        if (!validateAddress(currentProfile.phone_number)) {
+            longMessage(getString(R.string.please_fill_current_Profile))
+            return false
+        }
+
+        return true
+    }
+
+    private fun longMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun validateAddress(input: String): Boolean {
+        if (input.isEmpty()) return false
+        return (!input.matches(getString(R.string.not_setup).toRegex()))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -90,6 +117,12 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnEdit.id -> editProfileContract.launch(Unit)
+            binding.btnRegisterSeller.id -> if (isDataFilled()) startActivity(
+                Intent(
+                    this,
+                    UserValidation::class.java
+                )
+            )
         }
     }
 }
