@@ -44,20 +44,20 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 )
 
                 if (!Validate().email(email)) binding.edtEmail.error =
-                    getString(R.string.empty_invalid_email)
+                    getString(R.string.tv_empty_invalid_email)
 
                 if (!Validate().password(password)) {
-                    showSnack(getString(R.string.empty_password))
+                    showSnack(getString(R.string.tv_empty_password))
                     return
                 }
 
                 if (!Validate().password(confirmedPassword)) {
-                    showSnack(getString(R.string.empty_confirmation_password))
+                    showSnack(getString(R.string.tv_empty_confirmation_password))
                     return
                 }
 
                 if (password != confirmedPassword) {
-                    showSnack(getString(R.string.different_password))
+                    showSnack(getString(R.string.tv_different_password))
                     return
                 }
 
@@ -72,7 +72,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                             if (binding.circleLoading.visibility != View.VISIBLE) showLoading(true)
                         }
                         is NetworkResponse.Success -> {
-                            showToast(getString(R.string.welcome_user, response.data.username))
+                            showToast(getString(R.string.tv_welcome_user, response.data.username))
                             val intent = Intent(this, MainActivity::class.java)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
