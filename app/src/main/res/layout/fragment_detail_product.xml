@@ -27,11 +27,9 @@
 
         <TextView
             android:id="@+id/tvPrice"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
             android:fontFamily="@font/inter_bold"
             android:lineHeight="24.2sp"
             android:text="@string/price"
@@ -39,9 +37,24 @@
             android:textFontWeight="800"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivDetail"
             app:layout_constraintStart_toStartOf="@+id/ivDetail"
             app:layout_constraintTop_toBottomOf="@+id/ivDetail"
+            tools:targetApi="p" />
+
+        <TextView
+            android:id="@+id/tvUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:lineHeight="24.2sp"
+            android:text="@string/slash_unit"
+            android:textColor="@color/dark_blue"
+            android:textFontWeight="800"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
+            app:layout_constraintStart_toEndOf="@+id/tvPrice"
             tools:targetApi="p" />
 
         <TextView

@@ -1,0 +1,71 @@
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/utility/Constant.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/utility/Constant.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/utility/Constant.kt
+new file mode 100644
+--- /dev/null	(date 1669127241263)
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/utility/Constant.kt	(date 1669127241263)
+@@ -0,0 +1,11 @@
++package com.wirajasa.wirajasabisnis.utility
++
++object Constant {
++    const val COLLECTION_USER = "user"
++    const val UID = "uid"
++    const val USERNAME = "username"
++    const val PHONE_NUMBER = "phone_number"
++    const val ADDRESS = "address"
++    const val SELLER = "seller"
++    const val USER_PREF = "user_pref"
++}
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.data.repository\r\n\r\n\r\nimport android.content.Context\r\nimport androidx.core.content.edit\r\nimport com.google.firebase.auth.*\r\nimport com.google.firebase.auth.ktx.auth\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\nimport com.google.firebase.ktx.Firebase\r\nimport com.wirajasa.wirajasabisnis.R\r\nimport com.wirajasa.wirajasabisnis.data.model.UserProfile\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport kotlinx.coroutines.flow.Flow\r\nimport kotlinx.coroutines.flow.flow\r\nimport kotlinx.coroutines.flow.flowOn\r\nimport kotlinx.coroutines.flow.onStart\r\nimport kotlinx.coroutines.tasks.await\r\nimport java.io.IOException\r\nimport java.util.UUID\r\nimport javax.inject.Inject\r\nimport kotlin.coroutines.CoroutineContext\r\n\r\nclass AuthRepositoryImpl @Inject constructor(\r\n    private val context: Context,\r\n    private val auth: FirebaseAuth,\r\n    private val fireStore: FirebaseFirestore,\r\n    private val ioDispatcher: CoroutineContext\r\n) : AuthRepository {\r\n\r\n    override fun signInWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<FirebaseUser>> = flow {\r\n        try {\r\n            auth.signInWithEmailAndPassword(email, password).await()\r\n            val currentUser = getCurrentUser() as FirebaseUser\r\n            emit(NetworkResponse.Success(data = currentUser))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun signUpWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<Boolean>> = flow {\r\n        try {\r\n            auth.createUserWithEmailAndPassword(email, password).await()\r\n            emit(NetworkResponse.Success(false))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun registerDefaultProfile(): Flow<NetworkResponse<UserProfile>> =\r\n        flow {\r\n            try {\r\n                val currentUser = getCurrentUser() as FirebaseUser\r\n                val profile = UserProfile(\r\n                    uid = currentUser.uid,\r\n                    username = \"Guest${UUID.randomUUID()}\",\r\n                    address = \"Not Setup\",\r\n                    phone_number = \"Not Setup\",\r\n                    seller = false\r\n                )\r\n                fireStore.collection(COLLECTION_USER).document(currentUser.uid).set(profile).await()\r\n                context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE).edit {\r\n                    putString(UID, profile.uid)\r\n                    putString(USERNAME, profile.username)\r\n                    putString(ADDRESS, profile.address)\r\n                    putString(PHONE_NUMBER, profile.phone_number)\r\n                    putBoolean(SELLER, profile.seller)\r\n                    apply()\r\n                }\r\n                emit(NetworkResponse.Success(profile))\r\n            } catch (e: Exception) {\r\n                emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n            }\r\n        }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun resetPasswordWithEmail(\r\n        email: String\r\n    ): Flow<NetworkResponse<Boolean>> = flow {\r\n        try {\r\n            auth.sendPasswordResetEmail(email).await()\r\n            emit(NetworkResponse.Success(data = true))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun getCurrentUser(): FirebaseUser? {\r\n        return Firebase.auth.currentUser\r\n    }\r\n\r\n    private fun getExceptionMessage(exception: Exception): String {\r\n        return when (exception) {\r\n            is IOException -> context.getString(R.string.connection_error)\r\n            is FirebaseAuthEmailException -> context.getString(R.string.invalid_email)\r\n            is FirebaseAuthInvalidCredentialsException -> context.getString(R.string.invalid_credential)\r\n            is FirebaseAuthInvalidUserException -> context.getString(R.string.invalid_account)\r\n            else -> context.getString(R.string.something_went_wrong)\r\n        }\r\n    }\r\n\r\n    companion object {\r\n        private const val COLLECTION_USER = \"user\"\r\n        private const val UID = \"uid\"\r\n        private const val USERNAME = \"username\"\r\n        private const val PHONE_NUMBER = \"phone_number\"\r\n        private const val ADDRESS = \"address\"\r\n        private const val SELLER = \"seller\"\r\n        private const val USER_PREF = \"user_pref\"\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt	(revision e2eaaba253d9d8fae543be52583bfb5b4f2903e6)
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt	(date 1669127241274)
+@@ -9,6 +9,13 @@
+ import com.google.firebase.ktx.Firebase
+ import com.wirajasa.wirajasabisnis.R
+ import com.wirajasa.wirajasabisnis.data.model.UserProfile
++import com.wirajasa.wirajasabisnis.utility.Constant.ADDRESS
++import com.wirajasa.wirajasabisnis.utility.Constant.COLLECTION_USER
++import com.wirajasa.wirajasabisnis.utility.Constant.PHONE_NUMBER
++import com.wirajasa.wirajasabisnis.utility.Constant.SELLER
++import com.wirajasa.wirajasabisnis.utility.Constant.UID
++import com.wirajasa.wirajasabisnis.utility.Constant.USERNAME
++import com.wirajasa.wirajasabisnis.utility.Constant.USER_PREF
+ import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+ import kotlinx.coroutines.flow.Flow
+ import kotlinx.coroutines.flow.flow
+@@ -16,7 +23,7 @@
+ import kotlinx.coroutines.flow.onStart
+ import kotlinx.coroutines.tasks.await
+ import java.io.IOException
+-import java.util.UUID
++import java.util.*
+ import javax.inject.Inject
+ import kotlin.coroutines.CoroutineContext
+ 
+@@ -100,14 +107,4 @@
+             else -> context.getString(R.string.something_went_wrong)
+         }
+     }
+-
+-    companion object {
+-        private const val COLLECTION_USER = "user"
+-        private const val UID = "uid"
+-        private const val USERNAME = "username"
+-        private const val PHONE_NUMBER = "phone_number"
+-        private const val ADDRESS = "address"
+-        private const val SELLER = "seller"
+-        private const val USER_PREF = "user_pref"
+-    }
+ }
+\ No newline at end of file

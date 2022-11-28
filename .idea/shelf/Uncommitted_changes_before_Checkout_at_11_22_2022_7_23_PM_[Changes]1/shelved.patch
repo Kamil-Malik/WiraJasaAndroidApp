@@ -1,0 +1,742 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'org.jetbrains.kotlin.android'\r\n    id 'kotlin-kapt'\r\n    id 'com.google.dagger.hilt.android'\r\n    id 'com.google.gms.google-services'\r\n    id 'com.google.firebase.crashlytics'\r\n}\r\n\r\nandroid {\r\n    namespace 'com.wirajasa.wirajasabisnis'\r\n    compileSdk 33\r\n\r\n    defaultConfig {\r\n        applicationId \"com.wirajasa.wirajasabisnis\"\r\n        minSdk 23\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    \r\n    viewBinding {\r\n        enabled true\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.core:core-ktx:1.9.0'\r\n    implementation 'androidx.appcompat:appcompat:1.5.1'\r\n    implementation 'com.google.android.material:material:1.7.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n\r\n    //Dagger Hilt\r\n    implementation 'com.google.dagger:hilt-android:2.44'\r\n    kapt 'com.google.dagger:hilt-compiler:2.44'\r\n\r\n    //Coroutine\r\n    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'\r\n\r\n    // Easy Permission\r\n    implementation 'pub.devrel:easypermissions:3.0.0'\r\n\r\n    //ViewModel\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'\r\n    implementation 'androidx.activity:activity-ktx:1.6.1'\r\n\r\n    //Firebase\r\n    implementation platform ('com.google.firebase:firebase-bom:31.0.0')\r\n    implementation 'com.google.firebase:firebase-auth-ktx'\r\n    implementation 'com.google.firebase:firebase-firestore-ktx'\r\n    implementation 'com.google.firebase:firebase-storage-ktx'\r\n    implementation 'com.google.firebase:firebase-crashlytics-ktx'\r\n    implementation 'com.google.firebase:firebase-analytics-ktx'\r\n}\r\n\r\nkapt {\r\n    correctErrorTypes true\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	
++++ b/app/build.gradle	
+@@ -51,8 +51,8 @@
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+ 
+     //Dagger Hilt
+-    implementation 'com.google.dagger:hilt-android:2.44'
+-    kapt 'com.google.dagger:hilt-compiler:2.44'
++    implementation 'com.google.dagger:hilt-android:2.44.2'
++    kapt 'com.google.dagger:hilt-compiler:2.44.2'
+ 
+     //Coroutine
+     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileActivity.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileActivity.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileActivity.kt	
+@@ -0,0 +1,56 @@
++package com.wirajasa.wirajasabisnis.presentation.profile
++
++import android.content.Intent
++import android.os.Bundle
++import android.view.Menu
++import android.view.MenuItem
++import androidx.activity.viewModels
++import androidx.appcompat.app.AppCompatActivity
++import com.google.firebase.auth.ktx.auth
++import com.google.firebase.ktx.Firebase
++import com.wirajasa.wirajasabisnis.R
++import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
++import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
++import dagger.hilt.android.AndroidEntryPoint
++
++@AndroidEntryPoint
++class ProfileActivity : AppCompatActivity() {
++
++    private val viewModel by viewModels<ProfileViewModel>()
++    private val binding by lazy {
++        ActivityProfileBinding.inflate(layoutInflater)
++    }
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setSupportActionBar(binding.toolbarProfile)
++
++        val user = viewModel.getFirebaseUser()
++        user?.let {
++            binding.username.text = it.uid
++            binding.name.text = it.displayName ?: "No Firebase Username"
++            binding.email.text = it.email
++            binding.phonenumber.text = it.phoneNumber ?: "No Firebase Phone Number"
++            binding.address.text = "NO FIREBASE ADDRESS"
++        }
++
++        setContentView(binding.root)
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
++        menuInflater.inflate(R.menu.user_profile, menu)
++        return true
++    }
++
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when (item.itemId) {
++            R.id.menu_logout -> Firebase.auth.signOut().also {
++                startActivity(Intent(this, LoginActivity::class.java).apply {
++                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
++                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
++                })
++            }
++        }
++        return true
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileViewModel.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileViewModel.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/profile/ProfileViewModel.kt	
+@@ -0,0 +1,16 @@
++package com.wirajasa.wirajasabisnis.presentation.profile
++
++import androidx.lifecycle.ViewModel
++import com.google.firebase.auth.FirebaseUser
++import com.wirajasa.wirajasabisnis.data.repository.AuthRepository
++import dagger.hilt.android.lifecycle.HiltViewModel
++import javax.inject.Inject
++
++@HiltViewModel
++class ProfileViewModel @Inject constructor(
++    val authRepository: AuthRepository
++) : ViewModel() {
++    fun getFirebaseUser(): FirebaseUser? {
++        return authRepository.getCurrentUser()
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_user.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_user.xml b/app/src/main/res/drawable/ic_user.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/drawable/ic_user.xml	
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:tint="@color/white"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++    <path
++        android:fillColor="@android:color/white"
++        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zM12,5c1.66,0 3,1.34 3,3s-1.34,3 -3,3 -3,-1.34 -3,-3 1.34,-3 3,-3zM12,19.2c-2.5,0 -4.71,-1.28 -6,-3.22 0.03,-1.99 4,-3.08 6,-3.08 1.99,0 5.97,1.09 6,3.08 -1.29,1.94 -3.5,3.22 -6,3.22z" />
++</vector>
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/di/AppModule.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.di\r\n\r\nimport android.content.Context\r\nimport com.google.firebase.auth.ktx.auth\r\nimport com.google.firebase.ktx.Firebase\r\nimport com.wirajasa.wirajasabisnis.data.repository.AuthRepository\r\nimport com.wirajasa.wirajasabisnis.data.repository.AuthRepositoryImpl\r\nimport dagger.Module\r\nimport dagger.Provides\r\nimport dagger.hilt.InstallIn\r\nimport dagger.hilt.android.qualifiers.ApplicationContext\r\nimport dagger.hilt.components.SingletonComponent\r\nimport kotlinx.coroutines.Dispatchers\r\nimport javax.inject.Singleton\r\n\r\n@Module\r\n@InstallIn(SingletonComponent::class)\r\nobject AppModule {\r\n\r\n    @Provides\r\n    @Singleton\r\n    fun provideAuthRepository(@ApplicationContext mContext: Context): AuthRepository {\r\n        val auth = Firebase.auth\r\n        return AuthRepositoryImpl(mContext, auth, Dispatchers.IO)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/di/AppModule.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/di/AppModule.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/di/AppModule.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/di/AppModule.kt	
+@@ -2,6 +2,7 @@
+ 
+ import android.content.Context
+ import com.google.firebase.auth.ktx.auth
++import com.google.firebase.firestore.ktx.firestore
+ import com.google.firebase.ktx.Firebase
+ import com.wirajasa.wirajasabisnis.data.repository.AuthRepository
+ import com.wirajasa.wirajasabisnis.data.repository.AuthRepositoryImpl
+@@ -21,6 +22,7 @@
+     @Singleton
+     fun provideAuthRepository(@ApplicationContext mContext: Context): AuthRepository {
+         val auth = Firebase.auth
+-        return AuthRepositoryImpl(mContext, auth, Dispatchers.IO)
++        val fireStore = Firebase.firestore
++        return AuthRepositoryImpl(mContext, auth, fireStore, Dispatchers.IO)
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/menu/user_dashboard.xml
+===================================================================
+diff --git a/app/src/main/res/menu/user_dashboard.xml b/app/src/main/res/menu/user_dashboard.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/menu/user_dashboard.xml	
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <item
++        android:id="@+id/menu_profile"
++        android:icon="@drawable/ic_user"
++        android:iconTint="@color/white"
++        android:title="Profile"
++        app:showAsAction="always" />
++</menu>
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/BuyerDashboard.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.ui.dashboard\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\n\r\nclass BuyerDashboard : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_buyer_dashboard)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/BuyerDashboard.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/BuyerDashboard.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/BuyerDashboard.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/BuyerDashboard.kt	
+@@ -2,6 +2,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import com.wirajasa.wirajasabisnis.R
+ 
+ class BuyerDashboard : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/SellerDashboard.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.ui.dashboard\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\n\r\nclass SellerDashboard : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_seller_dashboard)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/SellerDashboard.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/SellerDashboard.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/SellerDashboard.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/dashboard/SellerDashboard.kt	
+@@ -2,6 +2,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import com.wirajasa.wirajasabisnis.R
+ 
+ class SellerDashboard : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".presentation.main_activity.MainActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/tvText\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Hello World!\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnLogout\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Keluar\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/tvText\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	
++++ b/app/src/main/res/layout/activity_main.xml	
+@@ -6,6 +6,14 @@
+     android:layout_height="match_parent"
+     tools:context=".presentation.main_activity.MainActivity">
+ 
++    <com.google.android.material.appbar.MaterialToolbar
++        android:id="@+id/main_toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@color/orange"
++        app:layout_constraintTop_toTopOf="parent"
++        app:titleTextColor="@color/white" />
++
+     <TextView
+         android:id="@+id/tvText"
+         android:layout_width="wrap_content"
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/ui/user/UserValidation.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.ui.user\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\n\r\nclass UserValidation : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_user_validation)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/user/UserValidation.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/user/UserValidation.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/ui/user/UserValidation.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/ui/user/UserValidation.kt	
+@@ -2,6 +2,7 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import com.wirajasa.wirajasabisnis.R
+ 
+ class UserValidation : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.login\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.util.Patterns\r\nimport android.view.View\r\nimport android.view.inputmethod.InputMethodManager\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.wirajasa.wirajasabisnis.R\r\nimport com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding\r\nimport com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity\r\nimport com.wirajasa.wirajasabisnis.presentation.register_buyyer.RegisterActivity\r\nimport com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass LoginActivity : AppCompatActivity(), View.OnClickListener {\r\n\r\n    private var _binding: ActivityLoginBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val viewModel by viewModels<LoginViewModel>()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        _binding = ActivityLoginBinding.inflate(layoutInflater)\r\n        window.statusBarColor = getColor(R.color.orange)\r\n        supportActionBar?.hide()\r\n        setContentView(binding.root)\r\n\r\n        if (viewModel.getCurrentUser() != null) {\r\n            startActivity(Intent(this, MainActivity::class.java))\r\n            finish()\r\n        }\r\n\r\n        binding.apply {\r\n            btnLogin.setOnClickListener(this@LoginActivity)\r\n            btnRegister.setOnClickListener(this@LoginActivity)\r\n            tvForgotPassword.setOnClickListener(this@LoginActivity)\r\n        }\r\n    }\r\n\r\n    override fun onClick(v: View?) {\r\n        val email = binding.edtEmail.text.toString()\r\n        val password = binding.edtPassword.text.toString()\r\n\r\n        when (v?.id) {\r\n            binding.btnLogin.id -> {\r\n                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)\r\n                    .hideSoftInputFromWindow(currentFocus?.windowToken, 0)\r\n\r\n                if (!validateEmail(email)) binding.edtEmail.error =\r\n                    getString(R.string.empty_invalid_email)\r\n\r\n                if (!validatePassword(password)) Snackbar.make(\r\n                    binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT\r\n                ).show().also { return }\r\n\r\n                viewModel.signInWithEmailAndPassword(email, password).observe(this) {\r\n                    when (it) {\r\n                        is NetworkResponse.GenericException -> Snackbar.make(\r\n                            binding.root, it.cause.toString(), Snackbar.LENGTH_LONG\r\n                        ).show().also { showLoading(false) }\r\n                        NetworkResponse.Loading -> showLoading(true)\r\n                        is NetworkResponse.Success -> startActivity(Intent(\r\n                            this, MainActivity::class.java\r\n                        ).also { finish() })\r\n                    }\r\n                }\r\n            }\r\n            binding.btnRegister.id -> {\r\n                startActivity(\r\n                    Intent(\r\n                        this, RegisterActivity::class.java\r\n                    )\r\n                )\r\n            }\r\n            binding.tvForgotPassword.id -> {\r\n                startActivity(Intent(this, ResetPasswordActivity::class.java))\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun showLoading(isLoading: Boolean) {\r\n        if (isLoading) binding.apply {\r\n            btnLogin.visibility = View.INVISIBLE\r\n            tvOr.visibility = View.INVISIBLE\r\n            btnRegister.visibility = View.INVISIBLE\r\n            tvForgotPassword.visibility = View.INVISIBLE\r\n            circleLoading.visibility = View.VISIBLE\r\n            tvLoading.visibility = View.VISIBLE\r\n        } else binding.apply {\r\n            btnLogin.visibility = View.VISIBLE\r\n            tvOr.visibility = View.VISIBLE\r\n            btnRegister.visibility = View.VISIBLE\r\n            tvForgotPassword.visibility = View.VISIBLE\r\n            circleLoading.visibility = View.GONE\r\n            tvLoading.visibility = View.GONE\r\n        }\r\n    }\r\n\r\n    private fun validateEmail(email: String): Boolean {\r\n        return if (email.isEmpty()) false\r\n        else Patterns.EMAIL_ADDRESS.matcher(email).matches()\r\n    }\r\n\r\n    private fun validatePassword(password: String): Boolean {\r\n        return if (password.isEmpty()) false\r\n        else password.length >= 8\r\n    }\r\n\r\n    override fun onDestroy() {\r\n        super.onDestroy()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginActivity.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginActivity.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginActivity.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginActivity.kt	
+@@ -28,7 +28,6 @@
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         _binding = ActivityLoginBinding.inflate(layoutInflater)
+-        window.statusBarColor = getColor(R.color.orange)
+         supportActionBar?.hide()
+         setContentView(binding.root)
+ 
+@@ -87,6 +86,7 @@
+ 
+     private fun showLoading(isLoading: Boolean) {
+         if (isLoading) binding.apply {
++
+             btnLogin.visibility = View.INVISIBLE
+             tvOr.visibility = View.INVISIBLE
+             btnRegister.visibility = View.INVISIBLE
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.login\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.asLiveData\r\nimport com.google.firebase.auth.FirebaseUser\r\nimport com.wirajasa.wirajasabisnis.data.repository.AuthRepository\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport dagger.hilt.android.lifecycle.HiltViewModel\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.flow.flowOn\r\nimport javax.inject.Inject\r\n\r\n@HiltViewModel\r\nclass LoginViewModel @Inject constructor(\r\n    private val authRepository: AuthRepository\r\n) : ViewModel() {\r\n\r\n    fun signInWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): LiveData<NetworkResponse<FirebaseUser>> {\r\n        return authRepository.signInWithEmailAndPassword(email, password).flowOn(Dispatchers.Main).asLiveData()\r\n    }\r\n\r\n    fun getCurrentUser(): FirebaseUser? = authRepository.getCurrentUser()\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginViewModel.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginViewModel.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginViewModel.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/login/LoginViewModel.kt	
+@@ -19,7 +19,7 @@
+     fun signInWithEmailAndPassword(
+         email: String, password: String
+     ): LiveData<NetworkResponse<FirebaseUser>> {
+-        return authRepository.signInWithEmailAndPassword(email, password).flowOn(Dispatchers.Main).asLiveData()
++        return authRepository.signInWithEmailAndPassword(email, password).asLiveData(Dispatchers.Main)
+     }
+ 
+     fun getCurrentUser(): FirebaseUser? = authRepository.getCurrentUser()
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.data.repository\r\n\r\nimport com.google.firebase.auth.FirebaseUser\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport kotlinx.coroutines.flow.Flow\r\n\r\ninterface AuthRepository {\r\n\r\n    fun signInWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<FirebaseUser>>\r\n\r\n    fun signUpWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<FirebaseUser>>\r\n\r\n    fun resetPasswordWithEmail(\r\n        email: String\r\n    ): Flow<NetworkResponse<Boolean>>\r\n\r\n    fun getCurrentUser(): FirebaseUser?\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepository.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepository.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepository.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepository.kt	
+@@ -1,6 +1,7 @@
+ package com.wirajasa.wirajasabisnis.data.repository
+ 
+ import com.google.firebase.auth.FirebaseUser
++import com.wirajasa.wirajasabisnis.data.model.UserProfile
+ import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+ import kotlinx.coroutines.flow.Flow
+ 
+@@ -18,5 +19,7 @@
+         email: String
+     ): Flow<NetworkResponse<Boolean>>
+ 
++    fun uploadDefaultUserData(): Flow<NetworkResponse<UserProfile>>
++
+     fun getCurrentUser(): FirebaseUser?
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.data.repository\r\n\r\n\r\nimport android.content.Context\r\nimport com.google.firebase.auth.*\r\nimport com.google.firebase.auth.ktx.auth\r\nimport com.google.firebase.ktx.Firebase\r\nimport com.wirajasa.wirajasabisnis.R\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport kotlinx.coroutines.flow.Flow\r\nimport kotlinx.coroutines.flow.flow\r\nimport kotlinx.coroutines.flow.flowOn\r\nimport kotlinx.coroutines.flow.onStart\r\nimport kotlinx.coroutines.tasks.await\r\nimport java.io.IOException\r\nimport javax.inject.Inject\r\nimport kotlin.coroutines.CoroutineContext\r\n\r\nclass AuthRepositoryImpl @Inject constructor(\r\n    private val context: Context,\r\n    private val auth: FirebaseAuth, private val ioDispatcher: CoroutineContext\r\n) : AuthRepository {\r\n\r\n    override fun signInWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<FirebaseUser>> = flow {\r\n        try {\r\n            auth.signInWithEmailAndPassword(email, password).await()\r\n            val currentUser = getCurrentUser() as FirebaseUser\r\n            emit(NetworkResponse.Success(data = currentUser))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun signUpWithEmailAndPassword(\r\n        email: String, password: String\r\n    ): Flow<NetworkResponse<FirebaseUser>> = flow {\r\n        try {\r\n            auth.createUserWithEmailAndPassword(email, password).await()\r\n            val currentUser = getCurrentUser() as FirebaseUser\r\n            emit(NetworkResponse.Success(data = currentUser))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun resetPasswordWithEmail(\r\n        email: String\r\n    ): Flow<NetworkResponse<Boolean>> = flow {\r\n        try {\r\n            auth.sendPasswordResetEmail(email).await()\r\n            emit(NetworkResponse.Success(data = true))\r\n        } catch (e: Exception) {\r\n            emit(NetworkResponse.GenericException(getExceptionMessage(e)))\r\n        }\r\n    }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)\r\n\r\n    override fun getCurrentUser(): FirebaseUser? {\r\n        return Firebase.auth.currentUser\r\n    }\r\n\r\n    private fun getExceptionMessage(exception: Exception): String {\r\n        return when (exception) {\r\n            is IOException -> context.getString(R.string.connection_error)\r\n            is FirebaseAuthEmailException -> context.getString(R.string.invalid_email)\r\n            is FirebaseAuthInvalidCredentialsException -> context.getString(R.string.invalid_credential)\r\n            is FirebaseAuthInvalidUserException -> context.getString(R.string.invalid_account)\r\n            else -> context.getString(R.string.something_went_wrong)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/data/repository/AuthRepositoryImpl.kt	
+@@ -2,10 +2,13 @@
+ 
+ 
+ import android.content.Context
++import androidx.core.content.edit
+ import com.google.firebase.auth.*
+ import com.google.firebase.auth.ktx.auth
++import com.google.firebase.firestore.FirebaseFirestore
+ import com.google.firebase.ktx.Firebase
+ import com.wirajasa.wirajasabisnis.R
++import com.wirajasa.wirajasabisnis.data.model.UserProfile
+ import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+ import kotlinx.coroutines.flow.Flow
+ import kotlinx.coroutines.flow.flow
+@@ -13,12 +16,15 @@
+ import kotlinx.coroutines.flow.onStart
+ import kotlinx.coroutines.tasks.await
+ import java.io.IOException
++import java.util.*
+ import javax.inject.Inject
+ import kotlin.coroutines.CoroutineContext
+ 
+ class AuthRepositoryImpl @Inject constructor(
+     private val context: Context,
+-    private val auth: FirebaseAuth, private val ioDispatcher: CoroutineContext
++    private val auth: FirebaseAuth,
++    private val fireStore: FirebaseFirestore,
++    private val ioDispatcher: CoroutineContext
+ ) : AuthRepository {
+ 
+     override fun signInWithEmailAndPassword(
+@@ -56,6 +62,32 @@
+         }
+     }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)
+ 
++    override fun uploadDefaultUserData(): Flow<NetworkResponse<UserProfile>> =
++        flow {
++            try {
++                val currentUser = getCurrentUser() as FirebaseUser
++                val profile = UserProfile(
++                    uid = currentUser.uid,
++                    username = currentUser.displayName ?: "Guest${UUID.randomUUID()}",
++                    phone_number = currentUser.phoneNumber ?: "Not Setup",
++                    address = "Not Setup",
++                    seller = false
++                )
++                fireStore.collection(COLLECTION_USER).document(currentUser.uid).set(profile).await()
++                context.getSharedPreferences("user_pref", Context.MODE_PRIVATE).edit {
++                    putString(UID, profile.uid)
++                    putString(USERNAME, profile.username)
++                    putString(PHONE_NUMBER, profile.phone_number)
++                    putString(ADDRESS, profile.address)
++                    putBoolean(SELLER, profile.seller)
++                    apply()
++                }
++                emit(NetworkResponse.Success(profile))
++            } catch (e: Exception) {
++                emit(NetworkResponse.GenericException(getExceptionMessage(e)))
++            }
++        }.onStart { emit(NetworkResponse.Loading) }.flowOn(ioDispatcher)
++
+     override fun getCurrentUser(): FirebaseUser? {
+         return Firebase.auth.currentUser
+     }
+@@ -69,4 +101,13 @@
+             else -> context.getString(R.string.something_went_wrong)
+         }
+     }
++
++    companion object {
++        private const val COLLECTION_USER = "user"
++        private const val UID = "uid"
++        private const val USERNAME = "username"
++        private const val PHONE_NUMBER = "phone_number"
++        private const val ADDRESS = "address"
++        private const val SELLER = "seller"
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/menu/user_profile.xml
+===================================================================
+diff --git a/app/src/main/res/menu/user_profile.xml b/app/src/main/res/menu/user_profile.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/menu/user_profile.xml	
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <item
++        android:id="@+id/menu_logout"
++        android:icon="@drawable/ic_logout"
++        android:iconTint="@color/white"
++        android:title="@string/logout"
++        app:showAsAction="always" />
++</menu>
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/main_activity/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.main_activity\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.google.firebase.auth.ktx.auth\r\nimport com.google.firebase.ktx.Firebase\r\nimport com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding\r\nimport com.wirajasa.wirajasabisnis.presentation.login.LoginActivity\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n    private var _binding : ActivityMainBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        _binding = ActivityMainBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n        binding.btnLogout.setOnClickListener {\r\n            Firebase.auth.signOut()\r\n            startActivity(Intent(this, LoginActivity::class.java)).also { finish() }\r\n        }\r\n    }\r\n\r\n    override fun onDestroy() {\r\n        super.onDestroy()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/main_activity/MainActivity.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/main_activity/MainActivity.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/main_activity/MainActivity.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/main_activity/MainActivity.kt	
+@@ -2,11 +2,15 @@
+ 
+ import android.content.Intent
+ import android.os.Bundle
++import android.view.Menu
++import android.view.MenuItem
+ import androidx.appcompat.app.AppCompatActivity
+ import com.google.firebase.auth.ktx.auth
+ import com.google.firebase.ktx.Firebase
++import com.wirajasa.wirajasabisnis.R
+ import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
+ import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
++import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
+ 
+ class MainActivity : AppCompatActivity() {
+ 
+@@ -16,6 +20,7 @@
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         _binding = ActivityMainBinding.inflate(layoutInflater)
++        setSupportActionBar(binding.mainToolbar)
+         setContentView(binding.root)
+         binding.btnLogout.setOnClickListener {
+             Firebase.auth.signOut()
+@@ -23,6 +28,18 @@
+         }
+     }
+ 
++    override fun onOptionsItemSelected(item: MenuItem): Boolean {
++        when(item.itemId) {
++            R.id.menu_profile -> startActivity(Intent(this, ProfileActivity::class.java))
++        }
++        return super.onOptionsItemSelected(item)
++    }
++
++    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
++        menuInflater.inflate(R.menu.user_dashboard, menu)
++        return true
++    }
++
+     override fun onDestroy() {
+         super.onDestroy()
+         _binding = null
+Index: app/src/main/res/drawable/ic_logout.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_logout.xml b/app/src/main/res/drawable/ic_logout.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/drawable/ic_logout.xml	
+@@ -0,0 +1,11 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:autoMirrored="true"
++    android:tint="@color/white"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++    <path
++        android:fillColor="@android:color/white"
++        android:pathData="M17,7l-1.41,1.41L18.17,11H8v2h10.17l-2.58,2.58L17,17l5,-5zM4,5h8V3H4c-1.1,0 -2,0.9 -2,2v14c0,1.1 0.9,2 2,2h8v-2H4V5z" />
++</vector>
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.register_buyyer\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.util.Patterns\r\nimport android.view.View\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.Toast\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.wirajasa.wirajasabisnis.R\r\nimport com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding\r\nimport com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass RegisterActivity : AppCompatActivity(), View.OnClickListener {\r\n\r\n    private var _binding: ActivityRegisterBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val viewModel by viewModels<RegisterViewModel>()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        _binding = ActivityRegisterBinding.inflate(layoutInflater)\r\n        window.statusBarColor = getColor(R.color.orange)\r\n        supportActionBar?.hide()\r\n        setContentView(binding.root)\r\n        binding.apply {\r\n            btnRegister.setOnClickListener(this@RegisterActivity)\r\n            tvClickHaveAccount.setOnClickListener(this@RegisterActivity)\r\n        }\r\n    }\r\n\r\n    override fun onClick(v: View?) {\r\n        val email = binding.edtEmail.text.toString()\r\n        val password = binding.edtPassword.text.toString()\r\n        val confirmedPassword = binding.edtConfirmPassword.text.toString()\r\n        when (v?.id) {\r\n            binding.btnRegister.id -> {\r\n                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)\r\n                    .hideSoftInputFromWindow(currentFocus?.windowToken, 0)\r\n\r\n                if (!validateEmail(email)) binding.edtEmail.error =\r\n                    getString(R.string.empty_invalid_email)\r\n\r\n                if (!validatePassword(password)) Snackbar.make(\r\n                    binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT\r\n                ).show().also { return }\r\n\r\n                if (!validatePassword(confirmedPassword)) Snackbar.make(\r\n                    binding.root,\r\n                    getString(R.string.empty_confirmation_password),\r\n                    Snackbar.LENGTH_SHORT\r\n                ).show().also { return }\r\n\r\n                if (password != confirmedPassword) Snackbar.make(\r\n                    binding.root, getString(R.string.different_password), Snackbar.LENGTH_SHORT\r\n                ).show().also { return }\r\n\r\n                viewModel.signUpWithEmailAndPassword(email, password).observe(this) {\r\n                    when (it) {\r\n                        is NetworkResponse.GenericException -> Snackbar.make(\r\n                            binding.root, it.cause.toString(), Snackbar.LENGTH_LONG\r\n                        ).show().also { showLoading(false) }\r\n                        NetworkResponse.Loading -> showLoading(true)\r\n                        is NetworkResponse.Success -> Toast.makeText(\r\n                            this,\r\n                            getString(R.string.register_success),\r\n                            Toast.LENGTH_SHORT\r\n                        ).show().also {\r\n                            startActivity(Intent(this, MainActivity::class.java))\r\n                            finish()\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun showLoading(isLoading: Boolean) {\r\n        if (isLoading) binding.apply {\r\n            btnRegister.visibility = View.INVISIBLE\r\n            layoutClickLogin.visibility = View.INVISIBLE\r\n            circleLoading.visibility = View.VISIBLE\r\n        } else binding.apply {\r\n            btnRegister.visibility = View.VISIBLE\r\n            layoutClickLogin.visibility = View.VISIBLE\r\n            circleLoading.visibility = View.VISIBLE\r\n        }\r\n    }\r\n\r\n    private fun validateEmail(email: String): Boolean {\r\n        return if (email.isEmpty()) false\r\n        else Patterns.EMAIL_ADDRESS.matcher(email).matches()\r\n    }\r\n\r\n    private fun validatePassword(password: String): Boolean {\r\n        return if (password.isEmpty()) false\r\n        else password.length >= 8\r\n    }\r\n\r\n    override fun onDestroy() {\r\n        super.onDestroy()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterActivity.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterActivity.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterActivity.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterActivity.kt	
+@@ -27,7 +27,6 @@
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         _binding = ActivityRegisterBinding.inflate(layoutInflater)
+-        window.statusBarColor = getColor(R.color.orange)
+         supportActionBar?.hide()
+         setContentView(binding.root)
+         binding.apply {
+@@ -68,15 +67,27 @@
+                             binding.root, it.cause.toString(), Snackbar.LENGTH_LONG
+                         ).show().also { showLoading(false) }
+                         NetworkResponse.Loading -> showLoading(true)
+-                        is NetworkResponse.Success -> Toast.makeText(
+-                            this,
+-                            getString(R.string.register_success),
+-                            Toast.LENGTH_SHORT
+-                        ).show().also {
+-                            startActivity(Intent(this, MainActivity::class.java))
+-                            finish()
+-                        }
+-                    }
++                        is NetworkResponse.Success -> {
++                            uploadDefaultProfile()
++                        }
++                    }
++                }
++            }
++        }
++    }
++
++    private fun uploadDefaultProfile() {
++        viewModel.uploadDefaultProfile().observe(this) {
++            when (it) {
++                is NetworkResponse.GenericException -> Unit
++                NetworkResponse.Loading -> Unit
++                is NetworkResponse.Success -> Toast.makeText(
++                    this,
++                    getString(R.string.welcome_user, it.data.username),
++                    Toast.LENGTH_SHORT
++                ).show().also {
++                    startActivity(Intent(this, MainActivity::class.java))
++                    finish()
+                 }
+             }
+         }
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.register_buyyer\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.asLiveData\r\nimport com.google.firebase.auth.FirebaseUser\r\nimport com.wirajasa.wirajasabisnis.data.repository.AuthRepository\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport dagger.hilt.android.lifecycle.HiltViewModel\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.flow.flowOn\r\nimport javax.inject.Inject\r\n\r\n@HiltViewModel\r\nclass RegisterViewModel @Inject constructor(\r\n    private val authRepository: AuthRepository\r\n) : ViewModel() {\r\n\r\n    fun signUpWithEmailAndPassword(\r\n        email: String,\r\n        password: String\r\n    ): LiveData<NetworkResponse<FirebaseUser>> {\r\n        return authRepository.signUpWithEmailAndPassword(email, password).flowOn(Dispatchers.Main)\r\n            .asLiveData()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterViewModel.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterViewModel.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterViewModel.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/register_buyyer/RegisterViewModel.kt	
+@@ -4,6 +4,7 @@
+ import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.asLiveData
+ import com.google.firebase.auth.FirebaseUser
++import com.wirajasa.wirajasabisnis.data.model.UserProfile
+ import com.wirajasa.wirajasabisnis.data.repository.AuthRepository
+ import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+ import dagger.hilt.android.lifecycle.HiltViewModel
+@@ -17,10 +18,13 @@
+ ) : ViewModel() {
+ 
+     fun signUpWithEmailAndPassword(
+-        email: String,
+-        password: String
++        email: String, password: String
+     ): LiveData<NetworkResponse<FirebaseUser>> {
+-        return authRepository.signUpWithEmailAndPassword(email, password).flowOn(Dispatchers.Main)
+-            .asLiveData()
++        return authRepository.signUpWithEmailAndPassword(email, password)
++            .asLiveData(Dispatchers.Main)
++    }
++
++    fun uploadDefaultProfile(): LiveData<NetworkResponse<UserProfile>> {
++        return authRepository.uploadDefaultUserData().asLiveData(Dispatchers.Main)
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/presentation/reset_password/ResetPasswordActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.wirajasa.wirajasabisnis.presentation.reset_password\r\n\r\nimport android.content.Context\r\nimport android.os.Bundle\r\nimport android.util.Patterns\r\nimport android.view.View\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.Toast\r\nimport androidx.activity.viewModels\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.wirajasa.wirajasabisnis.R\r\nimport com.wirajasa.wirajasabisnis.databinding.ActivityResetPasswordBinding\r\nimport com.wirajasa.wirajasabisnis.utility.NetworkResponse\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {\r\n\r\n    private var _binding: ActivityResetPasswordBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val viewModel by viewModels<ResetPasswordViewModel>()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        _binding = ActivityResetPasswordBinding.inflate(layoutInflater)\r\n        window.statusBarColor = getColor(R.color.orange)\r\n        supportActionBar?.hide()\r\n        setContentView(binding.root)\r\n        binding.btnReset.setOnClickListener(this)\r\n    }\r\n\r\n    override fun onClick(v: View?) {\r\n        val email = binding.edtEmail.text.toString()\r\n\r\n        when (v?.id) {\r\n            binding.btnReset.id -> {\r\n                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)\r\n                    .hideSoftInputFromWindow(currentFocus?.windowToken, 0)\r\n\r\n                if (!validateEmail(email)) {\r\n                    binding.edtEmail.error = getString(R.string.empty_invalid_email)\r\n                    return\r\n                }\r\n\r\n                viewModel.resetPasswordWithEmailAddress(email).observe(this) {\r\n                    when (it) {\r\n                        is NetworkResponse.GenericException -> Snackbar.make(\r\n                            binding.root, it.cause.toString(), Snackbar.LENGTH_LONG\r\n                        ).show().also { showLoading(false) }\r\n                        NetworkResponse.Loading -> showLoading(true)\r\n                        is NetworkResponse.Success -> Toast.makeText(\r\n                            this,\r\n                            getString(R.string.reset_success),\r\n                            Toast.LENGTH_LONG\r\n                        ).show().also { finish() }\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun showLoading(isLoading: Boolean) {\r\n        if (isLoading) binding.apply {\r\n            edtEmail.isEnabled = false\r\n            btnReset.visibility = View.INVISIBLE\r\n            circleLoading.visibility = View.VISIBLE\r\n        } else binding.apply {\r\n            edtEmail.isEnabled = true\r\n            btnReset.visibility = View.VISIBLE\r\n            circleLoading.visibility = View.GONE\r\n        }\r\n    }\r\n\r\n    private fun validateEmail(email: String): Boolean {\r\n        return if (email.isEmpty()) false\r\n        else Patterns.EMAIL_ADDRESS.matcher(email).matches()\r\n    }\r\n\r\n    override fun onDestroy() {\r\n        super.onDestroy()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/reset_password/ResetPasswordActivity.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/reset_password/ResetPasswordActivity.kt
+--- a/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/reset_password/ResetPasswordActivity.kt	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/presentation/reset_password/ResetPasswordActivity.kt	
+@@ -25,7 +25,6 @@
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         _binding = ActivityResetPasswordBinding.inflate(layoutInflater)
+-        window.statusBarColor = getColor(R.color.orange)
+         supportActionBar?.hide()
+         setContentView(binding.root)
+         binding.btnReset.setOnClickListener(this)
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">WiraJasa Bisnis</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"serivce_register\">Serivce Register</string>\r\n    <string name=\"service_name\">Service Name</string>\r\n    <string name=\"address\">Address</string>\r\n    <string name=\"email\">Email</string>\r\n    <string name=\"phone_number\">Phone Number</string>\r\n    <string name=\"upload_photos\">Upload Photos</string>\r\n    <string name=\"open_service\">OPEN SERVICE</string>\r\n    <string name=\"save\">SAVE</string>\r\n    <string name=\"service_photo\">Service Photo</string>\r\n    <string name=\"image_icon\">Image Icon</string>\r\n    <string name=\"edit_service\">Edit Service</string>\r\n    <string name=\"password\">Password</string>\r\n    <string name=\"login\">Login</string>\r\n    <string name=\"or\">or</string>\r\n    <string name=\"register\">Register</string>\r\n    <string name=\"forgot_password\">Forgot Password?</string>\r\n    <string name=\"password_confirmation\">Password Confirmation</string>\r\n    <string name=\"have_an_account\">Have an account?</string>\r\n    <string name=\"forgot_password_2\">Forgot Password</string>\r\n    <string name=\"send_reset_link\">Send Reset Link</string>\r\n    <string name=\"input_address\">Input address</string>\r\n    <string name=\"input_phone_number\">Input phone number</string>\r\n    <string name=\"submit\">Submit</string>\r\n    <string name=\"register_success\">Account successfully created</string>\r\n    <string name=\"reset_success\">Email confirmation has been sent to you</string>\r\n    <string name=\"empty_invalid_email\">Email is empty or is not a valid email</string>\r\n    <string name=\"empty_password\">Password is empty or less than 8 characters</string>\r\n    <string name=\"empty_confirmation_password\">Confirmation password is empty or less than 8 characters</string>\r\n    <string name=\"different_password\">Password and Confirmation is not the same</string>\r\n    <string name=\"connection_error\">Check your connectivity and try again later</string>\r\n    <string name=\"invalid_email\">Email is not exist</string>\r\n    <string name=\"invalid_credential\">Email / Password is invalid</string>\r\n    <string name=\"invalid_account\">Account not found or has been suspended</string>\r\n    <string name=\"something_went_wrong\">Something went wrong</string>\r\n    <string name=\"loading\">Loading</string>\r\n    <string name=\"detail_picture\">Detail Picture</string>\r\n    <string name=\"contact_the_provider\">CONTACT THE PROVIDER</string>\r\n    <string name=\"lorem_ipsum\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>\r\n    <string name=\"title\">Title</string>\r\n    <string name=\"price\">Rp. 00.000.00.,-</string>\r\n    <string name=\"edit_profile\">Edit</string>\r\n    <string name=\"register_as_seller\">Register as Seller</string>\r\n    <string name=\"profile\">Profile</string>\r\n    <string name=\"photo_profil\">photo_profil</string>\r\n    <string name=\"save_profile\">save</string>\r\n    <string name=\"change_password\">Change Password ?</string>\r\n    <string name=\"notification\">Notification</string>\r\n</resources>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -49,4 +49,6 @@
+     <string name="save_profile">save</string>
+     <string name="change_password">Change Password ?</string>
+     <string name="notification">Notification</string>
++    <string name="logout">Logout</string>
++    <string name="welcome_user">Welcome %s</string>
+ </resources>
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Base application theme. -->\r\n    <style name=\"Theme.WiraJasaBisnis\" parent=\"Theme.Material3.DayNight\">\r\n        <!-- Primary brand color. -->\r\n        <item name=\"colorPrimary\">@color/purple_500</item>\r\n        <item name=\"colorPrimaryVariant\">@color/purple_700</item>\r\n        <item name=\"colorOnPrimary\">@color/white</item>\r\n        <!-- Secondary brand color. -->\r\n        <item name=\"colorSecondary\">@color/teal_200</item>\r\n        <item name=\"colorSecondaryVariant\">@color/teal_700</item>\r\n        <item name=\"colorOnSecondary\">@color/black</item>\r\n        <!-- Status bar color. -->\r\n        <item name=\"android:statusBarColor\">@color/white</item>\r\n        <!-- Customize your theme here. -->\r\n<!--        <item name=\"android:textColorHint\">@color/dark_blue</item>-->\r\n<!--        <item name=\"startIconTint\">@color/dark_blue</item>-->\r\n        <item name=\"endIconTint\">@color/dark_blue</item>\r\n\r\n        <item name=\"android:colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"background\">@color/orange</item>\r\n        <item name=\"cardBackgroundColor\">@color/white</item>\r\n        <item name=\"android:textColorPrimary\">@color/black</item>\r\n        <item name=\"android:textColorSecondary\">@color/dark_blue</item>\r\n        <item name=\"android:textColorHint\">@color/dark_blue</item>\r\n        <item name=\"startIconTint\">@color/dark_blue</item>\r\n    </style>\r\n\r\n    <style name=\"Theme.Auth\" parent=\"Theme.Material3.DayNight.NoActionBar\">\r\n        <item name=\"android:statusBarColor\">@color/white</item>\r\n        <item name=\"colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"background\">@color/orange</item>\r\n        <item name=\"cardBackgroundColor\">@color/white</item>\r\n        <item name=\"android:textColorPrimary\">@color/black</item>\r\n        <item name=\"android:textColorSecondary\">@color/dark_blue</item>\r\n        <item name=\"android:textColorHint\">@color/dark_blue</item>\r\n        <item name=\"startIconTint\">@color/dark_blue</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+--- a/app/src/main/res/values/themes.xml	
++++ b/app/src/main/res/values/themes.xml	
+@@ -1,6 +1,6 @@
+ <resources>
+     <!-- Base application theme. -->
+-    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight">
++    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight.NoActionBar">
+         <!-- Primary brand color. -->
+         <item name="colorPrimary">@color/purple_500</item>
+         <item name="colorPrimaryVariant">@color/purple_700</item>
+@@ -10,7 +10,7 @@
+         <item name="colorSecondaryVariant">@color/teal_700</item>
+         <item name="colorOnSecondary">@color/black</item>
+         <!-- Status bar color. -->
+-        <item name="android:statusBarColor">@color/white</item>
++        <item name="android:statusBarColor">@color/orange</item>
+         <!-- Customize your theme here. -->
+ <!--        <item name="android:textColorHint">@color/dark_blue</item>-->
+ <!--        <item name="startIconTint">@color/dark_blue</item>-->
+Index: app/src/main/java/com/wirajasa/wirajasabisnis/data/model/UserProfile.kt
+===================================================================
+diff --git a/app/src/main/java/com/wirajasa/wirajasabisnis/data/model/UserProfile.kt b/app/src/main/java/com/wirajasa/wirajasabisnis/data/model/UserProfile.kt
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/com/wirajasa/wirajasabisnis/data/model/UserProfile.kt	
+@@ -0,0 +1,9 @@
++package com.wirajasa.wirajasabisnis.data.model
++
++data class UserProfile(
++    val uid: String,
++    val username: String,
++    val phone_number: String,
++    val address: String,
++    val seller: Boolean
++)
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n\r\n    <application\r\n        android:name=\".application.MyApp\"\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.WiraJasaBisnis\"\r\n        tools:targetApi=\"31\">\r\n        <activity      \r\n        android:name=\".ui.user.UserValidation\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.dashboard.BuyerDashboard\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.dashboard.SellerDashboard\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.register_buyyer.RegisterBuyyerActivity\"\r\n            android:name=\".presentation.register_buyyer.RegisterActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".presentation.reset_password.ResetPasswordActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".presentation.login.LoginActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".presentation.main_activity.MainActivity\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -15,8 +15,15 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.WiraJasaBisnis"
+         tools:targetApi="31">
+-        <activity      
+-        android:name=".ui.user.UserValidation"
++        <activity
++            android:name=".presentation.profile.ProfileActivity"
++            android:exported="false">
++            <meta-data
++                android:name="android.app.lib_name"
++                android:value="" />
++        </activity>
++        <activity
++            android:name=".ui.user.UserValidation"
+             android:exported="false">
+             <meta-data
+                 android:name="android.app.lib_name"
+@@ -37,7 +44,6 @@
+                 android:value="" />
+         </activity>
+         <activity
+-            android:name=".ui.register_buyyer.RegisterBuyyerActivity"
+             android:name=".presentation.register_buyyer.RegisterActivity"
+             android:exported="false">
+             <meta-data
+@@ -56,6 +62,7 @@
+             android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
++
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+ 
+Index: app/src/main/res/values-night/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Base application theme. -->\r\n    <style name=\"Theme.WiraJasaBisnis\" parent=\"Theme.Material3.DayNight\">\r\n        <!-- Primary brand color. -->\r\n        <item name=\"colorPrimary\">@color/purple_200</item>\r\n        <item name=\"colorPrimaryVariant\">@color/purple_700</item>\r\n        <item name=\"colorOnPrimary\">@color/black</item>\r\n        <!-- Secondary brand color. -->\r\n        <item name=\"colorSecondary\">@color/teal_200</item>\r\n        <item name=\"colorSecondaryVariant\">@color/teal_200</item>\r\n        <item name=\"colorOnSecondary\">@color/black</item>\r\n        <!-- Status bar color. -->\r\n        <item name=\"android:statusBarColor\">@color/white</item>\r\n        <!-- Customize your theme here. -->\r\n<!--        <item name=\"android:textColorHint\">@color/dark_blue</item>-->\r\n<!--        <item name=\"startIconTint\">@color/dark_blue</item>-->\r\n\r\n        <item name=\"android:colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"endIconTint\">@color/dark_blue</item>\r\n        <item name=\"colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"background\">@color/orange</item>\r\n        <item name=\"cardBackgroundColor\">@color/white</item>\r\n        <item name=\"android:textColorPrimary\">@color/black</item>\r\n        <item name=\"android:textColorSecondary\">@color/dark_blue</item>\r\n        <item name=\"android:textColorHint\">@color/dark_blue</item>\r\n        <item name=\"startIconTint\">@color/dark_blue</item>\r\n    </style>\r\n\r\n    <style name=\"Theme.Auth\" parent=\"Theme.Material3.DayNight.NoActionBar\">\r\n        <item name=\"android:statusBarColor\">@color/white</item>\r\n        <item name=\"colorPrimaryDark\">@color/orange</item>\r\n        <item name=\"background\">@color/orange</item>\r\n        <item name=\"cardBackgroundColor\">@color/white</item>\r\n        <item name=\"android:textColorPrimary\">@color/black</item>\r\n        <item name=\"android:textColorSecondary\">@color/dark_blue</item>\r\n        <item name=\"android:textColorHint\">@color/dark_blue</item>\r\n        <item name=\"startIconTint\">@color/dark_blue</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values-night/themes.xml b/app/src/main/res/values-night/themes.xml
+--- a/app/src/main/res/values-night/themes.xml	
++++ b/app/src/main/res/values-night/themes.xml	
+@@ -1,6 +1,6 @@
+ <resources>
+     <!-- Base application theme. -->
+-    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight">
++    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight.NoActionBar">
+         <!-- Primary brand color. -->
+         <item name="colorPrimary">@color/purple_200</item>
+         <item name="colorPrimaryVariant">@color/purple_700</item>
+@@ -10,7 +10,7 @@
+         <item name="colorSecondaryVariant">@color/teal_200</item>
+         <item name="colorOnSecondary">@color/black</item>
+         <!-- Status bar color. -->
+-        <item name="android:statusBarColor">@color/white</item>
++        <item name="android:statusBarColor">@color/orange</item>
+         <!-- Customize your theme here. -->
+ <!--        <item name="android:textColorHint">@color/dark_blue</item>-->
+ <!--        <item name="startIconTint">@color/dark_blue</item>-->
