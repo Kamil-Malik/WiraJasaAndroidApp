@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@color/orange"
-    tools:context=".ui.dashboard.SellerDashboard">
+    tools:context=".ui.dashboard.SellerDashboardActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_product"
