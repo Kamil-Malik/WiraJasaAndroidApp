@@ -20,7 +20,7 @@
     <string name="btn_register">Register</string>
     <string name="tv_register">Register</string>
     <string name="tv_forgot_password">Forgot Password?</string>
-    <string name="tv_password_confirmation">Password Confirmation</string>
+    <string name="hint_password_confirmation">Password Confirmation</string>
     <string name="tv_have_an_account">Have an account?</string>
     <string name="btn_send_reset_link">Send Reset Link</string>
     <string name="tv_input_address">Input address</string>
@@ -43,7 +43,7 @@
     <string name="tv_lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="tv_title">Title</string>
     <string name="tv_price">Rp. 00.000.00.,-</string>
-    <string name="tv_price_rupiah">Price (Rupiah)</string>
+    <string name="hint_price_rupiah">Price (Rupiah)</string>
     <string name="title_activity_seller">SellerActivity</string>
     <string name="title_activity_seller_base">SellerBaseActivity</string>
     <string name="title_activity_bottom_navigation_seller">BottomNavigationSellerActivity</string>
@@ -92,6 +92,7 @@
     <string name="btn_select_file">Select File</string>
     <string name="hint_province">Province</string>
     <string name="hint_full_name">Full Name</string>
+    <string name="btn_sign_out">Sign Out</string>
 
 
     <string-array name="province">

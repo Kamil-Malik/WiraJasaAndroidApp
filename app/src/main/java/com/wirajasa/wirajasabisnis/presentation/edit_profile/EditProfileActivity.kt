@@ -44,16 +44,16 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                 .load(profile.image)
                 .fitCenter()
                 .circleCrop()
-                .into(imgProfile)
+                .into(ivProfile)
             else Glide.with(this@EditProfileActivity)
                 .load(R.drawable.default_image)
                 .fitCenter()
                 .circleCrop()
-                .into(imgProfile)
+                .into(ivProfile)
 
             edtUsername.setText(profile.username)
             edtAddress.setText(profile.address)
-            edtPhoneNumber.setText(profile.phone_number)
+            edtPhonenumber.setText(profile.phone_number)
 
             binding.btnEditPhoto.setOnClickListener(this@EditProfileActivity)
             binding.btnSave.setOnClickListener(this@EditProfileActivity)
@@ -62,7 +62,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onClick(v: View?) {
         val username = binding.edtUsername.text.toString()
-        val phoneNumber = binding.edtPhoneNumber.text.toString()
+        val phoneNumber = binding.edtPhonenumber.text.toString()
         val address = binding.edtAddress.text.toString()
         val userProfile = UserProfile(
             username = username,
@@ -84,7 +84,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                         }
                         is NetworkResponse.Loading -> {
                             response.status?.let { binding.tvLoading.text = it }
-                            if (binding.circleLoading.visibility != View.VISIBLE) isLoading(true)
+                            if (binding.pbLoading.visibility != View.VISIBLE) isLoading(true)
                         }
                         is NetworkResponse.Success -> {
                             Glide.with(this)
@@ -92,7 +92,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                                 .fitCenter()
                                 .circleCrop()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                .into(binding.imgProfile)
+                                .into(binding.ivProfile)
 
                             isLoading(false)
                             shortMessage("Profile Updated")
@@ -107,11 +107,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     private fun isLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
             btnSave.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnSave.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }
@@ -125,7 +125,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
             Glide.with(this).load(selectedImg)
                 .fitCenter()
                 .circleCrop()
-                .into(binding.imgProfile)
+                .into(binding.ivProfile)
             viewModel.setNewImageUri(selectedImg)
         }
     }

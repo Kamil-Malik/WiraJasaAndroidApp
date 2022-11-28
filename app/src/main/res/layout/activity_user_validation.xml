@@ -174,7 +174,7 @@
                 tools:visibility="invisible" />
 
             <ProgressBar
-                android:id="@+id/circle_loading"
+                android:id="@+id/pb_loading"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:indeterminate="true"
@@ -199,7 +199,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/btn_submit"
                 app:layout_constraintEnd_toEndOf="@id/btn_submit"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/circle_loading"
+                app:layout_constraintStart_toEndOf="@id/pb_loading"
                 app:layout_constraintTop_toTopOf="@id/btn_submit"
                 tools:visibility="visible" />
 

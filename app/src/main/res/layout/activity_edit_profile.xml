@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_profile"
+                android:id="@+id/iv_profile"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="24dp"
@@ -41,7 +41,7 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@+id/img_profile"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="@color/dark_blue">
 
@@ -71,7 +71,7 @@
                 app:startIconTint="@color/dark_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_phoneNumber"
+                    android:id="@+id/edt_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number|phone"
@@ -126,7 +126,7 @@
                 tools:visibility="invisible" />
 
             <ProgressBar
-                android:id="@+id/circle_loading"
+                android:id="@+id/pb_loading"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:indeterminate="true"
@@ -148,10 +148,10 @@
                 android:text="@string/tv_loading"
                 android:textColor="@color/dark_blue"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/circle_loading"
+                app:layout_constraintBottom_toBottomOf="@id/pb_loading"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/circle_loading"
-                app:layout_constraintTop_toTopOf="@id/circle_loading"
+                app:layout_constraintStart_toEndOf="@id/pb_loading"
+                app:layout_constraintTop_toTopOf="@id/pb_loading"
                 tools:visibility="visible" />
 
 
@@ -162,8 +162,8 @@
                 android:backgroundTint="@color/orange"
                 android:contentDescription="@string/btn_edit_picture"
                 android:src="@drawable/ic_edit"
-                app:layout_constraintBottom_toBottomOf="@id/img_profile"
-                app:layout_constraintEnd_toEndOf="@id/img_profile"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                app:layout_constraintEnd_toEndOf="@id/iv_profile"
                 app:tint="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_service_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -33,7 +33,7 @@
                 tools:targetApi="p" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_service"
+                android:id="@+id/layout_service"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -44,9 +44,9 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/tv_service_register"
                 app:startIconDrawable="@drawable/ic_service"
                 app:startIconTint="?attr/startIconTint"
                 tools:targetApi="p">
@@ -60,7 +60,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_address"
+                android:id="@+id/layout_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -71,9 +71,9 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/edt_layout_service"
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/layout_service"
                 app:startIconDrawable="@drawable/ic_location"
                 app:startIconTint="?attr/startIconTint"
                 tools:targetApi="p">
@@ -87,7 +87,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_email"
+                android:id="@+id/layout_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -98,9 +98,9 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/edt_layout_address"
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/layout_address"
                 app:startIconDrawable="@drawable/ic_email"
                 app:startIconTint="?attr/startIconTint"
                 tools:targetApi="p">
@@ -114,7 +114,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_phone"
+                android:id="@+id/layout_phonenumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -125,15 +125,15 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/edt_layout_email"
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/layout_email"
                 app:startIconDrawable="@drawable/ic_phone"
                 app:startIconTint="?attr/startIconTint"
                 tools:targetApi="p">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_phone"
+                    android:id="@+id/edt_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -142,39 +142,39 @@
 
 
             <ImageView
-                android:id="@+id/ivService"
+                android:id="@+id/iv_service"
                 android:layout_width="0dp"
                 android:layout_height="130dp"
                 android:layout_marginTop="17dp"
                 android:contentDescription="@string/iv_service_photo"
                 android:src="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/edt_layout_phone" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber" />
 
             <TextView
-                android:id="@+id/tvIcon"
+                android:id="@+id/tv_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_upload_photos"
                 android:textColor="?android:attr/textColorHint"
-                app:layout_constraintBottom_toBottomOf="@+id/ivService"
-                app:layout_constraintEnd_toEndOf="@+id/ivService"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_service"
+                app:layout_constraintEnd_toEndOf="@+id/iv_service"
                 app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toStartOf="@+id/ivService"
-                app:layout_constraintTop_toTopOf="@+id/ivService"
+                app:layout_constraintStart_toStartOf="@+id/iv_service"
+                app:layout_constraintTop_toTopOf="@+id/iv_service"
                 app:layout_constraintVertical_bias="0.65999997" />
 
             <ImageView
-                android:id="@+id/ivIcon"
+                android:id="@+id/iv_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/iv_icon"
                 android:src="@drawable/ic_image"
-                app:layout_constraintBottom_toTopOf="@+id/tvIcon"
-                app:layout_constraintEnd_toEndOf="@+id/ivService"
-                app:layout_constraintStart_toStartOf="@+id/ivService"
-                app:layout_constraintTop_toTopOf="@+id/ivService"
+                app:layout_constraintBottom_toTopOf="@+id/tv_icon"
+                app:layout_constraintEnd_toEndOf="@+id/iv_service"
+                app:layout_constraintStart_toStartOf="@+id/iv_service"
+                app:layout_constraintTop_toTopOf="@+id/iv_service"
                 app:layout_constraintVertical_bias="0.72"
                 app:tint="?android:attr/textColorHint" />
 
@@ -190,9 +190,9 @@
                 android:textColor="#FF9800"
                 app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/ivService"
+                app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                app:layout_constraintTop_toBottomOf="@+id/iv_service"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

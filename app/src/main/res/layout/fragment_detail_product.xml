@@ -12,21 +12,21 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/iv_detail"
+            android:contentDescription="@string/tv_detail_picture"
+            android:src="@color/grey"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:id="@+id/ivDetail"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="48dp"
-            android:contentDescription="@string/tv_detail_picture"
-            android:src="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -37,12 +37,12 @@
             android:textFontWeight="800"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/ivDetail"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail"
+            app:layout_constraintTop_toBottomOf="@+id/iv_detail"
             tools:targetApi="p" />
 
         <TextView
-            android:id="@+id/tvUnit"
+            android:id="@+id/tv_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -53,12 +53,12 @@
             android:textFontWeight="800"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
-            app:layout_constraintStart_toEndOf="@+id/tvPrice"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+            app:layout_constraintStart_toEndOf="@+id/tv_price"
             tools:targetApi="p" />
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -71,13 +71,13 @@
             android:textFontWeight="400"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivDetail"
-            app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
             tools:targetApi="p" />
 
         <TextView
-            android:id="@+id/tvDetail"
+            android:id="@+id/tv_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -90,13 +90,13 @@
             android:textFontWeight="400"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivDetail"
-            app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:targetApi="p" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnContactEdit"
+            android:id="@+id/btn_contact_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -106,9 +106,9 @@
             android:textColor="@color/orange"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ivDetail"
-            app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetail"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail"
             app:layout_constraintVertical_bias="0.8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

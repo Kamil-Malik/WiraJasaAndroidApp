@@ -36,12 +36,12 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.actionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-        binding.fabAdd.setOnClickListener(this)
+        binding.btnAdd.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.fab_add -> {
+            R.id.btn_add -> {
                 activity?.startActivity(Intent(activity, AddingServiceActivity::class.java))
             }
         }
