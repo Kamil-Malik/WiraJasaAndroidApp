@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/register"
+                android:text="@string/tv_register"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="@string/email"
+                android:hint="@string/hint_email"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password"
+                android:hint="@string/tv_password"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:endIconMode="password_toggle"
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password_confirmation"
+                android:hint="@string/tv_password_confirmation"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:endIconMode="password_toggle"
@@ -107,7 +107,7 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/dark_blue"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/register"
+                android:text="@string/tv_register"
                 android:textColor="@color/white"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:text="@string/have_an_account"
+                    android:text="@string/tv_have_an_account"
                     android:textColor="@color/dark_blue" />
 
                 <TextView
@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="@string/login"
+                    android:text="@string/tv_login"
                     android:textColor="@color/dark_blue" />
             </LinearLayout>
 
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/signing_up"
+                android:text="@string/tv_signing_up"
                 android:textColor="@color/dark_blue"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/circle_loading"

@@ -134,7 +134,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         launcherIntentGallery.launch(
             Intent.createChooser(
                 Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                getString(R.string.select_image)
+                getString(R.string.tv_select_image)
             )
         )
     }
@@ -143,7 +143,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     private fun requestMediaPermission() {
         EasyPermissions.requestPermissions(
             this,
-            getString(R.string.gallery_permission_title),
+            getString(R.string.tv_gallery_permission_title),
             READ_EXTERNAL,
             Manifest.permission.READ_MEDIA_IMAGES
         )
@@ -158,7 +158,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     private fun requestExternalAccessPermission() {
         EasyPermissions.requestPermissions(
             this,
-            getString(R.string.gallery_permission_title),
+            getString(R.string.tv_gallery_permission_title),
             READ_EXTERNAL,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
@@ -194,7 +194,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
+            READ_EXTERNAL -> shortMessage(getString(R.string.tv_gallery_permission_denied))
         }
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="172dp"
         android:layout_height="52dp"
         android:layout_marginTop="96dp"
-        android:text="@string/notification"
+        android:text="@string/tv_notification"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"

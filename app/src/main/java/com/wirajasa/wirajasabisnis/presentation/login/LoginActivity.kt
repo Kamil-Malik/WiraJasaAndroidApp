@@ -64,10 +64,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 )
 
                 if (!Validate().email(email)) binding.edtEmail.error =
-                    getString(R.string.empty_invalid_email)
+                    getString(R.string.tv_empty_invalid_email)
 
                 if (!Validate().password(password)) Snackbar.make(
-                    binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT
+                    binding.root, getString(R.string.tv_empty_password), Snackbar.LENGTH_SHORT
                 ).show().also { return }
 
                 viewModel.signInWithEmailAndPassword(email, password).observe(this) { response ->
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             if (binding.circleLoading.visibility == View.GONE) showLoading(true)
                         }
                         is NetworkResponse.Success -> {
-                            showToast(getString(R.string.welcome_user, response.data.username))
+                            showToast(getString(R.string.tv_welcome_user, response.data.username))
                             val intent = if (response.data.isSeller) {
                                 Intent(this, SellerBaseActivity::class.java)
                             } else if (response.data.isAdmin) {

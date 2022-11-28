@@ -22,8 +22,8 @@ import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.VERIFIED
 
 class CryptoPref(mContext: Context) {
 
-    private val notSetup = mContext.getString(R.string.not_setup)
-    private val pending = mContext.getString(R.string.pending)
+    private val notSetup = mContext.getString(R.string.tv_not_setup)
+    private val pending = mContext.getString(R.string.tv_pending)
     private val masterKey: MasterKey = MasterKey.Builder(mContext)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .setUserAuthenticationRequired(false)

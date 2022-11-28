@@ -60,7 +60,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
                     || phoneNumber.isEmpty() || getUri == null
                 ) {
                     Toast.makeText(
-                        this@AddingServiceActivity, getString(R.string.form_have_to_be_filled),
+                        this@AddingServiceActivity, getString(R.string.tv_form_have_to_be_filled),
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -77,7 +77,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
                             is NetworkResponse.Success -> {
                                 Toast.makeText(
                                     this@AddingServiceActivity,
-                                    getString(R.string.success_add_data),
+                                    getString(R.string.tv_success_add_data),
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 val intent = Intent(
@@ -100,7 +100,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = getString(R.string.image_type)
-        val chooser = Intent.createChooser(intent, getString(R.string.choose_a_picture))
+        val chooser = Intent.createChooser(intent, getString(R.string.tv_choose_a_picture))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -156,7 +156,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
     private fun requestMediaPermission() {
         EasyPermissions.requestPermissions(
             this,
-            getString(R.string.gallery_permission_title),
+            getString(R.string.tv_gallery_permission_title),
             Constant.READ_EXTERNAL,
             Manifest.permission.READ_MEDIA_IMAGES
         )
@@ -171,7 +171,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
     private fun requestExternalAccessPermission() {
         EasyPermissions.requestPermissions(
             this,
-            getString(R.string.gallery_permission_title),
+            getString(R.string.tv_gallery_permission_title),
             Constant.READ_EXTERNAL,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
@@ -208,7 +208,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            Constant.READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
+            Constant.READ_EXTERNAL -> shortMessage(getString(R.string.tv_gallery_permission_denied))
         }
     }
 
