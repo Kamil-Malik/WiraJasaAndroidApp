@@ -65,6 +65,8 @@
     <string name="image_type">image/*</string>
     <string name="choose_a_picture">Choose a Picture</string>
     <string name="not_setup">Not Setup</string>
+    <string name="pending">Pending</string>
+    <string name="slash_unit">/unit</string>
 
 
     <!--Profile Activity-->
@@ -74,11 +76,61 @@
     <string name="btn_upload_picture">Upload Picture</string>
     <string name="btn_register_as_seller">Register as Seller</string>
     <string name="btn_edit_profile_data">Edit</string>
+
+
     <string name="loading_status_uploading_image">Uploading Image…</string>
     <string name="loading_status_updating_profile_data">Updating Profile Data…</string>
+    <string name="loading_status_uploading_application_form">Uploading application form…</string>
+
+
     <string name="gallery_permission_title">Need gallery access</string>
     <string name="gallery_permission_denied">Permission Denied, please grant access to select picture</string>
     <string name="select_image">Please select a picture</string>
     <string name="username">Username</string>
-    <string name="slash_unit">/unit</string>
+    <string name="please_fill_current_Profile">Please fill current profile information before continue</string>
+    <string name="btn_select_file">Select File</string>
+    <string name="hint_province">Province</string>
+    <string name="hint_full_name">Full Name</string>
+
+    <string-array name="province">
+        <item>Nanggroe Aceh Darussalam</item>
+        <item>Sumatera Utara</item>
+        <item>Sumatera Selatan</item>
+        <item>Sumatera Barat</item>
+        <item>Bengkulu</item>
+        <item>Riau</item>
+        <item>Kepulauan Riau</item>
+        <item>Jambi</item>
+        <item>Lampung</item>
+        <item>Bangka Belitung</item>
+        <item>Kalimantan Barat</item>
+        <item>Kalimantan Timur</item>
+        <item>Kalimantan Selatan</item>
+        <item>Kalimantan Tengah</item>
+        <item>Kalimantan Utara</item>
+        <item>Banten</item>
+        <item>DKI Jakarta</item>
+        <item>Jawa Barat</item>
+        <item>Jawa Tengah</item>
+        <item>Daerah Istimewa Yogyakarta</item>
+        <item>Jawa Timur</item>
+        <item>Bali</item>
+        <item>Nusa Tenggara Timur</item>
+        <item>Nusa Tenggara Barat</item>
+        <item>Gorontalo</item>
+        <item>Sulawesi Barat</item>
+        <item>Sulawesi Tengah</item>
+        <item>Sulawesi Utara</item>
+        <item>Sulawesi Tenggara</item>
+        <item>Sulawesi Selatan</item>
+        <item>Maluku Utara</item>
+        <item>Maluku</item>
+        <item>Papua Barat</item>
+        <item>Papua</item>
+        <item>Papua Tengah</item>
+        <item>Papua Pegunungan</item>
+        <item>Papua Selatan</item>
+        <item>Papua Barat Daya</item>
+    </string-array>
+>>>>>>> 5e85da2fc32ce60a6ed5a15fb26bc9f6c5ed8d49
 </resources>

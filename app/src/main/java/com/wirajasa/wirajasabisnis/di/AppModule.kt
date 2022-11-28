@@ -31,7 +31,7 @@ object AppModule {
         return AuthRepositoryImpl(
             context = mContext,
             auth = Firebase.auth,
-            fireStore = Firebase.firestore,
+            db = Firebase.firestore,
             ioDispatcher = Dispatchers.IO,
             cryptoPref = cryptoPref
         )
@@ -39,13 +39,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductRepository(@ApplicationContext mContext: Context): ProductRepository {
+    fun provideProductRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref): ProductRepository {
         return ProductRepositoryImpl(
             context = mContext,
             auth = Firebase.auth,
             storage = Firebase.storage.reference,
             firestoreDb = Firebase.firestore,
-            ioDispatcher = Dispatchers.IO
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
         )
     }
 
@@ -57,9 +58,21 @@ object AppModule {
     ): UserRepository {
         return UserRepositoryImpl(
             storage = Firebase.storage,
-            fireStore = Firebase.firestore,
+            db = Firebase.firestore,
             context = mContext,
             ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSellerRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref) : SellerRepository {
+        return SellerRepositoryImpl(
+            db = Firebase.firestore,
+            storage = Firebase.storage,
+            ioDispatcher = Dispatchers.IO,
+            context = mContext,
             cryptoPref = cryptoPref
         )
     }

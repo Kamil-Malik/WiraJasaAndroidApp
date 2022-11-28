@@ -9,5 +9,4 @@ interface UserRepository {
     fun updateProfile(userProfile: UserProfile): Flow<NetworkResponse<Boolean>>
 
     fun getLocalProfile(): UserProfile
-
 }

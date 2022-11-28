@@ -1,6 +1,8 @@
 package com.wirajasa.wirajasabisnis.data.repository
 
 import android.net.Uri
+import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -11,10 +13,12 @@ interface ProductRepository {
         price:Int,
         unit: String,
         address: String,
-        Email: String,
+        province: String,
         phoneNumber: String,
         photo: Uri?
     ): Flow<NetworkResponse<Boolean>>
+
+    fun getLocalProfile(): SellerApplication
 
 //    fun getService() : Flow<NetworkResponse<List<ServicePost>>>
 }

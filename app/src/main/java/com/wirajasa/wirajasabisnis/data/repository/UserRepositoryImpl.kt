@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
@@ -23,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 
 class UserRepositoryImpl @Inject constructor(
     private val storage: FirebaseStorage,
-    private val fireStore: FirebaseFirestore,
+    private val db: FirebaseFirestore,
     private val context: Context,
     private val ioDispatcher: CoroutineContext,
     private val cryptoPref: CryptoPref
@@ -42,8 +43,16 @@ class UserRepositoryImpl @Inject constructor(
                 emit(NetworkResponse.Loading(context.getString(R.string.loading_status_updating_profile_data)))
                 userProfile.image = newImageUri
                 saveProfile(userProfile)
-                fireStore.collection(USER).document(userProfile.uid)
-                    .set(userProfile, SetOptions.merge()).await()
+                db.collection(USER).document(userProfile.uid)
+                    .set(userProfile, SetOptions.merge())
+                    .continueWith {
+                        val updatedAt = hashMapOf(
+                            "updated_at" to Timestamp.now()
+                        )
+                        db.collection(USER).document(userProfile.uid)
+                            .set(updatedAt, SetOptions.merge())
+                    }.await()
+
                 emit(NetworkResponse.Success(true))
             } catch (e: Exception) {
                 Log.e(TAG, "updateProfile: ${e.stackTrace}")
