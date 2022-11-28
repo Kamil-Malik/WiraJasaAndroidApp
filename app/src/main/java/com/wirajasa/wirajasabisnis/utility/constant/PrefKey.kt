@@ -13,5 +13,6 @@ object PrefKey {
     const val ADMIN = "admin"
     const val VERIFIED = "verified"
     const val PROVINCE = "province"
+    const val APPLICATION_STATUS = "application_status"
     const val USER_PREF = "user_pref"
 }

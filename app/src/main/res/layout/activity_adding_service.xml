@@ -157,31 +157,30 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_email"
+            android:id="@+id/edt_layout_province"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/email"
-            android:importantForAutofill="no"
-            android:inputType="text|textMultiLine"
+            android:hint="@string/hint_province"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
+            app:endIconTint="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
+            app:startIconDrawable="@drawable/ic_location"
+            app:startIconTint="?attr/startIconTint"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_address"
-            app:startIconDrawable="@drawable/ic_email"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
+            app:layout_constraintTop_toBottomOf="@+id/edt_layout_address">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_email"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/edt_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-
+                android:inputType="none"
+                android:textColor="@color/dark_blue"
+                tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -200,7 +199,7 @@
             app:hintTextColor="@color/dark_blue"
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_email"
+            app:layout_constraintTop_toBottomOf="@+id/edt_layout_province"
             app:startIconDrawable="@drawable/ic_phone"
             app:startIconTint="?attr/startIconTint"
             tools:targetApi="p">

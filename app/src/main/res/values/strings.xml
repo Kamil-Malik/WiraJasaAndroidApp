@@ -65,6 +65,8 @@
     <string name="image_type">image/*</string>
     <string name="choose_a_picture">Choose a Picture</string>
     <string name="not_setup">Not Setup</string>
+    <string name="pending">Pending</string>
+    <string name="slash_unit">/unit</string>
 
 
     <!--Profile Activity-->
@@ -130,4 +132,5 @@
         <item>Papua Selatan</item>
         <item>Papua Barat Daya</item>
     </string-array>
+>>>>>>> 5e85da2fc32ce60a6ed5a15fb26bc9f6c5ed8d49
 </resources>

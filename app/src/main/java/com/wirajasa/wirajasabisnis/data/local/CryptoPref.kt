@@ -9,6 +9,7 @@ import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.ADDRESS
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.ADMIN
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.APPLICATION_ID
+import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.APPLICATION_STATUS
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.FULL_NAME
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.PHONE_NUMBER
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.PHOTO_ID_URL
@@ -22,6 +23,7 @@ import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.VERIFIED
 class CryptoPref(mContext: Context) {
 
     private val notSetup = mContext.getString(R.string.not_setup)
+    private val pending = mContext.getString(R.string.pending)
     private val masterKey: MasterKey = MasterKey.Builder(mContext)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .setUserAuthenticationRequired(false)
@@ -67,7 +69,8 @@ class CryptoPref(mContext: Context) {
             .putString(ADDRESS, application.address)
             .putString(FULL_NAME, application.fullName)
             .putString(PHONE_NUMBER, application.phoneNumber)
-            .putString(ADDRESS, application.province)
+            .putString(PROVINCE, application.province)
+            .putString(APPLICATION_STATUS, application.applicationStatus)
             .apply()
     }
 
@@ -79,7 +82,8 @@ class CryptoPref(mContext: Context) {
             address = preferences.getString(ADDRESS, notSetup) as String,
             phoneNumber = preferences.getString(PHONE_NUMBER, notSetup) as String,
             photoID = preferences.getString(PHOTO_ID_URL, notSetup) as String,
-            province = preferences.getString(PROVINCE, notSetup) as String
+            province = preferences.getString(PROVINCE, notSetup) as String,
+            applicationStatus = preferences.getString(APPLICATION_STATUS, pending) as String
         )
     }
 
