@@ -42,7 +42,6 @@ object AppModule {
     fun provideProductRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref): ProductRepository {
         return ProductRepositoryImpl(
             context = mContext,
-            auth = Firebase.auth,
             storage = Firebase.storage.reference,
             firestoreDb = Firebase.firestore,
             ioDispatcher = Dispatchers.IO,

@@ -58,7 +58,7 @@
             tools:targetApi="p" />
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvServiceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -77,7 +77,7 @@
             tools:targetApi="p" />
 
         <TextView
-            android:id="@+id/tvDetail"
+            android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -92,7 +92,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/ivDetail"
             app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvServiceName"
             tools:targetApi="p" />
 
         <com.google.android.material.button.MaterialButton
@@ -108,7 +108,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ivDetail"
             app:layout_constraintStart_toStartOf="@+id/ivDetail"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetail"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddress"
             app:layout_constraintVertical_bias="0.8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

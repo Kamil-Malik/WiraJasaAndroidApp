@@ -40,7 +40,7 @@
     <string name="detail_picture">Detail Picture</string>
     <string name="contact_the_provider">CONTACT THE PROVIDER</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="title">Title</string>
+    <string name="title">Service Name</string>
     <string name="price">Rp. 00.000.00.,-</string>
     <string name="title_activity_seller">SellerActivity</string>
     <string name="price_rupiah">Price (Rupiah)</string>
@@ -67,6 +67,9 @@
     <string name="not_setup">Not Setup</string>
     <string name="pending">Pending</string>
     <string name="slash_unit">/unit</string>
+    <string name="rupiah">Rp %1$d</string>
+    <string name="detail_unit">/%1$s</string>
+    <string name="detail_address">%1$s (%2$s)</string>
 
 
     <!--Profile Activity-->
@@ -91,6 +94,7 @@
     <string name="btn_select_file">Select File</string>
     <string name="hint_province">Province</string>
     <string name="hint_full_name">Full Name</string>
+    <string name="floating_action_button_for_adding_service">Floating Action Button for Adding Service</string>
 
     <string-array name="province">
         <item>Nanggroe Aceh Darussalam</item>
@@ -132,5 +136,4 @@
         <item>Papua Selatan</item>
         <item>Papua Barat Daya</item>
     </string-array>
->>>>>>> 5e85da2fc32ce60a6ed5a15fb26bc9f6c5ed8d49
 </resources>
