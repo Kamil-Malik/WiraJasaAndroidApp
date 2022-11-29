@@ -62,11 +62,11 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
         if (isLoading) binding.apply {
             edtEmail.isEnabled = false
             btnReset.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
         } else binding.apply {
             edtEmail.isEnabled = true
             btnReset.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
         }
     }
 }

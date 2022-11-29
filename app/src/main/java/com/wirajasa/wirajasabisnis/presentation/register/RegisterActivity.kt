@@ -69,7 +69,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         is NetworkResponse.Loading -> {
                             response.status?.let { binding.tvLoading.text = it }
-                            if (binding.circleLoading.visibility != View.VISIBLE) showLoading(true)
+                            if (binding.pbLoading.visibility != View.VISIBLE) showLoading(true)
                         }
                         is NetworkResponse.Success -> {
                             showToast(getString(R.string.tv_welcome_user, response.data.username))
@@ -96,12 +96,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         if (isLoading) binding.apply {
             btnRegister.visibility = View.INVISIBLE
             layoutClickLogin.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnRegister.visibility = View.VISIBLE
             layoutClickLogin.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }

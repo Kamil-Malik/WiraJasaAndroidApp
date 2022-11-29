@@ -1,14 +1,17 @@
 package com.wirajasa.wirajasabisnis.data.model
 
+import android.os.Parcelable
 import com.google.firebase.firestore.PropertyName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class SellerApplication(
 
     @get:PropertyName(UserProfile.USERID) @set:PropertyName(UserProfile.USERID)
     var uid: String = "",
 
     @get:PropertyName(APPLICATION_ID) @set:PropertyName(APPLICATION_ID)
-    var applicationId : String = "",
+    var applicationId: String = "",
 
     @get:PropertyName(FULL_NAME) @set:PropertyName(FULL_NAME)
     var fullName: String = "",
@@ -27,7 +30,7 @@ data class SellerApplication(
 
     @get:PropertyName(APPLICATION_STATUS) @set:PropertyName(APPLICATION_STATUS)
     var applicationStatus: String = PENDING
-) {
+) : Parcelable {
     companion object {
         private const val APPLICATION_ID = "application_id"
         private const val FULL_NAME = "full_name"

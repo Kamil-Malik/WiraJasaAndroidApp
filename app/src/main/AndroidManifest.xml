@@ -19,6 +19,20 @@
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
         <activity
+            android:name=".feature_admin.ui.activity.DetailFormActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_admin.ui.activity.AdminActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.service.DetailServiceActivity"
             android:exported="false">
             <meta-data
@@ -32,7 +46,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".presentation.service.AddingServiceActivity"
+        <activity
+            android:name=".presentation.service.AddingServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

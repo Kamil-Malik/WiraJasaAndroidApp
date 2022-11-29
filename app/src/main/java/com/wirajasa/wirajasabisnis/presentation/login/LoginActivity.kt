@@ -13,9 +13,9 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
 import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
 import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (currentUser() != null) {
             val localProfile: UserProfile = viewModel.getProfile()
             val intent : Intent = if (localProfile.isAdmin) {
-                Intent(this, MainActivity::class.java)
+                Intent(this, AdminActivity::class.java)
             } else if (localProfile.isSeller) {
                 Intent(this, SellerBaseActivity::class.java)
             } else {
@@ -78,14 +78,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         is NetworkResponse.Loading -> {
                             response.status?.let { binding.tvLoading.text = it }
-                            if (binding.circleLoading.visibility == View.GONE) showLoading(true)
+                            if (binding.pbLoading.visibility == View.GONE) showLoading(true)
                         }
                         is NetworkResponse.Success -> {
                             showToast(getString(R.string.tv_welcome_user, response.data.username))
                             val intent = if (response.data.isSeller) {
                                 Intent(this, SellerBaseActivity::class.java)
                             } else if (response.data.isAdmin) {
-                                Intent(this, ProfileActivity::class.java)
+                                Intent(this, AdminActivity::class.java)
                             } else {
                                 Intent(this, MainActivity::class.java)
                             }
@@ -118,14 +118,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             tvOr.visibility = View.INVISIBLE
             btnRegister.visibility = View.INVISIBLE
             tvForgotPassword.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnLogin.visibility = View.VISIBLE
             tvOr.visibility = View.VISIBLE
             btnRegister.visibility = View.VISIBLE
             tvForgotPassword.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }

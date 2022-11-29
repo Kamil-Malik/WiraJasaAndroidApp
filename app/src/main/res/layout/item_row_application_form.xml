@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@android:color/transparent"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_application_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/black"
+            tools:text="Form ID : 189273981263621" />
+
+        <TextView
+            android:id="@+id/tv_applicatoin_creator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/black"
+            tools:text="Akhmad" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
