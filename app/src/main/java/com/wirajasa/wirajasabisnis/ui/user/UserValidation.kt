@@ -101,11 +101,11 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
             btnSubmit.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnSubmit.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }
@@ -124,7 +124,7 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
         launcherIntentGallery.launch(
             Intent.createChooser(
                 Intent(Intent.ACTION_GET_CONTENT).setType("image/*"),
-                getString(R.string.select_image)
+                getString(R.string.tv_select_image)
             )
         )
     }
@@ -160,7 +160,7 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            READ_EXTERNAL -> shortMessage(getString(R.string.gallery_permission_denied))
+            READ_EXTERNAL -> shortMessage(getString(R.string.tv_gallery_permission_denied))
         }
     }
 }

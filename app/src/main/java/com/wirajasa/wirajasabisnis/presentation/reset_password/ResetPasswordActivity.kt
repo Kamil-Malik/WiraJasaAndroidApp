@@ -37,7 +37,7 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
                     .hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
                 if (!Validate().email(email)) {
-                    binding.edtEmail.error = getString(R.string.empty_invalid_email)
+                    binding.edtEmail.error = getString(R.string.tv_empty_invalid_email)
                     return
                 }
 
@@ -49,7 +49,7 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
                         is NetworkResponse.Loading -> showLoading(true)
                         is NetworkResponse.Success -> Toast.makeText(
                             this,
-                            getString(R.string.reset_success),
+                            getString(R.string.tv_reset_success),
                             Toast.LENGTH_LONG
                         ).show().also { finish() }
                     }
@@ -62,11 +62,11 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
         if (isLoading) binding.apply {
             edtEmail.isEnabled = false
             btnReset.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
         } else binding.apply {
             edtEmail.isEnabled = true
             btnReset.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
         }
     }
 }

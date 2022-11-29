@@ -38,7 +38,7 @@ class AuthRepositoryImpl @Inject constructor(
         try {
             auth.signInWithEmailAndPassword(email, password).await()
 
-            emit(NetworkResponse.Loading(context.getString(R.string.getting_profile)))
+            emit(NetworkResponse.Loading(context.getString(R.string.tv_getting_profile)))
             val userProfile =
                 db.collection(COLLECTION_USER).document(auth.currentUser?.uid as String)
                     .get().await().toObject(UserProfile::class.java) as UserProfile
@@ -59,7 +59,7 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             )
         }
-    }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.signing_in))) }
+    }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.tv_signing_in))) }
         .flowOn(ioDispatcher)
 
     override fun signUpWithEmailAndPassword(
@@ -68,7 +68,7 @@ class AuthRepositoryImpl @Inject constructor(
         try {
             auth.createUserWithEmailAndPassword(email, password).await()
 
-            emit(NetworkResponse.Loading(context.getString(R.string.uploading_profile)))
+            emit(NetworkResponse.Loading(context.getString(R.string.tv_uploading_profile)))
             val defaultProfile = getDefaultProfile()
             db.collection(COLLECTION_USER).document((getCurrentUser() as FirebaseUser).uid)
                 .set(defaultProfile)
@@ -90,7 +90,7 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             )
         }
-    }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.signing_up))) }
+    }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.tv_signing_up))) }
         .flowOn(ioDispatcher)
 
     override fun resetPasswordWithEmail(
@@ -114,7 +114,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     private fun getDefaultProfile(): UserProfile {
-        val notSetup = context.getString(R.string.not_setup)
+        val notSetup = context.getString(R.string.tv_not_setup)
         return UserProfile(
             uid = (auth.currentUser as FirebaseUser).uid,
             username = "Guest${UUID.randomUUID()}",

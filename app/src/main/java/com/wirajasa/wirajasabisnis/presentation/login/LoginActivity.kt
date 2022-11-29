@@ -64,10 +64,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 )
 
                 if (!Validate().email(email)) binding.edtEmail.error =
-                    getString(R.string.empty_invalid_email)
+                    getString(R.string.tv_empty_invalid_email)
 
                 if (!Validate().password(password)) Snackbar.make(
-                    binding.root, getString(R.string.empty_password), Snackbar.LENGTH_SHORT
+                    binding.root, getString(R.string.tv_empty_password), Snackbar.LENGTH_SHORT
                 ).show().also { return }
 
                 viewModel.signInWithEmailAndPassword(email, password).observe(this) { response ->
@@ -78,10 +78,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         is NetworkResponse.Loading -> {
                             response.status?.let { binding.tvLoading.text = it }
-                            if (binding.circleLoading.visibility == View.GONE) showLoading(true)
+                            if (binding.pbLoading.visibility == View.GONE) showLoading(true)
                         }
                         is NetworkResponse.Success -> {
-                            showToast(getString(R.string.welcome_user, response.data.username))
+                            showToast(getString(R.string.tv_welcome_user, response.data.username))
                             val intent = if (response.data.isSeller) {
                                 Intent(this, SellerBaseActivity::class.java)
                             } else if (response.data.isAdmin) {
@@ -118,14 +118,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             tvOr.visibility = View.INVISIBLE
             btnRegister.visibility = View.INVISIBLE
             tvForgotPassword.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnLogin.visibility = View.VISIBLE
             tvOr.visibility = View.VISIBLE
             btnRegister.visibility = View.VISIBLE
             tvForgotPassword.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }

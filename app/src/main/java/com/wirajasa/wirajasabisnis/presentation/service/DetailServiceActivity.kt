@@ -34,7 +34,7 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
 
         val localProfile: UserProfile = viewModel.getProfile()
         if (localProfile.isSeller){
-            binding.btnContactEdit.text = getString(R.string.edit_service).uppercase()
+            binding.tvServiceName.text = getString(R.string.edit_service).uppercase()
             isSeller = true
         }
 

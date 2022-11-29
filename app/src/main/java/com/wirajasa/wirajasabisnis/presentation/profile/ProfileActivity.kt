@@ -46,9 +46,9 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
                 .fitCenter()
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgProfile)
+                .into(ivProfile)
             else Glide.with(this@ProfileActivity).load(R.drawable.default_image).fitCenter()
-                .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(imgProfile)
+                .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(ivProfile)
 
             tvUsername.text = profile.username
             tvEmail.text = Firebase.auth.currentUser?.email
@@ -74,12 +74,12 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
         val currentProfile = viewModel.getUser()
 
         if (!validateAddress(currentProfile.address)) {
-            longMessage(getString(R.string.please_fill_current_Profile))
+            longMessage(getString(R.string.tv_please_fill_current_Profile))
             return false
         }
 
         if (!validateAddress(currentProfile.phone_number)) {
-            longMessage(getString(R.string.please_fill_current_Profile))
+            longMessage(getString(R.string.tv_please_fill_current_Profile))
             return false
         }
 
@@ -92,7 +92,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validateAddress(input: String): Boolean {
         if (input.isEmpty()) return false
-        return (!input.matches(getString(R.string.not_setup).toRegex()))
+        return (!input.matches(getString(R.string.tv_not_setup).toRegex()))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

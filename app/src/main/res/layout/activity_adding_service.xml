@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_app"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
@@ -27,12 +27,12 @@
                 android:paddingBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/app_logo"
+                android:contentDescription="@string/iv_app_logo"
                 android:src="@drawable/ic_logo"/>
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_service_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -40,30 +40,30 @@
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/inter_bold"
             android:lineHeight="24.2sp"
-            android:text="@string/service_register"
+            android:text="@string/tv_service_register"
             android:textColor="@color/dark_blue"
             android:textFontWeight="800"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_app"
             tools:layout_editor_absoluteX="111dp"
             tools:targetApi="p" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_service"
+            android:id="@+id/layout_service"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@color/white"
             android:fontFamily="@font/inter"
-            android:hint="@string/service_name"
+            android:hint="@string/hint_service_name"
             android:importantForAutofill="no"
             android:inputType="text|textMultiLine"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/tv_service_register"
             app:startIconDrawable="@drawable/ic_service"
             app:startIconTint="?attr/startIconTint"
             tools:targetApi="p">
@@ -82,15 +82,15 @@
             android:layout_marginTop="18dp"
             android:background="@color/white"
             android:fontFamily="@font/inter"
-            android:hint="@string/price_rupiah"
+            android:hint="@string/hint_price_rupiah"
             android:importantForAutofill="no"
             android:inputType="number|textMultiLine"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_service"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/layout_service"
             app:startIconDrawable="@drawable/ic_money"
             app:startIconTint="?attr/startIconTint"
             tools:targetApi="p">
@@ -109,14 +109,14 @@
             android:layout_marginTop="18dp"
             android:background="@color/white"
             android:fontFamily="@font/inter"
-            android:hint="@string/unit"
+            android:hint="@string/tv_unit"
             android:importantForAutofill="no"
             android:inputType="text|textMultiLine"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
             app:layout_constraintTop_toBottomOf="@+id/edt_layout_price"
             app:startIconDrawable="@drawable/ic_money"
             app:startIconTint="?attr/startIconTint"
@@ -130,20 +130,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_address"
+            android:id="@+id/layout_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@color/white"
             android:fontFamily="@font/inter"
-            android:hint="@string/address"
+            android:hint="@string/hint_address"
             android:importantForAutofill="no"
             android:inputType="text|textMultiLine"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
             app:layout_constraintTop_toBottomOf="@+id/edt_layout_unit"
             app:startIconDrawable="@drawable/ic_location"
             app:startIconTint="?attr/startIconTint"
@@ -157,7 +157,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_province"
+            android:id="@+id/layout_province"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -170,9 +170,9 @@
             app:hintTextColor="@color/dark_blue"
             app:startIconDrawable="@drawable/ic_location"
             app:startIconTint="?attr/startIconTint"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_address">
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/layout_address">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/edt_province"
@@ -185,27 +185,27 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_phone"
+            android:id="@+id/layout_phonenumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@color/white"
             android:fontFamily="@font/inter"
-            android:hint="@string/phone_number"
+            android:hint="@string/hint_phone_number"
             android:importantForAutofill="no"
             android:inputType="text|textMultiLine"
             android:textColorHint="@color/dark_blue"
             app:boxStrokeColor="@color/dark_blue"
             app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_province"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/layout_province"
             app:startIconDrawable="@drawable/ic_phone"
             app:startIconTint="?attr/startIconTint"
             tools:targetApi="p">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_phone"
+                android:id="@+id/edt_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?android:attr/textColorHint" />
@@ -213,61 +213,61 @@
 
 
         <ImageView
-            android:id="@+id/ivService"
+            android:id="@+id/iv_service"
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_marginTop="18dp"
-            android:contentDescription="@string/service_photo"
+            android:contentDescription="@string/iv_service_photo"
             android:src="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_phone" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber" />
 
         <TextView
-            android:id="@+id/tvIcon"
+            android:id="@+id/tv_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/upload_photos"
+            android:text="@string/tv_upload_photos"
             android:textColor="?android:attr/textColorHint"
-            app:layout_constraintBottom_toBottomOf="@+id/ivService"
-            app:layout_constraintEnd_toEndOf="@+id/ivService"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_service"
+            app:layout_constraintEnd_toEndOf="@+id/iv_service"
             app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="@+id/ivService"
-            app:layout_constraintTop_toTopOf="@+id/ivService"
+            app:layout_constraintStart_toStartOf="@+id/iv_service"
+            app:layout_constraintTop_toTopOf="@+id/iv_service"
             app:layout_constraintVertical_bias="0.65999997" />
 
         <ImageView
-            android:id="@+id/ivIcon"
+            android:id="@+id/iv_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/image_icon"
+            android:contentDescription="@string/iv_icon"
             android:src="@drawable/ic_image"
-            app:layout_constraintBottom_toTopOf="@+id/tvIcon"
-            app:layout_constraintEnd_toEndOf="@+id/ivService"
-            app:layout_constraintStart_toStartOf="@+id/ivService"
-            app:layout_constraintTop_toTopOf="@+id/ivService"
+            app:layout_constraintBottom_toTopOf="@+id/tv_icon"
+            app:layout_constraintEnd_toEndOf="@+id/iv_service"
+            app:layout_constraintStart_toStartOf="@+id/iv_service"
+            app:layout_constraintTop_toTopOf="@+id/iv_service"
             app:layout_constraintVertical_bias="0.72"
             app:tint="?android:attr/textColorHint" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAdd"
+            android:id="@+id/btn_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="24dp"
             android:backgroundTint="@color/dark_blue"
-            android:text="@string/open_service"
+            android:text="@string/btn_open_service"
             android:textColor="#FF9800"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/ivService"
+            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+            app:layout_constraintTop_toBottomOf="@+id/iv_service"
             app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
-            android:id="@+id/pbAdding"
+            android:id="@+id/pb_adding"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -284,11 +284,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:text="@string/loading"
+            android:text="@string/tv_loading"
             android:textColor="@color/black"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/pbAdding"
-            app:layout_constraintStart_toStartOf="@+id/pbAdding"
-            app:layout_constraintTop_toBottomOf="@+id/pbAdding" />
+            app:layout_constraintEnd_toEndOf="@+id/pb_adding"
+            app:layout_constraintStart_toStartOf="@+id/pb_adding"
+            app:layout_constraintTop_toBottomOf="@+id/pb_adding" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
