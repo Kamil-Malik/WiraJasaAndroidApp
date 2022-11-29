@@ -11,6 +11,7 @@ import com.wirajasa.wirajasabisnis.data.model.ServicePost
 import com.wirajasa.wirajasabisnis.usecases.HandleException
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
+import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.UID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -21,7 +22,6 @@ import kotlin.coroutines.CoroutineContext
 
 class ProductRepositoryImpl @Inject constructor(
     private val context: Context,
-    private val auth: FirebaseAuth,
     private val storage: StorageReference,
     private val firestoreDb: FirebaseFirestore,
     private val ioDispatcher: CoroutineContext,
@@ -39,13 +39,15 @@ class ProductRepositoryImpl @Inject constructor(
         photo: Uri?
     ): Flow<NetworkResponse<Boolean>> = flow {
         try {
-            val photoReference = storage.child("$SERVICE/${System.currentTimeMillis()}.jpg")
+            val id = firestoreDb.collection(SERVICE).document().id
+            val photoReference = storage.child("$SERVICE/$id.jpg")
             photoReference.putFile(photo!!)
                 .continueWithTask {
                     photoReference.downloadUrl
                 }.continueWithTask { downloadUrlTask ->
                     val servicePost = ServicePost(
                         uid,
+                        id,
                         name,
                         price,
                         unit,
@@ -54,8 +56,7 @@ class ProductRepositoryImpl @Inject constructor(
                         phoneNumber,
                         downloadUrlTask.result.toString()
                     )
-                    val serviceId = auth.currentUser?.uid + name.lowercase().trim()
-                    firestoreDb.collection(SERVICE).document(serviceId).set(servicePost)
+                    firestoreDb.collection(SERVICE).document(id).set(servicePost)
                 }.await()
             emit(NetworkResponse.Success(data = true))
         } catch (e: Exception) {
@@ -66,4 +67,22 @@ class ProductRepositoryImpl @Inject constructor(
     override fun getLocalProfile(): SellerApplication {
         return cryptoPref.getSellerData()
     }
+
+    override fun getAllProductsAccordingUID(uid: String):
+            Flow<NetworkResponse<MutableList<ServicePost>>> = flow {
+        try {
+            val productList: MutableList<ServicePost> = mutableListOf()
+            val productReference = firestoreDb.collection(SERVICE)
+                .whereEqualTo(UID, uid)
+            productReference.addSnapshotListener { snapshot, error ->
+                if (error == null) {
+                    val product = snapshot?.toObjects(ServicePost::class.java)
+                    productList.addAll(product!!)
+                }
+            }
+            emit(NetworkResponse.Success(productList))
+        } catch (e: Exception) {
+            emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
+        }
+    }.onStart { emit(NetworkResponse.Loading(null)) }.flowOn(ioDispatcher)
 }

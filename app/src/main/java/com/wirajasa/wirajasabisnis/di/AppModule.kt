@@ -50,7 +50,6 @@ object AppModule {
     ): ProductRepository {
         return ProductRepositoryImpl(
             context = mContext,
-            auth = Firebase.auth,
             storage = Firebase.storage.reference,
             firestoreDb = Firebase.firestore,
             ioDispatcher = Dispatchers.IO,
