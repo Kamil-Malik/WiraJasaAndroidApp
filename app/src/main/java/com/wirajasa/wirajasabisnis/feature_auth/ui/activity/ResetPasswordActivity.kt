@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.reset_password
+package com.wirajasa.wirajasabisnis.feature_auth.ui.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityResetPasswordBinding
-import com.wirajasa.wirajasabisnis.usecases.Validate
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.ResetPasswordViewModel
+import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

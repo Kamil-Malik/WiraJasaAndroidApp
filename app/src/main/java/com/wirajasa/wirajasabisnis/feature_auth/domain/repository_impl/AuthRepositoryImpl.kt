@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.feature_auth.domain.repository_impl
 
 
 import android.content.Context
@@ -9,11 +9,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
-import com.wirajasa.wirajasabisnis.usecases.HandleException
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
+import com.wirajasa.wirajasabisnis.feature_auth.domain.repository.AuthRepository
+import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.utility.Constant.COLLECTION_USER
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.SELLER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -55,7 +56,7 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(
                 NetworkResponse.GenericException(
-                    HandleException(context).getMessage(e)
+                    HandleException(context, e).invoke()
                 )
             )
         }
@@ -86,7 +87,7 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(
                 NetworkResponse.GenericException(
-                    HandleException(context).getMessage(e)
+                    HandleException(context, e).invoke()
                 )
             )
         }
@@ -102,7 +103,7 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(
                 NetworkResponse.GenericException(
-                    HandleException(context).getMessage(e)
+                    HandleException(context, e).invoke()
                 )
             )
         }

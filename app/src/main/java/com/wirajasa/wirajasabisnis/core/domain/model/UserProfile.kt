@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.data.model
+package com.wirajasa.wirajasabisnis.core.domain.model
 
 import com.google.firebase.firestore.PropertyName
 

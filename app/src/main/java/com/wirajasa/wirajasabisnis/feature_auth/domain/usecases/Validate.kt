@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.usecases
+package com.wirajasa.wirajasabisnis.feature_auth.domain.usecases
 
 import android.util.Patterns
 

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.core.domain.repository
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -10,9 +10,9 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
-import com.wirajasa.wirajasabisnis.usecases.HandleException
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.usecases.HandleException
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.USER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -56,7 +56,7 @@ class UserRepositoryImpl @Inject constructor(
                 emit(NetworkResponse.Success(true))
             } catch (e: Exception) {
                 Log.e(TAG, "updateProfile: ${e.stackTrace}")
-                emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
+                emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))
             }
         }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.loading_status_uploading_image))) }
             .flowOn(ioDispatcher)

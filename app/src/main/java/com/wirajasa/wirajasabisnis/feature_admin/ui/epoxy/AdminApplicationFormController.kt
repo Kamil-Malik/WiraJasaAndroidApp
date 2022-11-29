@@ -3,8 +3,8 @@ package com.wirajasa.wirajasabisnis.feature_admin.ui.epoxy
 import com.airbnb.epoxy.EpoxyController
 import com.wirajasa.wirajasabisnis.core.epoxy.ScreenErrorEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.ScreenLoadingEpoxyModel
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 
 class AdminApplicationFormController(
     val onSelected: (SellerApplication) -> Unit,

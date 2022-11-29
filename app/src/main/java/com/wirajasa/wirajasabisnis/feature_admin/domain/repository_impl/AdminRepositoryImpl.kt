@@ -3,10 +3,10 @@ package com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl
 import android.content.Context
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.feature_admin.domain.repository.AdminRepository
-import com.wirajasa.wirajasabisnis.usecases.HandleException
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.usecases.HandleException
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SELLER
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.USER
 import kotlinx.coroutines.CoroutineDispatcher
@@ -30,7 +30,7 @@ class AdminRepositoryImpl @Inject constructor(
 
             emit(NetworkResponse.Success(data))
         } catch (e: Exception) {
-            emit(NetworkResponse.GenericException(HandleException(mContext).getMessage(e)))
+            emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
 
@@ -53,9 +53,7 @@ class AdminRepositoryImpl @Inject constructor(
                 emit(NetworkResponse.Success(true))
             } catch (e: Exception) {
                 emit(
-                    NetworkResponse.GenericException(
-                        HandleException(mContext).getMessage(e)
-                    )
+                    NetworkResponse.GenericException(HandleException(mContext, e).invoke())
                 )
             }
         }.onStart { emit(NetworkResponse.Loading("Updating Form Status")) }.flowOn(ioDispatcher)

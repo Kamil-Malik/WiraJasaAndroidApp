@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.ADDRESS
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.ADMIN
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.APPLICATION_ID

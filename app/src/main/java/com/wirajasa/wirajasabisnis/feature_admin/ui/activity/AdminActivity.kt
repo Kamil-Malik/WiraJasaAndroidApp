@@ -16,7 +16,7 @@ import com.wirajasa.wirajasabisnis.databinding.ActivityAdminBinding
 import com.wirajasa.wirajasabisnis.feature_admin.ui.contract.FormResultContract
 import com.wirajasa.wirajasabisnis.feature_admin.ui.epoxy.AdminApplicationFormController
 import com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel.AdminViewModel
-import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
+import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

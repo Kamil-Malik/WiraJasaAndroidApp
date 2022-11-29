@@ -15,11 +15,11 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailFormBinding
 import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl
 import com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel.DetailFormViewModel
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

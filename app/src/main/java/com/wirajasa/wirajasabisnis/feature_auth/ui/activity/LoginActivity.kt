@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.login
+package com.wirajasa.wirajasabisnis.feature_auth.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,15 +10,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
-import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
 import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
 import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
-import com.wirajasa.wirajasabisnis.usecases.Validate
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

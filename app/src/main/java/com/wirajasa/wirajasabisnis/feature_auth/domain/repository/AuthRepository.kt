@@ -1,8 +1,8 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.feature_auth.domain.repository
 
 import com.google.firebase.auth.FirebaseUser
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {

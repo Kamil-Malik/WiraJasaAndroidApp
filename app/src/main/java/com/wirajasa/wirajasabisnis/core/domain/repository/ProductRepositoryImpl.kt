@@ -1,15 +1,14 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.core.domain.repository
 
 import android.content.Context
 import android.net.Uri
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.data.model.ServicePost
-import com.wirajasa.wirajasabisnis.usecases.HandleException
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.usecases.HandleException
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.UID
 import kotlinx.coroutines.flow.Flow
@@ -60,7 +59,7 @@ class ProductRepositoryImpl @Inject constructor(
                 }.await()
             emit(NetworkResponse.Success(data = true))
         } catch (e: Exception) {
-            emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
+            emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading(null)) }.flowOn(ioDispatcher)
 
@@ -82,7 +81,7 @@ class ProductRepositoryImpl @Inject constructor(
             }
             emit(NetworkResponse.Success(productList))
         } catch (e: Exception) {
-            emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
+            emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading(null)) }.flowOn(ioDispatcher)
 }
