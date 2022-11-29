@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.wirajasa.wirajasabisnis.data.model.Product
+import com.wirajasa.wirajasabisnis.core.domain.model.Product
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
 import com.wirajasa.wirajasabisnis.presentation.product.DetailFragment
 

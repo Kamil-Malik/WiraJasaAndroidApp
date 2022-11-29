@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.utility
+package com.wirajasa.wirajasabisnis.core.utility
 
 sealed class NetworkResponse<out T> {
     data class Loading(val status: String?) : NetworkResponse<Nothing>()

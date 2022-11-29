@@ -15,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
 import com.wirajasa.wirajasabisnis.presentation.edit_profile.EditProfileContract
-import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
+import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import com.wirajasa.wirajasabisnis.ui.user.UserValidation
 import dagger.hilt.android.AndroidEntryPoint
 

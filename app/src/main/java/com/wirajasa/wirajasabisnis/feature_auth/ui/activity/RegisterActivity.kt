@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.register
+package com.wirajasa.wirajasabisnis.feature_auth.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -12,8 +12,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.usecases.Validate
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.RegisterViewModel
+import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

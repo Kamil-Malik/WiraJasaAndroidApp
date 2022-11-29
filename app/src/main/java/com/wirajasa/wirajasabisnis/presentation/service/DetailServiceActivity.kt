@@ -9,10 +9,10 @@ import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.ServicePost
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailServiceBinding
-import com.wirajasa.wirajasabisnis.presentation.login.LoginViewModel
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         post = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(EXTRA_SERVICE_POST,ServicePost::class.java)
+            intent.getParcelableExtra(EXTRA_SERVICE_POST, ServicePost::class.java)
         } else {
             intent.getParcelableExtra<ServicePost>(EXTRA_SERVICE_POST) as ServicePost
         }

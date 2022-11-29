@@ -4,11 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
-import com.wirajasa.wirajasabisnis.data.repository.SellerRepository
-import com.wirajasa.wirajasabisnis.data.repository.UserRepository
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.domain.repository.SellerRepository
+import com.wirajasa.wirajasabisnis.core.domain.repository.UserRepository
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject

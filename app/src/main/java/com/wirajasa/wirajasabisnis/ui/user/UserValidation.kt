@@ -12,12 +12,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityUserValidationBinding
 import com.wirajasa.wirajasabisnis.usecases.CheckPermission
 import com.wirajasa.wirajasabisnis.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.core.domain.repository
 
 import android.content.Context
 import android.net.Uri
@@ -8,9 +8,9 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.usecases.HandleException
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.usecases.HandleException
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.USER
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SELLER
 import kotlinx.coroutines.CoroutineDispatcher
@@ -54,7 +54,7 @@ class SellerRepositoryImpl @Inject constructor(
             cryptoPref.saveSellerData(form)
             emit(NetworkResponse.Success(true))
         } catch (e: Exception) {
-            emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
+            emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading(context.getString(R.string.loading_status_uploading_image))) }
         .flowOn(ioDispatcher)

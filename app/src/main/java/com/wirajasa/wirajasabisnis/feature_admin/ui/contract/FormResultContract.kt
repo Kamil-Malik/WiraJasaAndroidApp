@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.DetailFormActivity
 
 class FormResultContract : ActivityResultContract<SellerApplication, Boolean>() {

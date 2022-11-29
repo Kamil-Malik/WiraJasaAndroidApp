@@ -1,10 +1,9 @@
-package com.wirajasa.wirajasabisnis.data.repository
+package com.wirajasa.wirajasabisnis.core.domain.repository
 
 import android.net.Uri
-import com.wirajasa.wirajasabisnis.data.model.SellerApplication
-import com.wirajasa.wirajasabisnis.data.model.ServicePost
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
