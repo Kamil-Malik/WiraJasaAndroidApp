@@ -101,11 +101,11 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
             btnSubmit.visibility = View.INVISIBLE
-            circleLoading.visibility = View.VISIBLE
+            pbLoading.visibility = View.VISIBLE
             tvLoading.visibility = View.VISIBLE
         } else binding.apply {
             btnSubmit.visibility = View.VISIBLE
-            circleLoading.visibility = View.GONE
+            pbLoading.visibility = View.GONE
             tvLoading.visibility = View.GONE
         }
     }

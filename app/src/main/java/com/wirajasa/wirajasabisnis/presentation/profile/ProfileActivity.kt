@@ -46,9 +46,9 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
                 .fitCenter()
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgProfile)
+                .into(ivProfile)
             else Glide.with(this@ProfileActivity).load(R.drawable.default_image).fitCenter()
-                .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(imgProfile)
+                .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(ivProfile)
 
             tvUsername.text = profile.username
             tvEmail.text = Firebase.auth.currentUser?.email

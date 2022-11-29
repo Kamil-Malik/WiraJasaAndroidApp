@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
 import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
-import com.wirajasa.wirajasabisnis.ui.dashboard.BuyerDashboard
+import com.wirajasa.wirajasabisnis.ui.dashboard.BuyerDashboardActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarMain)
         setContentView(binding.root)
         binding.btnLogout.setOnClickListener {
-            startActivity(Intent(this, BuyerDashboard::class.java))
+            startActivity(Intent(this, BuyerDashboardActivity::class.java))
         }
     }
 
