@@ -1,8 +1,6 @@
 package com.wirajasa.wirajasabisnis.ui.seller
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,7 +10,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
 import com.wirajasa.wirajasabisnis.databinding.ActivitySellerBaseBinding
 import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
 import com.wirajasa.wirajasabisnis.presentation.login.LoginViewModel
@@ -29,16 +26,16 @@ class SellerBaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySellerBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarApp)
 
         if (viewModel.getCurrentUser() == null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
-        val navView: BottomNavigationView = binding.navView
+        val navView: BottomNavigationView = binding.bnvView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_seller_base)
+        val navController = findNavController(R.id.fragment_seller_base)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(

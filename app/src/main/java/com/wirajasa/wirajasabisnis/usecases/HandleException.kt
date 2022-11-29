@@ -11,11 +11,11 @@ class HandleException (private val context: Context) {
 
     fun getMessage(exception: Exception): String {
         return when (exception) {
-            is IOException -> context.getString(R.string.connection_error)
-            is FirebaseAuthEmailException -> context.getString(R.string.invalid_email)
-            is FirebaseAuthInvalidCredentialsException -> context.getString(R.string.invalid_credential)
-            is FirebaseAuthInvalidUserException -> context.getString(R.string.invalid_account)
-            else -> context.getString(R.string.something_went_wrong)
+            is IOException -> context.getString(R.string.tv_connection_error)
+            is FirebaseAuthEmailException -> context.getString(R.string.tv_invalid_email)
+            is FirebaseAuthInvalidCredentialsException -> context.getString(R.string.tv_invalid_credential)
+            is FirebaseAuthInvalidUserException -> context.getString(R.string.tv_invalid_account)
+            else -> context.getString(R.string.tv_something_went_wrong)
         }
     }
 }

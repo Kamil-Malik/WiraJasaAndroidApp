@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@color/orange"
-    tools:context=".ui.dashboard.SellerDashboard">
+    tools:context=".ui.dashboard.SellerDashboardActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_product"
@@ -14,7 +14,7 @@
         android:layout_height="match_parent" />
 
     <ProgressBar
-        android:id="@+id/dashboard_progress_bar"
+        android:id="@+id/pb_dashboard"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:visibility="invisible"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/fab_add"
+        android:id="@+id/btn_add"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginEnd="16dp"

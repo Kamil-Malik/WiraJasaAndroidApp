@@ -15,7 +15,7 @@ class RequestPermission(private val context: Context) {
     fun accessMedia() {
         EasyPermissions.requestPermissions(
             context as Activity,
-            context.getString(R.string.gallery_permission_title),
+            context.getString(R.string.tv_gallery_permission_title),
             Constant.READ_EXTERNAL,
             Manifest.permission.READ_MEDIA_IMAGES
         )
@@ -24,7 +24,7 @@ class RequestPermission(private val context: Context) {
     fun accessExternal() {
         EasyPermissions.requestPermissions(
             context as Activity,
-            context.getString(R.string.gallery_permission_title),
+            context.getString(R.string.tv_gallery_permission_title),
             Constant.READ_EXTERNAL,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )

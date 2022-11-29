@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    android:orientation="vertical"
-    tools:context=".ui.dashboard.BuyerDashboard">
+    tools:context=".ui.dashboard.BuyerDashboardActivity"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_dashboard"
@@ -23,7 +23,7 @@
         android:elevation="8dp">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
+            android:id="@+id/sv_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp" />
@@ -36,13 +36,13 @@
         android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_list_dashboard"
             android:id="@+id/rv_list_product"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_list_dashboard"/>
 
         <ProgressBar
-            android:id="@+id/dashboard_progress_bar"
+            android:id="@+id/pb_dashboard"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:visibility="invisible"

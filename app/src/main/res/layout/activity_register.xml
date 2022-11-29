@@ -28,18 +28,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/register"
+                android:text="@string/tv_register"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_email"
+                android:id="@+id/layout_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="@string/email"
+                android:hint="@string/hint_email"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
@@ -55,17 +55,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_password"
+                android:id="@+id/layout_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password"
+                android:hint="@string/tv_password"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:endIconMode="password_toggle"
                 app:endIconTint="?attr/endIconTint"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@id/edt_layout_email"
+                app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:startIconTint="?attr/startIconTint">
 
@@ -78,17 +78,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_confirm_password"
+                android:id="@+id/layout_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password_confirmation"
+                android:hint="@string/hint_password_confirmation"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:endIconMode="password_toggle"
                 app:endIconTint="?attr/endIconTint"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@id/edt_layout_password"
+                app:layout_constraintTop_toBottomOf="@id/layout_password"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:startIconTint="?attr/startIconTint">
 
@@ -107,12 +107,12 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/dark_blue"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/register"
+                android:text="@string/tv_register"
                 android:textColor="@color/white"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_layout_confirm_password" />
+                app:layout_constraintTop_toBottomOf="@id/layout_confirm_password" />
 
             <LinearLayout
                 android:id="@+id/layout_click_login"
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:text="@string/have_an_account"
+                    android:text="@string/tv_have_an_account"
                     android:textColor="@color/dark_blue" />
 
                 <TextView
@@ -137,12 +137,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="@string/login"
+                    android:text="@string/tv_login"
                     android:textColor="@color/dark_blue" />
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/circle_loading"
+                android:id="@+id/pb_loading"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:indeterminate="true"
@@ -161,14 +161,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/signing_up"
+                android:text="@string/tv_signing_up"
                 android:textColor="@color/dark_blue"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/circle_loading"
+                app:layout_constraintBottom_toBottomOf="@id/pb_loading"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/circle_loading"
-                app:layout_constraintTop_toTopOf="@id/circle_loading"
+                app:layout_constraintStart_toEndOf="@id/pb_loading"
+                app:layout_constraintTop_toTopOf="@id/pb_loading"
                 tools:visibility="gone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

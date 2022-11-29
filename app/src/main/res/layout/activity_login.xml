@@ -27,18 +27,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/login"
+                android:text="@string/tv_login"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_email"
+                android:id="@+id/layout_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="@string/email"
+                android:hint="@string/hint_email"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
@@ -56,18 +56,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_layout_password"
+                android:id="@+id/layout_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/password"
+                android:hint="@string/tv_password"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:endIconMode="password_toggle"
                 app:endIconTint="?attr/endIconTint"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_layout_email"
+                app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:startIconTint="?attr/startIconTint">
 
@@ -87,12 +87,12 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/dark_blue"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/login"
+                android:text="@string/btn_login"
                 android:textColor="@color/white"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edt_layout_password"
+                app:layout_constraintTop_toBottomOf="@id/layout_password"
                 tools:ignore="DuplicateSpeakableTextCheck"
                 tools:visibility="invisible" />
 
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
-                android:text="@string/or"
+                android:text="@string/tv_or"
                 android:textColor="@color/dark_blue"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@id/btn_login"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/register"
+                android:text="@string/btn_register"
                 android:textColor="?android:attr/textColorSecondary"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="@id/btn_login"
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
-                android:text="@string/forgot_password"
+                android:text="@string/tv_forgot_password"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintEnd_toEndOf="@id/btn_register"
                 app:layout_constraintStart_toStartOf="@id/btn_register"
@@ -139,7 +139,7 @@
                 tools:visibility="invisible" />
 
             <ProgressBar
-                android:id="@+id/circle_loading"
+                android:id="@+id/pb_loading"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:indeterminate="true"
@@ -157,12 +157,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/signing_in"
+                android:text="@string/tv_signing_in"
                 android:textColor="@color/black"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@id/circle_loading"
-                app:layout_constraintStart_toStartOf="@id/circle_loading"
-                app:layout_constraintTop_toBottomOf="@id/circle_loading"
+                app:layout_constraintEnd_toEndOf="@id/pb_loading"
+                app:layout_constraintStart_toStartOf="@id/pb_loading"
+                app:layout_constraintTop_toBottomOf="@id/pb_loading"
                 tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

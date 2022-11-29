@@ -39,13 +39,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductRepository(@ApplicationContext mContext: Context): ProductRepository {
+    fun provideProductRepository(@ApplicationContext mContext: Context, cryptoPref: CryptoPref): ProductRepository {
         return ProductRepositoryImpl(
             context = mContext,
             auth = Firebase.auth,
             storage = Firebase.storage.reference,
             firestoreDb = Firebase.firestore,
-            ioDispatcher = Dispatchers.IO
+            ioDispatcher = Dispatchers.IO,
+            cryptoPref = cryptoPref
         )
     }
 

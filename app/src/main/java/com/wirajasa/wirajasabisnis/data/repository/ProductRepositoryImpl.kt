@@ -5,9 +5,12 @@ import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
-import com.wirajasa.wirajasabisnis.presentation.service.ServicePost
+import com.wirajasa.wirajasabisnis.data.local.CryptoPref
+import com.wirajasa.wirajasabisnis.data.model.SellerApplication
+import com.wirajasa.wirajasabisnis.data.model.ServicePost
 import com.wirajasa.wirajasabisnis.usecases.HandleException
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -21,7 +24,8 @@ class ProductRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth,
     private val storage: StorageReference,
     private val firestoreDb: FirebaseFirestore,
-    private val ioDispatcher: CoroutineContext
+    private val ioDispatcher: CoroutineContext,
+    private val cryptoPref: CryptoPref
 ) : ProductRepository {
 
     override fun addProduct(
@@ -30,12 +34,12 @@ class ProductRepositoryImpl @Inject constructor(
         price: Int,
         unit: String,
         address: String,
-        Email: String,
+        province: String,
         phoneNumber: String,
         photo: Uri?
     ): Flow<NetworkResponse<Boolean>> = flow {
         try {
-            val photoReference = storage.child("services/${System.currentTimeMillis()}-photo.jpg")
+            val photoReference = storage.child("$SERVICE/${System.currentTimeMillis()}.jpg")
             photoReference.putFile(photo!!)
                 .continueWithTask {
                     photoReference.downloadUrl
@@ -46,16 +50,20 @@ class ProductRepositoryImpl @Inject constructor(
                         price,
                         unit,
                         address,
-                        Email,
+                        province,
                         phoneNumber,
                         downloadUrlTask.result.toString()
                     )
                     val serviceId = auth.currentUser?.uid + name.lowercase().trim()
-                    firestoreDb.collection("service").document(serviceId).set(servicePost)
+                    firestoreDb.collection(SERVICE).document(serviceId).set(servicePost)
                 }.await()
             emit(NetworkResponse.Success(data = true))
         } catch (e: Exception) {
             emit(NetworkResponse.GenericException(HandleException(context).getMessage(e)))
         }
     }.onStart { emit(NetworkResponse.Loading(null)) }.flowOn(ioDispatcher)
+
+    override fun getLocalProfile(): SellerApplication {
+        return cryptoPref.getSellerData()
+    }
 }

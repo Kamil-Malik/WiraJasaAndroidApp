@@ -23,7 +23,10 @@ data class SellerApplication(
     var photoID: String = "",
 
     @get:PropertyName(PROVINCE) @set:PropertyName(PROVINCE)
-    var province: String = ""
+    var province: String = "",
+
+    @get:PropertyName(APPLICATION_STATUS) @set:PropertyName(APPLICATION_STATUS)
+    var applicationStatus: String = PENDING
 ) {
     companion object {
         private const val APPLICATION_ID = "application_id"
@@ -32,5 +35,7 @@ data class SellerApplication(
         private const val FULL_PHONE_NUMBER = "full_phone_number"
         private const val PHOTO_ID = "id_photo"
         private const val PROVINCE = "province"
+        private const val APPLICATION_STATUS = "application_status"
+        private const val PENDING = "pending"
     }
 }
