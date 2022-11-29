@@ -56,7 +56,7 @@
     <string name="tv_edit_service">Edit Service</string>
     <string name="tv_password">Password</string>
     <string name="btn_login">Login</string>
-    <string name="tv_login">login</string>
+    <string name="tv_login">Login</string>
     <string name="tv_or">or</string>
     <string name="btn_register">Register</string>
     <string name="tv_register">Register</string>
@@ -186,4 +186,17 @@
         <item>Papua Selatan</item>
         <item>Papua Barat Daya</item>
     </string-array>
+
+<!--Admin-->
+    <string name="admin_application_form_id">Application ID\t\t\t: %s</string>
+    <string name="admin_applicant_name">Applicant Name\t: %s</string>
+    <string name="admin_actionbar_title">Admin Dashboard</string>
+    <string name="admin_btn_contact_seller">Contact Seller</string>
+    <string name="admin_btn_reject_seller">Reject Application</string>
+    <string name="admin_btn_accept_seller">Accept Seller</string>
+    <string name="admin_tv_form_id">Form ID\t\t\t: %s</string>
+    <string name="admin_tv_full_name">Full Name\t: %s</string>
+    <string name="admin_tv_province">Province\t\t: %s</string>
+    <string name="admin_tv_address">Address\t\t: %s</string>
+    <string name="admin_toolbar_application_form_title">Seller Application Form</string>
 </resources>

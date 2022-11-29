@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.local.CryptoPref
+import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
 import com.wirajasa.wirajasabisnis.data.model.SellerApplication
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.usecases.HandleException

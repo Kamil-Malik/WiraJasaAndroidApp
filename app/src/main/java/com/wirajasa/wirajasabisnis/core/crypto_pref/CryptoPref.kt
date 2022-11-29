@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.data.local
+package com.wirajasa.wirajasabisnis.core.crypto_pref
 
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences

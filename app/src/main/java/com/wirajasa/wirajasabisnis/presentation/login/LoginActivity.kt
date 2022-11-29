@@ -13,9 +13,9 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.data.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.presentation.profile.ProfileActivity
 import com.wirajasa.wirajasabisnis.presentation.register.RegisterActivity
 import com.wirajasa.wirajasabisnis.presentation.reset_password.ResetPasswordActivity
+import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
 import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.usecases.Validate
 import com.wirajasa.wirajasabisnis.utility.NetworkResponse
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (currentUser() != null) {
             val localProfile: UserProfile = viewModel.getProfile()
             val intent : Intent = if (localProfile.isAdmin) {
-                Intent(this, MainActivity::class.java)
+                Intent(this, AdminActivity::class.java)
             } else if (localProfile.isSeller) {
                 Intent(this, SellerBaseActivity::class.java)
             } else {
@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             val intent = if (response.data.isSeller) {
                                 Intent(this, SellerBaseActivity::class.java)
                             } else if (response.data.isAdmin) {
-                                Intent(this, ProfileActivity::class.java)
+                                Intent(this, AdminActivity::class.java)
                             } else {
                                 Intent(this, MainActivity::class.java)
                             }
