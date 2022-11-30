@@ -9,11 +9,16 @@ import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
-import com.wirajasa.wirajasabisnis.presentation.service.DetailServiceActivity
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 
 class DashboardAdapter(private val context: Context, private val servicePostList: MutableList<ServicePost>)
     : RecyclerView.Adapter<DashboardAdapter.MyViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemListDashboardBinding
             .inflate(LayoutInflater.from(parent.context),parent,false)
@@ -24,20 +29,21 @@ class DashboardAdapter(private val context: Context, private val servicePostList
         val data = servicePostList[position]
         holder.bind(data)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,DetailServiceActivity::class.java)
-            val service = ServicePost(
-                uid = data.uid,
-                serviceId = data.serviceId,
-                name = data.name,
-                price = data.price,
-                unit = data.unit,
-                address = data.address,
-                province = data.province,
-                phoneNumber = data.phoneNumber,
-                photoUrl = data.photoUrl
-            )
-            intent.putExtra(DetailServiceActivity.EXTRA_SERVICE_POST, service)
-            context.startActivity(intent)
+            onItemClickCallback.onItemClicked(data)
+//            val intent = Intent(context, DetailServiceActivity::class.java)
+//            val service = ServicePost(
+//                uid = data.uid,
+//                serviceId = data.serviceId,
+//                name = data.name,
+//                price = data.price,
+//                unit = data.unit,
+//                address = data.address,
+//                province = data.province,
+//                phoneNumber = data.phoneNumber,
+//                photoUrl = data.photoUrl
+//            )
+//            intent.putExtra(DetailServiceActivity.EXTRA_SERVICE_POST, service)
+//            context.startActivity(intent)
         }
     }
 
@@ -53,4 +59,8 @@ class DashboardAdapter(private val context: Context, private val servicePostList
                         .into(binding.ivItemPhoto)
                 }
             }
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: ServicePost)
+    }
 }

@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     
-     //Glide
+    //Glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     kapt 'com.github.bumptech.glide:compiler:4.14.2'
 
@@ -90,6 +90,9 @@ dependencies {
     //Epoxy
     implementation "com.airbnb.android:epoxy:5.1.1"
     kapt "com.airbnb.android:epoxy-processor:5.1.1"
+
+    //SplashScreen
+    implementation "androidx.core:core-splashscreen:1.0.0"
 }
 
 kapt {

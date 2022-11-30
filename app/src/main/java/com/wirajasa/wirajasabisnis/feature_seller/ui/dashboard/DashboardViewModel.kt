@@ -19,7 +19,7 @@ class DashboardViewModel @Inject constructor(
     private val userRepo : UserRepository
 ) : ViewModel() {
     fun getAllProductsAccordingUID(uid: String):
-            LiveData<NetworkResponse<MutableList<ServicePost>>>{
+            LiveData<NetworkResponse<List<ServicePost>>> {
         return productRepository.getAllProductsAccordingUID(uid)
             .flowOn(Dispatchers.Main).asLiveData()
     }

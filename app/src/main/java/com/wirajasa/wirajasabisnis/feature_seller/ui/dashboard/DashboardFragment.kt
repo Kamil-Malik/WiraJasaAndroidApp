@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentSellerDashboardBinding
-import com.wirajasa.wirajasabisnis.presentation.service.AddingServiceActivity
-import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy.SellerProductEpoxyController
+import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.AddingServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,36 +34,26 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val uid = dashboardViewModel.getProfile().uid
+        val controller = SellerProductEpoxyController(
+            onSelected = {
+                Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()
+            }, onRetry = {
+
+            }
+        )
+        binding.apply {
+            fabAdd.setOnClickListener(this@DashboardFragment)
+            rvListProduct.apply {
+                setController(controller)
+                layoutManager = LinearLayoutManager(requireContext())
+                setItemSpacingDp(8)
+                setHasFixedSize(true)
+            }
+        }
         dashboardViewModel.getAllProductsAccordingUID(uid)
             .observe(viewLifecycleOwner){
-                when(it){
-                    is NetworkResponse.GenericException -> Toast.makeText(
-                        activity,
-                        it.cause.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show().also{ showLoading(false) }
-                    is NetworkResponse.Loading -> showLoading(true)
-                    is NetworkResponse.Success -> {
-                        showLoading(false)
-                        binding.rvListProduct.setHasFixedSize(true)
-                        val layoutManager = LinearLayoutManager(activity)
-                        binding.rvListProduct.layoutManager = layoutManager
-                        val adapter = DashboardAdapter(requireContext(),it.data)
-                        binding.rvListProduct.adapter = adapter
-                    }
-                }
+               controller.data = it
             }
-        binding.fabAdd.setOnClickListener(this)
-    }
-
-    private fun showLoading(isLoading: Boolean){
-        if (isLoading){
-            binding.tvLoading.visibility = View.VISIBLE
-            binding.pbDashboard.visibility = View.VISIBLE
-        }else{
-            binding.tvLoading.visibility = View.GONE
-            binding.pbDashboard.visibility = View.GONE
-        }
     }
 
     override fun onClick(v: View?) {

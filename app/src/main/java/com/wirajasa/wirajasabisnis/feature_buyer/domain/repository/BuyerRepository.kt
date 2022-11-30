@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface BuyerRepository {
 
     fun getAllService(): Flow<NetworkResponse<List<ServicePost>>>
+
+    fun getAllServiceByProvince(provinceName: String): Flow<NetworkResponse<List<ServicePost>>>
 }

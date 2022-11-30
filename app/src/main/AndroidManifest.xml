@@ -34,35 +34,35 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.service.DetailServiceActivity"
+            android:name=".feature_buyer.ui.activity.DetailServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.edit_profile.EditProfileActivity"
+            android:name=".feature_buyer.ui.activity.EditProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.service.AddingServiceActivity"
+            android:name=".feature_seller.ui.activity.AddingServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.service.UpdateServiceActivity"
+            android:name=".feature_seller.ui.activity.UpdateServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.profile.ProfileActivity"
+            android:name=".feature_buyer.ui.activity.ProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -77,7 +77,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.user.UserValidation"
+            android:name=".feature_buyer.ui.activity.UserValidation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
