@@ -1,6 +1,8 @@
 package com.wirajasa.wirajasabisnis.feature_buyer.domain.repository_impl
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
@@ -29,4 +31,25 @@ class BuyerRepositoryImpl @Inject constructor(
             emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
+
+    override fun getAllServiceByProvince(province: String): Flow<NetworkResponse<List<ServicePost>>> = flow {
+        try {
+            if(province.isNotEmpty()) {
+                val data = db.collection(SERVICE)
+                    .whereIn("province", listOf(province))
+                    .get().await().toObjects(ServicePost::class.java)
+                emit(NetworkResponse.Success(data))
+            } else {
+                val data = db.collection(SERVICE).get().await().toObjects(ServicePost::class.java)
+                emit(NetworkResponse.Success(data))
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "getAllService: ${e.message} ${e.stackTrace}")
+            emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
+        }
+    }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
+
+    companion object {
+        private const val NAME = "name"
+    }
 }

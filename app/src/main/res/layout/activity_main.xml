@@ -64,7 +64,14 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar_main"
         tools:text="@string/dashboard_user_tv_welcome" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/cv_dashboard_buyer" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_dashboard_buyer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -78,28 +85,27 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_search"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Search"
+                android:hint="Filter by Province"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
-                app:endIconDrawable="@drawable/ic_search"
-                app:endIconMode="custom"
-                app:endIconTint="@color/dark_blue"
+                app:endIconMode="dropdown_menu"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_search"
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+                    style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="none"
+                    android:textColor="@color/dark_blue" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.airbnb.epoxy.EpoxyRecyclerView

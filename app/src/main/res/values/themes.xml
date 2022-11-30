@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -29,5 +29,18 @@
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/dark_blue</item>
         <item name="android:textColorHint">@color/dark_blue</item>
+    </style>
+
+    <!-- Splash Screen Theme. -->
+    <style name="Theme.AppSplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/grey</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>
+
+        <!-- Status bar and Nav bar configs -->
+        <item name="android:statusBarColor" >@color/grey</item>
+        <item name="android:navigationBarColor">@color/grey</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

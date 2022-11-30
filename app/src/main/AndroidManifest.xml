@@ -34,14 +34,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.service.DetailServiceActivity"
+            android:name=".feature_buyer.ui.activity.DetailServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.edit_profile.EditProfileActivity"
+            android:name=".feature_buyer.ui.activity.EditProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -55,14 +55,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.profile.ProfileActivity"
+            android:name=".feature_buyer.ui.activity.ProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.seller.SellerBaseActivity"
+            android:name=".feature_seller.SellerBaseActivity"
             android:exported="false"
             android:label="@string/title_activity_seller_base">
             <meta-data
@@ -70,7 +70,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.user.UserValidation"
+            android:name=".feature_buyer.ui.activity.UserValidation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

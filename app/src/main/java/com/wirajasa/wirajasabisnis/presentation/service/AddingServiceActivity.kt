@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityAddingServiceBinding
-import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
+import com.wirajasa.wirajasabisnis.feature_seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.utility.Constant
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
