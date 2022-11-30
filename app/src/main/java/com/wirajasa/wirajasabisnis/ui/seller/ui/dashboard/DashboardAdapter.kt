@@ -1,18 +1,13 @@
 package com.wirajasa.wirajasabisnis.ui.seller.ui.dashboard
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.util.Pair
-import androidx.core.app.ActivityOptionsCompat
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
 import com.wirajasa.wirajasabisnis.presentation.service.DetailServiceActivity
 

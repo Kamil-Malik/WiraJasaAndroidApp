@@ -18,10 +18,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.data.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
 import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

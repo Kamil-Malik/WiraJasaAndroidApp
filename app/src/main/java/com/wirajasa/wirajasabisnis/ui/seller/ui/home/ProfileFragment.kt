@@ -12,7 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentProfileBinding
-import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
+import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +42,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             tvProfileName.text = sellerData.fullName
             tvProfileAddress.text = sellerData.address
             tvProfilePhoneNumber.text = sellerData.phoneNumber
-            tvProfileVerificationStatus.text = "Pending"
+            tvProfileVerificationStatus.text = "Status : ${sellerData.applicationStatus}"
             btnLogout.setOnClickListener(this@ProfileFragment)
         }
         return binding.root

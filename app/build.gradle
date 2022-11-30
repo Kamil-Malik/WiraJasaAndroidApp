@@ -28,7 +28,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -86,6 +86,10 @@ dependencies {
 
     //CryptoPref
     implementation "androidx.security:security-crypto:1.1.0-alpha04"
+
+    //Epoxy
+    implementation "com.airbnb.android:epoxy:5.1.1"
+    kapt "com.airbnb.android:epoxy-processor:5.1.1"
 }
 
 kapt {

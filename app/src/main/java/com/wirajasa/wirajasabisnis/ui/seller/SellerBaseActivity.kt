@@ -11,8 +11,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivitySellerBaseBinding
-import com.wirajasa.wirajasabisnis.presentation.login.LoginActivity
-import com.wirajasa.wirajasabisnis.presentation.login.LoginViewModel
+import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

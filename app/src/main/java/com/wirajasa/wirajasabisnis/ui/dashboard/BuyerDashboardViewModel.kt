@@ -1,11 +1,10 @@
 package com.wirajasa.wirajasabisnis.ui.dashboard
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wirajasa.wirajasabisnis.data.model.Product
+import com.wirajasa.wirajasabisnis.core.domain.model.Product
 import kotlinx.coroutines.launch
 
 enum class BuyerProductApiStatus {LOADING, SUCCESS, ERROR}

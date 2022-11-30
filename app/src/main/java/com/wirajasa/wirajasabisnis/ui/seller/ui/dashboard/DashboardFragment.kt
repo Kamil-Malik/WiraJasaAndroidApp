@@ -1,22 +1,18 @@
 package com.wirajasa.wirajasabisnis.ui.seller.ui.dashboard
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentSellerDashboardBinding
 import com.wirajasa.wirajasabisnis.presentation.service.AddingServiceActivity
-import com.wirajasa.wirajasabisnis.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

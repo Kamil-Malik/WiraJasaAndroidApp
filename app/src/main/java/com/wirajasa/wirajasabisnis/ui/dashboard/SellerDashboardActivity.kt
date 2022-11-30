@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.adapter.ProductAdapter
-import com.wirajasa.wirajasabisnis.data.model.Product
-import com.wirajasa.wirajasabisnis.databinding.ActivityBuyerDashboardBinding
 import com.wirajasa.wirajasabisnis.databinding.ActivitySellerDashboardBinding
 
 class SellerDashboardActivity : AppCompatActivity() {
