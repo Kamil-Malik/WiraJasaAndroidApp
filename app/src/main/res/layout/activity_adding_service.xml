@@ -31,264 +31,282 @@
                 android:src="@drawable/ic_logo"/>
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/tv_service_register"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/inter_bold"
-            android:lineHeight="24.2sp"
-            android:text="@string/tv_service_register"
-            android:textColor="@color/dark_blue"
-            android:textFontWeight="800"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_app"
-            tools:layout_editor_absoluteX="111dp"
-            tools:targetApi="p" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_service"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/hint_service_name"
-            android:importantForAutofill="no"
-            android:inputType="text|textMultiLine"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/tv_service_register"
-            app:startIconDrawable="@drawable/ic_service"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_service"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/hint_price_rupiah"
-            android:importantForAutofill="no"
-            android:inputType="number|textMultiLine"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/layout_service"
-            app:startIconDrawable="@drawable/ic_money"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_layout_unit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/tv_unit"
-            android:importantForAutofill="no"
-            android:inputType="text|textMultiLine"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_price"
-            app:startIconDrawable="@drawable/ic_money"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_unit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/hint_address"
-            android:importantForAutofill="no"
-            android:inputType="text|textMultiLine"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/edt_layout_unit"
-            app:startIconDrawable="@drawable/ic_location"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_province"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:hint="@string/hint_province"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:endIconTint="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:startIconDrawable="@drawable/ic_location"
-            app:startIconTint="?attr/startIconTint"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/layout_address">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/edt_province"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:textColor="@color/dark_blue"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_phonenumber"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:fontFamily="@font/inter"
-            android:hint="@string/hint_phone_number"
-            android:importantForAutofill="no"
-            android:inputType="text|textMultiLine"
-            android:textColorHint="@color/dark_blue"
-            app:boxStrokeColor="@color/dark_blue"
-            app:hintTextColor="@color/dark_blue"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/layout_province"
-            app:startIconDrawable="@drawable/ic_phone"
-            app:startIconTint="?attr/startIconTint"
-            tools:targetApi="p">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_phonenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?android:attr/textColorHint" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <ImageView
-            android:id="@+id/iv_service"
-            android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="18dp"
-            android:contentDescription="@string/iv_service_photo"
-            android:src="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber" />
-
-        <TextView
-            android:id="@+id/tv_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_upload_photos"
-            android:textColor="?android:attr/textColorHint"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_service"
-            app:layout_constraintEnd_toEndOf="@+id/iv_service"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="@+id/iv_service"
-            app:layout_constraintTop_toTopOf="@+id/iv_service"
-            app:layout_constraintVertical_bias="0.65999997" />
-
-        <ImageView
-            android:id="@+id/iv_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/iv_icon"
-            android:src="@drawable/ic_image"
-            app:layout_constraintBottom_toTopOf="@+id/tv_icon"
-            app:layout_constraintEnd_toEndOf="@+id/iv_service"
-            app:layout_constraintStart_toStartOf="@+id/iv_service"
-            app:layout_constraintTop_toTopOf="@+id/iv_service"
-            app:layout_constraintVertical_bias="0.72"
-            app:tint="?android:attr/textColorHint" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="24dp"
-            android:backgroundTint="@color/dark_blue"
-            android:text="@string/btn_open_service"
-            android:textColor="#FF9800"
-            app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
-            app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-            app:layout_constraintTop_toBottomOf="@+id/iv_service"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ProgressBar
-            android:id="@+id/pb_adding"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/dark_blue"
-            android:visibility="gone"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_app">
 
-        <TextView
-            android:id="@+id/tv_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/tv_loading"
-            android:textColor="@color/black"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/pb_adding"
-            app:layout_constraintStart_toStartOf="@+id/pb_adding"
-            app:layout_constraintTop_toBottomOf="@+id/pb_adding" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tv_service_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:lineHeight="24.2sp"
+                    android:text="@string/tv_service_register"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_blue"
+                    android:textFontWeight="800"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="p" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_service"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/hint_service_name"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textMultiLine"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_service_register"
+                    app:startIconDrawable="@drawable/ic_service"
+                    app:startIconTint="?attr/startIconTint"
+                    tools:targetApi="p">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_service"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_layout_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/hint_price_rupiah"
+                    android:importantForAutofill="no"
+                    android:inputType="number|textMultiLine"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_service"
+                    app:startIconDrawable="@drawable/ic_money"
+                    app:startIconTint="?attr/startIconTint"
+                    tools:targetApi="p">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_layout_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/tv_unit"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textMultiLine"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_layout_price"
+                    app:startIconDrawable="@drawable/ic_money"
+                    app:startIconTint="?attr/startIconTint"
+                    tools:targetApi="p">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/hint_address"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textMultiLine"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_layout_unit"
+                    app:startIconDrawable="@drawable/ic_location"
+                    app:startIconTint="?attr/startIconTint"
+                    tools:targetApi="p">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_province"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:hint="@string/hint_province"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:endIconTint="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_address"
+                    app:startIconDrawable="@drawable/ic_location"
+                    app:startIconTint="?attr/startIconTint">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/edt_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="@color/dark_blue"
+                        tools:ignore="TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_phoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/hint_phone_number"
+                    android:importantForAutofill="no"
+                    android:inputType="text|textMultiLine"
+                    android:textColorHint="@color/dark_blue"
+                    app:boxStrokeColor="@color/dark_blue"
+                    app:hintTextColor="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_province"
+                    app:startIconDrawable="@drawable/ic_phone"
+                    app:startIconTint="?attr/startIconTint"
+                    tools:targetApi="p">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/iv_service"
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="18dp"
+                    android:contentDescription="@string/iv_service_photo"
+                    android:src="@color/dark_blue"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
+
+                <TextView
+                    android:id="@+id/tv_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_upload_photos"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_service"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_service"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="@+id/iv_service"
+                    app:layout_constraintTop_toTopOf="@+id/iv_service"
+                    app:layout_constraintVertical_bias="0.65999997" />
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/iv_icon"
+                    android:src="@drawable/ic_image"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_icon"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_service"
+                    app:layout_constraintStart_toStartOf="@+id/iv_service"
+                    app:layout_constraintTop_toTopOf="@+id/iv_service"
+                    app:layout_constraintVertical_bias="0.72"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="24dp"
+                    android:backgroundTint="@color/dark_blue"
+                    android:text="@string/btn_open_service"
+                    android:textColor="@color/white"
+                    app:cornerRadius="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
+                    app:layout_constraintStart_toStartOf="@+id/tv_service_register"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_service"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ProgressBar
+                    android:id="@+id/pb_adding"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/orange"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/tv_loading"
+                    android:textColor="@color/orange"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/pb_adding"
+                    app:layout_constraintStart_toStartOf="@+id/pb_adding"
+                    app:layout_constraintTop_toBottomOf="@+id/pb_adding" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

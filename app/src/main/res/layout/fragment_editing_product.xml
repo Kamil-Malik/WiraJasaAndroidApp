@@ -114,7 +114,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_phonenumber"
+                android:id="@+id/layout_phoneNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -150,7 +150,7 @@
                 android:src="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                 app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-                app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
 
             <TextView
                 android:id="@+id/tv_icon"
