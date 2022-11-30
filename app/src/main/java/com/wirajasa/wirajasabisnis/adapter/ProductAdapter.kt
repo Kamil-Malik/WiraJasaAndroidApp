@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.core.domain.model.Product
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
-import com.wirajasa.wirajasabisnis.presentation.product.DetailFragment
+import com.wirajasa.wirajasabisnis.presentation.service.DetailServiceActivity
 
 class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -45,7 +45,7 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
                     .into(view.ivItemPhoto)
 
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailFragment::class.java)
+                    val intent = Intent(itemView.context, DetailServiceActivity::class.java)
                     intent.putExtra(EXTRA_TITLE, product.title)
                     itemView.context.startActivity(intent)
                 }

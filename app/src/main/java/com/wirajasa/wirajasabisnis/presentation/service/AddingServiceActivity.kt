@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -35,9 +36,12 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
         super.onCreate(savedInstanceState)
         _binding = ActivityAddingServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val arrayAdapter =
+            ArrayAdapter(this, R.layout.textview, resources.getStringArray(R.array.province))
         user = viewModel.getSellerProfile()
         binding.edtAddress.setText(user.address)
         binding.edtProvince.setText(user.province)
+        binding.edtProvince.setAdapter(arrayAdapter)
         binding.edtPhonenumber.setText(user.phoneNumber)
         binding.ivService.setOnClickListener(this)
         binding.btnAdd.setOnClickListener(this)
@@ -110,7 +114,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
             layoutService.visibility = View.INVISIBLE
             layoutAddress.visibility = View.INVISIBLE
             layoutProvince.visibility = View.INVISIBLE
-            layoutPhonenumber.visibility = View.INVISIBLE
+            layoutPhoneNumber.visibility = View.INVISIBLE
             edtLayoutPrice.visibility = View.INVISIBLE
             edtLayoutUnit.visibility = View.INVISIBLE
             ivIcon.visibility = View.GONE
@@ -123,7 +127,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
             tvServiceRegister.visibility = View.VISIBLE
             layoutService.visibility = View.VISIBLE
             layoutAddress.visibility = View.VISIBLE
-            layoutPhonenumber.visibility = View.VISIBLE
+            layoutPhoneNumber.visibility = View.VISIBLE
             edtLayoutPrice.visibility = View.VISIBLE
             edtLayoutUnit.visibility = View.VISIBLE
             layoutProvince.visibility = View.VISIBLE

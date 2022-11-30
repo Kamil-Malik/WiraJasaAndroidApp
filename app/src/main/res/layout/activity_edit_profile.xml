@@ -57,7 +57,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_phonenumber"
+                android:id="@+id/layout_phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -97,7 +97,7 @@
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber"
+                app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber"
                 app:startIconDrawable="@drawable/ic_map"
                 app:startIconTint="@color/dark_blue">
 
