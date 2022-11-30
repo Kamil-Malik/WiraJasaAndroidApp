@@ -5,12 +5,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.wirajasa.wirajasabisnis.feature_admin.domain.repository.AdminRepository
-import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
 import com.wirajasa.wirajasabisnis.core.domain.repository.*
+import com.wirajasa.wirajasabisnis.feature_admin.domain.repository.AdminRepository
+import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl
 import com.wirajasa.wirajasabisnis.feature_auth.domain.repository.AuthRepository
 import com.wirajasa.wirajasabisnis.feature_auth.domain.repository_impl.AuthRepositoryImpl
+import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
+import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository_impl.BuyerRepositoryImpl
+import com.wirajasa.wirajasabisnis.feature_buyer.domain.usecase.MainUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -96,6 +99,27 @@ object AppModule {
             db = Firebase.firestore,
             mContext = mContext,
             ioDispatcher = Dispatchers.IO
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideBuyerRepository(@ApplicationContext mContext: Context): BuyerRepository {
+        return BuyerRepositoryImpl(
+            db = Firebase.firestore,
+            mContext = mContext,
+            ioDispatcher = Dispatchers.IO
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideMainUseCase(
+        userRepository: UserRepository,
+        buyerRepository: BuyerRepository
+    ): MainUseCases {
+        return MainUseCases(
+            userRepository, buyerRepository
         )
     }
 }

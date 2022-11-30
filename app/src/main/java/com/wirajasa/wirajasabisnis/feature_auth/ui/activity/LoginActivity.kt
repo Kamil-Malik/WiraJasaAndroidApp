@@ -11,13 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
-import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
-import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
-import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
-import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
-import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
-import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
+import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
+import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
+import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.MainActivity
+import com.wirajasa.wirajasabisnis.ui.seller.SellerBaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         if (currentUser() != null) {
             val localProfile: UserProfile = viewModel.getProfile()
-            val intent : Intent = if (localProfile.isAdmin) {
+            val intent: Intent = if (localProfile.isAdmin) {
                 Intent(this, AdminActivity::class.java)
             } else if (localProfile.isSeller) {
                 Intent(this, SellerBaseActivity::class.java)

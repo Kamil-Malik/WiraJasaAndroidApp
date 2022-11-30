@@ -4,18 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
+    android:background="@color/beige"
+    android:padding="16dp"
     tools:context=".feature_auth.ui.activity.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/logo_wirajasa"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintBottom_toTopOf="@id/cv_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="16dp"
-        app:cardElevation="5dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_wirajasa"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:strokeColor="@color/white"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,20 +44,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="@string/tv_register"
+                android:text="Welcome"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_email"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/hint_email"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/dark_blue"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@id/tv_register"
                 app:startIconDrawable="@drawable/ic_email"
@@ -49,13 +69,16 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_email"
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress|text"
                     android:textColor="?android:attr/textColorHint" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_password"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -71,6 +94,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_password"
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -79,6 +103,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_confirm_password"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -94,6 +119,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_confirm_password"
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -118,6 +144,7 @@
                 android:id="@+id/layout_click_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

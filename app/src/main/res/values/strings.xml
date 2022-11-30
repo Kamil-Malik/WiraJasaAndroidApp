@@ -199,4 +199,7 @@
     <string name="admin_tv_province">Province\t\t: %s</string>
     <string name="admin_tv_address">Address\t\t: %s</string>
     <string name="admin_toolbar_application_form_title">Seller Application Form</string>
+
+<!--Dashboard-->
+    <string name="dashboard_user_tv_welcome">Hi, %s</string>
 </resources>

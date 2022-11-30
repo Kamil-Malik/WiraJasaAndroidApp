@@ -16,4 +16,9 @@
     <color name="rejected">#FF9F9F</color>
     <color name="btn_reject">#DC3535</color>
     <color name="btn_accept">#379237</color>
+
+    <color name="beige">#FFF7E9</color>
+    <color name="warm_blue">#5F9DF7</color>
+    <color name="darker_blue">#1746A2</color>
+    <color name="warm_orange">#FF731D</color>
 </resources>
