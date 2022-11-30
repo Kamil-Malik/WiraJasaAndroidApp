@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
-import com.wirajasa.wirajasabisnis.presentation.main_activity.MainActivity
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.MainActivity
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.RegisterViewModel
 import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse

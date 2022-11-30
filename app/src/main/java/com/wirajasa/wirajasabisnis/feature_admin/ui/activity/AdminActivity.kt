@@ -25,7 +25,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var controller: AdminApplicationFormController
     private val viewModel by viewModels<AdminViewModel>()
     private val contract = registerForActivityResult(FormResultContract()) {
-        if(it) subscribe(controller)
+        if(it) subscribe()
     }
     private val binding by lazy {
         ActivityAdminBinding.inflate(layoutInflater)
@@ -35,28 +35,27 @@ class AdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.adminToolbar)
         supportActionBar?.title = ""
-        window?.statusBarColor = getColor(R.color.dark_blue)
         setContentView(binding.root)
 
         controller = AdminApplicationFormController(onSelected = {
             contract.launch(it)
         }, onRetry = {
-            subscribe(controller)
+            subscribe()
         })
-        val adapter = controller.adapter
         binding.apply {
-            rvApplicationForm.adapter = adapter
+            rvApplicationForm.setController(controller)
             rvApplicationForm.layoutManager = LinearLayoutManager(this@AdminActivity)
+            rvApplicationForm.setItemSpacingDp(8)
             rvApplicationForm.addItemDecoration(
                 DividerItemDecoration(
                     this@AdminActivity, LinearLayout.VERTICAL
                 )
             )
         }
-        subscribe(controller)
+        subscribe()
     }
 
-    private fun subscribe(controller: AdminApplicationFormController) {
+    private fun subscribe() {
         viewModel.getApplicationList().observe(this) {
             controller.status = it
         }
