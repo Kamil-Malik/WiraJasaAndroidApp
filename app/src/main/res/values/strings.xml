@@ -26,6 +26,7 @@
     <string name="input_phone_number">Input phone number</string>
     <string name="submit">Submit</string>
     <string name="register_success">Account successfully created</string>
+    <string name="success_update_data">Successfully Update Data</string>
     <string name="reset_success">Email confirmation has been sent to you</string>
     <string name="empty_invalid_email">Email is empty or is not a valid email</string>
     <string name="empty_password">Password is empty or less than 8 characters</string>

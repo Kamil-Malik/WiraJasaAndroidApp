@@ -136,6 +136,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
             ivService.visibility = View.VISIBLE
             tvLoading.visibility = View.GONE
             pbAdding.visibility = View.GONE
+            btnAdd.visibility = View.VISIBLE
         }
 
     }

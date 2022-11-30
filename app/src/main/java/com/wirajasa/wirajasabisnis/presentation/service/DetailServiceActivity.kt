@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
@@ -33,8 +34,9 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         val localProfile: UserProfile = viewModel.getProfile()
-        if (localProfile.isSeller){
-            binding.tvServiceName.text = getString(R.string.edit_service).uppercase()
+        Log.d(DetailServiceActivity::class.java.simpleName,localProfile.isSeller.toString())
+        if (localProfile.isSeller && localProfile.uid == post?.uid){
+            binding.btnContactEdit.text = getString(R.string.edit_service).uppercase()
             isSeller = true
         }
 

@@ -55,6 +55,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".presentation.service.UpdateServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.profile.ProfileActivity"
             android:exported="false">
             <meta-data
