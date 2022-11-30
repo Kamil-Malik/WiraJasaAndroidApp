@@ -47,7 +47,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                 .circleCrop()
                 .into(ivProfile)
             else Glide.with(this@EditProfileActivity)
-                .load(R.drawable.default_image)
+                .load(R.drawable.ic_profile_48)
                 .fitCenter()
                 .circleCrop()
                 .into(ivProfile)

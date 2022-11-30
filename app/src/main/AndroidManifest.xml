@@ -48,7 +48,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.service.AddingServiceActivity"
+            android:name=".feature_seller.ui.activity.AddingServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_seller.ui.activity.UpdateServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

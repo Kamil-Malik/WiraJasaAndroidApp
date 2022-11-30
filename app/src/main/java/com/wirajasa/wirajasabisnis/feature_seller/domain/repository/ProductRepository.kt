@@ -10,7 +10,7 @@ interface ProductRepository {
     fun addProduct(
         uid: String,
         name: String,
-        price:Int,
+        price: Int,
         unit: String,
         address: String,
         province: String,
@@ -22,4 +22,17 @@ interface ProductRepository {
 
     fun getAllProductsAccordingUID(uid: String): Flow<NetworkResponse<List<ServicePost>>>
 
+    fun updateProduct(
+        uid: String,
+        serviceId: String,
+        name: String,
+        price: Int,
+        unit: String,
+        address: String,
+        province: String,
+        phoneNumber: String,
+        photo: Uri?
+    ): Flow<NetworkResponse<Boolean>>
+
+//    fun getService() : Flow<NetworkResponse<List<ServicePost>>>
 }

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.service
+package com.wirajasa.wirajasabisnis.feature_seller.ui.activity
 
 import android.Manifest
 import android.content.Intent
@@ -136,6 +136,7 @@ class AddingServiceActivity : AppCompatActivity(), View.OnClickListener,
             ivService.visibility = View.VISIBLE
             tvLoading.visibility = View.GONE
             pbAdding.visibility = View.GONE
+            btnAdd.visibility = View.VISIBLE
         }
 
     }

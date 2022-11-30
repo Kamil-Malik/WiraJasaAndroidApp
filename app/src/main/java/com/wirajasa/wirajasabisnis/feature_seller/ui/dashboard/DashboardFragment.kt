@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentSellerDashboardBinding
 import com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy.SellerProductEpoxyController
-import com.wirajasa.wirajasabisnis.presentation.service.AddingServiceActivity
+import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.AddingServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
