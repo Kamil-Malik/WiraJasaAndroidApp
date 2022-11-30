@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.core.domain.repository
+package com.wirajasa.wirajasabisnis.feature_seller.domain.repository_impl
 
 import android.content.Context
 import android.net.Uri
@@ -9,6 +9,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
 import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.UID
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.ui.seller.ui.dashboard
+package com.wirajasa.wirajasabisnis.feature_seller.ui.dashboard
 
 import android.content.Context
 import android.content.Intent

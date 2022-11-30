@@ -14,6 +14,8 @@ import com.wirajasa.wirajasabisnis.feature_auth.domain.repository_impl.AuthRepos
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository_impl.BuyerRepositoryImpl
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.usecase.MainUseCases
+import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
+import com.wirajasa.wirajasabisnis.feature_seller.domain.repository_impl.ProductRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

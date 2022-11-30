@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.core.domain.repository
+package com.wirajasa.wirajasabisnis.feature_seller.domain.repository
 
 import android.net.Uri
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication

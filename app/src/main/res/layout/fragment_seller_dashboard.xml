@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/orange"
     android:padding="24dp"
-    tools:context=".ui.seller.ui.dashboard.DashboardFragment">
+    tools:context=".feature_seller.ui.dashboard.DashboardFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_product"
