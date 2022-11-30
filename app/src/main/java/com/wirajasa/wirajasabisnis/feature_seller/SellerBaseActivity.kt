@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.ui.seller
+package com.wirajasa.wirajasabisnis.feature_seller
 
 import android.content.Intent
 import android.os.Bundle

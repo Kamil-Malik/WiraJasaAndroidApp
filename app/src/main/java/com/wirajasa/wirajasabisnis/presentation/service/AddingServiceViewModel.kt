@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
-import com.wirajasa.wirajasabisnis.core.domain.repository.ProductRepository
+import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

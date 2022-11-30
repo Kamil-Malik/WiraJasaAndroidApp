@@ -144,6 +144,7 @@
     <string name="hint_full_name">Full Name</string>
     <string name="floating_action_button_for_adding_service">Floating Action Button for Adding Service</string>
     <string name="btn_sign_out">Sign Out</string>
+    <string name="address_province">Address (Province)</string>
 
 
     <string-array name="province">
@@ -202,4 +203,5 @@
 
 <!--Dashboard-->
     <string name="dashboard_user_tv_welcome">Hi, %s</string>
+    <string name="detail_service">Detail Service</string>
 </resources>
