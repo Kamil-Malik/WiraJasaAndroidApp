@@ -62,7 +62,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.seller.SellerBaseActivity"
+            android:name=".feature_seller.SellerBaseActivity"
             android:exported="false"
             android:label="@string/title_activity_seller_base">
             <meta-data

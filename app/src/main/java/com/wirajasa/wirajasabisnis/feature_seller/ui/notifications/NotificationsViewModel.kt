@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.ui.seller.ui.notifications
+package com.wirajasa.wirajasabisnis.feature_seller.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
