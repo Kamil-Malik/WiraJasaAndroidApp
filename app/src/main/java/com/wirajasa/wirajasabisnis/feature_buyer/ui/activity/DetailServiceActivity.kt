@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.service
+package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -11,19 +11,23 @@ import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
+import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailServiceBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
+import com.wirajasa.wirajasabisnis.presentation.service.UpdateServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityDetailServiceBinding
+    private val binding: ActivityDetailServiceBinding by lazy {
+        ActivityDetailServiceBinding.inflate(layoutInflater)
+    }
     private var isSeller: Boolean = false
     private val viewModel by viewModels<LoginViewModel>()
     private var post: ServicePost? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         post = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -38,23 +42,25 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
             isSeller = true
         }
 
-        binding.tvPhoneNumber.text = post?.phoneNumber
-        binding.tvAddress.text = getString(R.string.detail_address,post?.address,post?.province)
-        binding.tvPrice.text = getString(R.string.rupiah, post?.price)
-        binding.tvServiceName.text = post?.name
-        binding.tvUnit.text = getString(R.string.detail_unit,post?.unit)
-        Glide.with(this@DetailServiceActivity)
-            .load(post?.photoUrl)
-            .into(binding.ivDetail)
+        binding.apply {
+            tvPhoneNumber.text = post?.phoneNumber
+            tvAddress.text = getString(R.string.detail_address,post?.address,post?.province)
+            tvPrice.text = CurrencyFormatter().invoke(post?.price.toString())
+            tvServiceName.text = post?.name
+            tvUnit.text = getString(R.string.detail_unit,post?.unit)
+            Glide.with(this@DetailServiceActivity)
+                .load(post?.photoUrl)
+                .into(ivDetail)
 
-        binding.btnContactEdit.setOnClickListener(this@DetailServiceActivity)
+            btnContactEdit.setOnClickListener(this@DetailServiceActivity)
+        }
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             binding.btnContactEdit.id -> {
                 if (isSeller){
-                    val intent = Intent(this@DetailServiceActivity,UpdateServiceActivity::class.java)
+                    val intent = Intent(this@DetailServiceActivity, UpdateServiceActivity::class.java)
                     intent.putExtra(EXTRA_SERVICE_POST, post)
                     startActivity(intent)
                 }else{

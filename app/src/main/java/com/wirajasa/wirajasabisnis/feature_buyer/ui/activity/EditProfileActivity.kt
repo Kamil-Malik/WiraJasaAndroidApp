@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.edit_profile
+package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.Manifest
 import android.app.Activity
@@ -22,6 +22,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
 import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.EditProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

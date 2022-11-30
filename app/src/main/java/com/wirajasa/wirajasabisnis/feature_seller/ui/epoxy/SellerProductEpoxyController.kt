@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy
+package com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy
 
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.epoxy.controller.GenericServiceEpoxyController
@@ -7,10 +7,12 @@ import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenErrorEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenLoadingEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.model.ServiceEpoxyModel
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 
-class ListOfServiceController(
+class SellerProductEpoxyController(
     onSelected: (ServicePost) -> Unit,
-    onRetry: () -> Unit) : GenericServiceEpoxyController(onSelected, onRetry) {
+    onRetry: () -> Unit
+) : GenericServiceEpoxyController(onSelected, onRetry) {
 
     override fun buildModels() {
         when (data) {
@@ -26,7 +28,7 @@ class ListOfServiceController(
             is NetworkResponse.Success -> {
                 val result = (data as NetworkResponse.Success).data
                 if (result.isEmpty()) {
-                    ScreenEmptyEpoxyModel("No Service Found on this Area").id("emptyScreen").addTo(this)
+                    ScreenEmptyEpoxyModel("You have not post any service yet").id("emptyScreen").addTo(this)
                 } else result.forEach {
                     ServiceEpoxyModel(it, onSelected).id(it.serviceId).addTo(this)
                 }

@@ -1,8 +1,8 @@
 package com.wirajasa.wirajasabisnis.feature_admin.ui.epoxy
 
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.core.epoxy.ViewBindingKotlinModel
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
+import com.wirajasa.wirajasabisnis.core.epoxy.utility.ViewBindingKotlinModel
 import com.wirajasa.wirajasabisnis.databinding.ItemRowApplicationFormBinding
 import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl
 

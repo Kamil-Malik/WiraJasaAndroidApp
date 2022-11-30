@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.edit_profile
+package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.app.Activity
 import android.content.Context

@@ -6,29 +6,19 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
-
     <TextView
-        android:id="@+id/tv_screen_loading_status"
+        android:id="@+id/tv_holder_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/progress_linear"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Loading" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="NO INTERNET" />
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progress_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:indeterminate="true"
-        app:indicatorColor="@color/orange"
-        app:indicatorDirectionLinear="startToEnd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

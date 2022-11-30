@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.core.epoxy
+package com.wirajasa.wirajasabisnis.core.epoxy.utility
 
 import android.view.View
 import androidx.annotation.LayoutRes

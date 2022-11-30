@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
-    android:padding="24dp"
+    android:background="@color/beige"
     tools:context=".feature_seller.ui.dashboard.DashboardFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:padding="16dp"
         android:id="@+id/rv_list_product"
         tools:listitem="@layout/item_list_dashboard"
         android:layout_width="match_parent"

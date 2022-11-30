@@ -20,7 +20,6 @@ interface ProductRepository {
 
     fun getLocalProfile(): SellerApplication
 
-    fun getAllProductsAccordingUID(uid: String): Flow<NetworkResponse<MutableList<ServicePost>>>
+    fun getAllProductsAccordingUID(uid: String): Flow<NetworkResponse<List<ServicePost>>>
 
-//    fun getService() : Flow<NetworkResponse<List<ServicePost>>>
 }

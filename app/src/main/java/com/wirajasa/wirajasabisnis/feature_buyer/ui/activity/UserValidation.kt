@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.ui.user
+package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityUserValidationBinding
-import com.wirajasa.wirajasabisnis.usecases.CheckPermission
-import com.wirajasa.wirajasabisnis.usecases.RequestPermission
+import com.wirajasa.wirajasabisnis.core.usecases.CheckPermission
+import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.UserValidationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

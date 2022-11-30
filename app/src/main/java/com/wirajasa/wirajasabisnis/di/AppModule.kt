@@ -13,7 +13,6 @@ import com.wirajasa.wirajasabisnis.feature_auth.domain.repository.AuthRepository
 import com.wirajasa.wirajasabisnis.feature_auth.domain.repository_impl.AuthRepositoryImpl
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository_impl.BuyerRepositoryImpl
-import com.wirajasa.wirajasabisnis.feature_buyer.domain.usecase.MainUseCases
 import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
 import com.wirajasa.wirajasabisnis.feature_seller.domain.repository_impl.ProductRepositoryImpl
 import dagger.Module
@@ -58,7 +57,7 @@ object AppModule {
         return ProductRepositoryImpl(
             context = mContext,
             storage = Firebase.storage.reference,
-            firestoreDb = Firebase.firestore,
+            db = Firebase.firestore,
             ioDispatcher = Dispatchers.IO,
             cryptoPref = cryptoPref
         )
@@ -111,17 +110,6 @@ object AppModule {
             db = Firebase.firestore,
             mContext = mContext,
             ioDispatcher = Dispatchers.IO
-        )
-    }
-
-    @Provides
-    @Singleton
-    fun provideMainUseCase(
-        userRepository: UserRepository,
-        buyerRepository: BuyerRepository
-    ): MainUseCases {
-        return MainUseCases(
-            userRepository, buyerRepository
         )
     }
 }

@@ -1,15 +1,18 @@
-package com.wirajasa.wirajasabisnis.core.epoxy
+package com.wirajasa.wirajasabisnis.core.epoxy.model
 
 import com.wirajasa.wirajasabisnis.R
+import com.wirajasa.wirajasabisnis.core.epoxy.utility.ViewBindingKotlinModel
 import com.wirajasa.wirajasabisnis.databinding.ScreenErrorBinding
 
 data class ScreenErrorEpoxyModel(
     val error: String?,
     val onRetry: ()-> Unit
-) :ViewBindingKotlinModel<ScreenErrorBinding>(R.layout.screen_error) {
+) : ViewBindingKotlinModel<ScreenErrorBinding>(R.layout.screen_error) {
 
     override fun ScreenErrorBinding.bind() {
         error?.let { tvError.text = it }
-        btnRetry.setOnClickListener { onRetry }
+        btnRetryTask.setOnClickListener {
+            onRetry()
+        }
     }
 }

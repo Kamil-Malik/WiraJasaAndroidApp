@@ -7,6 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.ActivityUpdateServiceBinding
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 
 class UpdateServiceActivity : AppCompatActivity() {
     private lateinit var binding : ActivityUpdateServiceBinding

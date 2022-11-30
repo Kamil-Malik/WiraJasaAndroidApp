@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.profile
+package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,9 +14,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
-import com.wirajasa.wirajasabisnis.presentation.edit_profile.EditProfileContract
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
-import com.wirajasa.wirajasabisnis.ui.user.UserValidation
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

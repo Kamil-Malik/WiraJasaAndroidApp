@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.usecases
+package com.wirajasa.wirajasabisnis.core.usecases
 
 import android.Manifest
 import android.content.Context

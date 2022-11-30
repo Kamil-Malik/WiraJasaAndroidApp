@@ -36,8 +36,6 @@ class SellerBaseActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.bnvView
 
         val navController = findNavController(R.id.fragment_seller_base)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_profile

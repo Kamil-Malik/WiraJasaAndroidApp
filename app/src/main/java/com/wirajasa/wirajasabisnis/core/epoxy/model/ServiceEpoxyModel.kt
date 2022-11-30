@@ -1,8 +1,10 @@
-package com.wirajasa.wirajasabisnis.core.epoxy
+package com.wirajasa.wirajasabisnis.core.epoxy.model
 
 import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.epoxy.utility.ViewBindingKotlinModel
+import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
 
 data class ServiceEpoxyModel(
@@ -16,7 +18,8 @@ data class ServiceEpoxyModel(
             .into(ivItemPhoto)
 
         tvTitle.text = data.name
-        tvPrice.text = data.price.toString()
+        tvProvince.text = data.province
+        tvPrice.text = CurrencyFormatter().invoke(data.price.toString())
         root.setOnClickListener {
             onSelected(data)
         }

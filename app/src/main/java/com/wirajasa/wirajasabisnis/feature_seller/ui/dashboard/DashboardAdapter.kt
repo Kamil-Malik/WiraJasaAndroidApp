@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.ItemListDashboardBinding
-import com.wirajasa.wirajasabisnis.presentation.service.DetailServiceActivity
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 
 class DashboardAdapter(private val context: Context, private val servicePostList: MutableList<ServicePost>)
     : RecyclerView.Adapter<DashboardAdapter.MyViewHolder>() {
@@ -24,7 +24,7 @@ class DashboardAdapter(private val context: Context, private val servicePostList
         val data = servicePostList[position]
         holder.bind(data)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,DetailServiceActivity::class.java)
+            val intent = Intent(context, DetailServiceActivity::class.java)
             val service = ServicePost(
                 uid = data.uid,
                 serviceId = data.serviceId,

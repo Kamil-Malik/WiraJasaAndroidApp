@@ -23,7 +23,7 @@ import kotlin.coroutines.CoroutineContext
 class ProductRepositoryImpl @Inject constructor(
     private val context: Context,
     private val storage: StorageReference,
-    private val firestoreDb: FirebaseFirestore,
+    private val db: FirebaseFirestore,
     private val ioDispatcher: CoroutineContext,
     private val cryptoPref: CryptoPref
 ) : ProductRepository {
@@ -39,7 +39,7 @@ class ProductRepositoryImpl @Inject constructor(
         photo: Uri?
     ): Flow<NetworkResponse<Boolean>> = flow {
         try {
-            val id = firestoreDb.collection(SERVICE).document().id
+            val id = db.collection(SERVICE).document().id
             val photoReference = storage.child("$SERVICE/$id.jpg")
             photoReference.putFile(photo!!)
                 .continueWithTask {
@@ -56,7 +56,7 @@ class ProductRepositoryImpl @Inject constructor(
                         phoneNumber,
                         downloadUrlTask.result.toString()
                     )
-                    firestoreDb.collection(SERVICE).document(id).set(servicePost)
+                    db.collection(SERVICE).document(id).set(servicePost)
                 }.await()
             emit(NetworkResponse.Success(data = true))
         } catch (e: Exception) {
@@ -69,18 +69,12 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override fun getAllProductsAccordingUID(uid: String):
-            Flow<NetworkResponse<MutableList<ServicePost>>> = flow {
+            Flow<NetworkResponse<List<ServicePost>>> = flow {
         try {
-            val productList: MutableList<ServicePost> = mutableListOf()
-            val productReference = firestoreDb.collection(SERVICE)
+            val productReference = db.collection(SERVICE)
                 .whereEqualTo(UID, uid)
-            productReference.addSnapshotListener { snapshot, error ->
-                if (error == null) {
-                    val product = snapshot?.toObjects(ServicePost::class.java)
-                    productList.addAll(product!!)
-                }
-            }
-            emit(NetworkResponse.Success(productList))
+                .get().await().toObjects(ServicePost::class.java)
+            emit(NetworkResponse.Success(productReference))
         } catch (e: Exception) {
             emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))
         }
