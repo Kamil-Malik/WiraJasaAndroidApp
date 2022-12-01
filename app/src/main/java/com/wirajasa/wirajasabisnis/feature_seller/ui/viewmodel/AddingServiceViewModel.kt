@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_seller.ui.activity
+package com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel
 
 import android.net.Uri
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_seller.ui.dashboard
+package com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

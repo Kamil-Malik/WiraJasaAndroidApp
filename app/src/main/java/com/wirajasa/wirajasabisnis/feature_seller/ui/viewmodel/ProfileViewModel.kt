@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_seller.ui.profile
+package com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication

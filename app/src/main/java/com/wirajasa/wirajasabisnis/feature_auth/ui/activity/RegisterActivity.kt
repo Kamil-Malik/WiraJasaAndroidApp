@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
@@ -31,6 +32,22 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding.apply {
             btnRegister.setOnClickListener(this@RegisterActivity)
             tvClickHaveAccount.setOnClickListener(this@RegisterActivity)
+
+            edtEmail.addTextChangedListener {
+                layoutEmail.error?.let {
+                    layoutEmail.isErrorEnabled = false
+                }
+            }
+            edtPassword.addTextChangedListener {
+                layoutPassword.error?.let {
+                    layoutPassword.isErrorEnabled = false
+                }
+            }
+            edtConfirmPassword.addTextChangedListener {
+                layoutConfirmPassword.error?.let {
+                    layoutConfirmPassword.isErrorEnabled = false
+                }
+            }
         }
     }
 
@@ -44,21 +61,21 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     currentFocus?.windowToken, 0
                 )
 
-                if (!Validate().email(email)) binding.edtEmail.error =
+                if (!Validate().email(email)) binding.layoutEmail.error =
                     getString(R.string.tv_empty_invalid_email)
 
-                if (!Validate().password(password)) {
-                    showSnack(getString(R.string.tv_empty_password))
-                    return
-                }
+                if (!Validate().password(password)) binding.layoutPassword.error =
+                    getString(R.string.tv_empty_password)
 
                 if (!Validate().password(confirmedPassword)) {
-                    showSnack(getString(R.string.tv_empty_confirmation_password))
+                    binding.layoutConfirmPassword.error =
+                        getString(R.string.tv_empty_confirmation_password)
                     return
                 }
 
                 if (password != confirmedPassword) {
-                    showSnack(getString(R.string.tv_different_password))
+                    binding.layoutConfirmPassword.error =
+                        getString(R.string.tv_different_password)
                     return
                 }
 
@@ -87,10 +104,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showSnack(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     private fun showLoading(isLoading: Boolean) {

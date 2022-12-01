@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityResetPasswordBinding
@@ -27,6 +28,11 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.btnReset.setOnClickListener(this)
+        binding.edtEmail.addTextChangedListener {
+            binding.layoutEmail.error?.let {
+                binding.layoutEmail.isErrorEnabled = false
+            }
+        }
     }
 
     override fun onClick(v: View?) {
@@ -38,7 +44,7 @@ class ResetPasswordActivity : AppCompatActivity(), View.OnClickListener {
                     .hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
                 if (!Validate().email(email)) {
-                    binding.edtEmail.error = getString(R.string.tv_empty_invalid_email)
+                    binding.layoutEmail.error = getString(R.string.tv_empty_invalid_email)
                     return
                 }
 

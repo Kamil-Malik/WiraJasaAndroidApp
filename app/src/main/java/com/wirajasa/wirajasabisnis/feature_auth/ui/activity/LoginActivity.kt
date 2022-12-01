@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import androidx.core.widget.addTextChangedListener
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
@@ -49,6 +49,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             btnLogin.setOnClickListener(this@LoginActivity)
             btnRegister.setOnClickListener(this@LoginActivity)
             tvForgotPassword.setOnClickListener(this@LoginActivity)
+            edtEmail.addTextChangedListener {
+                layoutEmail.error?.let {
+                    layoutEmail.isErrorEnabled = false
+                }
+            }
+            edtPassword.addTextChangedListener {
+                layoutPassword.error?.let {
+                    layoutPassword.isErrorEnabled = false
+                }
+            }
         }
     }
 
@@ -62,12 +72,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     currentFocus?.windowToken, 0
                 )
 
-                if (!Validate().email(email)) binding.edtEmail.error =
-                    getString(R.string.tv_empty_invalid_email)
+                if (!Validate().email(email))
+                    binding.layoutEmail.error = getString(R.string.tv_empty_invalid_email)
 
-                if (!Validate().password(password)) Snackbar.make(
-                    binding.root, getString(R.string.tv_empty_password), Snackbar.LENGTH_SHORT
-                ).show().also { return }
+                if (!Validate().password(password)) {
+                    binding.layoutPassword.error = getString(R.string.tv_empty_password)
+                    return
+                }
 
                 viewModel.signInWithEmailAndPassword(email, password).observe(this) { response ->
                     when (response) {

@@ -48,6 +48,14 @@ class AdminRepositoryImpl @Inject constructor(
                     db.collection(USER).document(form.uid)
                         .set(isApproved, SetOptions.merge())
                         .await()
+                } else if(form.applicationStatus == REJECTED) {
+                    emit(NetworkResponse.Loading("Updating Seller Status"))
+                    val isApproved = hashMapOf(
+                        VERIFIED to false
+                    )
+                    db.collection(USER).document(form.uid)
+                        .set(isApproved, SetOptions.merge())
+                        .await()
                 }
 
                 emit(NetworkResponse.Success(true))

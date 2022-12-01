@@ -52,7 +52,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             tvUsername.text = profile.username
             tvEmail.text = Firebase.auth.currentUser?.email
             tvAddress.text = profile.address
-            tvPhonenumber.text = profile.phone_number
+            tvPhonenumber.text = getString(R.string.profile_phone_number, profile.phone_number)
             tvName.text = profile.uid
 
             if (profile.isSeller) {

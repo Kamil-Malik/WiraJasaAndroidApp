@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel.getAllService()
 
+        val currentUser = viewModel.getUser()
+        if(!currentUser.username.contains("Guest"))
+            binding.tvGreetUser.text = "Hi, ${currentUser.username}"
+
         controller = ListOfServiceController(onSelected = {
             startActivity(
                 Intent(this, DetailServiceActivity::class.java).putExtra(

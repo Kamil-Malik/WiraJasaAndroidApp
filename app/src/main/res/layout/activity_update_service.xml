@@ -63,6 +63,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,6 +102,9 @@
                     android:inputType="text|textMultiLine"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -113,7 +117,8 @@
                         android:id="@+id/edt_service"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorHint" />
+                        android:inputType="text"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -128,6 +133,9 @@
                     android:inputType="number|textMultiLine"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -140,7 +148,8 @@
                         android:id="@+id/edt_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorHint" />
+                        android:inputType="number"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -155,6 +164,9 @@
                     android:inputType="text|textMultiLine"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -167,7 +179,8 @@
                         android:id="@+id/edt_unit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorHint" />
+                        android:inputType="text"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -182,6 +195,9 @@
                     android:inputType="text|textMultiLine"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -194,7 +210,8 @@
                         android:id="@+id/edt_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?android:attr/textColorHint" />
+                        android:inputType="text"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -207,7 +224,10 @@
                     android:hint="@string/hint_province"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:endIconTint="@color/dark_blue"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -220,7 +240,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="@color/black"
                         tools:ignore="TextContrastCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -237,6 +257,9 @@
                     android:inputType="text|textMultiLine"
                     android:textColorHint="@color/dark_blue"
                     app:boxStrokeColor="@color/dark_blue"
+                    app:boxStrokeErrorColor="@android:color/holo_red_light"
+                    app:errorIconTint="@android:color/holo_red_light"
+                    app:errorTextColor="@android:color/holo_red_light"
                     app:hintTextColor="@color/dark_blue"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
@@ -249,6 +272,7 @@
                         android:id="@+id/edt_phoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:textColor="?android:attr/textColorHint" />
                 </com.google.android.material.textfield.TextInputLayout>
 
