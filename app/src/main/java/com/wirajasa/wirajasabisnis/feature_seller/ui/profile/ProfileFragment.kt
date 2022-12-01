@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentProfileBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
+import com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

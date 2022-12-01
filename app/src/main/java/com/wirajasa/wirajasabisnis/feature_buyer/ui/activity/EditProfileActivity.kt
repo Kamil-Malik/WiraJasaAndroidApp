@@ -1,6 +1,5 @@
 package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
-import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -13,16 +12,18 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
-import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
-import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
+import com.wirajasa.wirajasabisnis.core.usecases.CheckPermission
+import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.EditProfileViewModel
+import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -31,6 +32,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     EasyPermissions.PermissionCallbacks {
 
     private lateinit var profile: UserProfile
+    private val checkPermission: CheckPermission = CheckPermission(this)
+    private val requestPermission = RequestPermission(this)
     private val viewModel by viewModels<EditProfileViewModel>()
     private val binding by lazy {
         ActivityEditProfileBinding.inflate(layoutInflater)
@@ -41,16 +44,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         setContentView(binding.root)
         profile = viewModel.getProfile()
         binding.apply {
-            if (profile.image.isNotBlank()) Glide.with(this@EditProfileActivity)
-                .load(profile.image)
-                .fitCenter()
-                .circleCrop()
-                .into(ivProfile)
-            else Glide.with(this@EditProfileActivity)
-                .load(R.drawable.ic_profile_48)
-                .fitCenter()
-                .circleCrop()
-                .into(ivProfile)
+            if (profile.image.isNotBlank()) Glide.with(this@EditProfileActivity).load(profile.image)
+                .fitCenter().circleCrop().into(ivProfile)
+            else Glide.with(this@EditProfileActivity).load(R.drawable.ic_profile_48).fitCenter()
+                .circleCrop().into(ivProfile)
 
             edtUsername.setText(profile.username)
             edtAddress.setText(profile.address)
@@ -58,6 +55,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
             binding.btnEditPhoto.setOnClickListener(this@EditProfileActivity)
             binding.btnSave.setOnClickListener(this@EditProfileActivity)
+            binding.edtPhonenumber.addTextChangedListener {
+                binding.layoutPhoneNumber.error?.let {
+                    binding.layoutPhoneNumber.isErrorEnabled = false
+                }
+            }
         }
     }
 
@@ -77,6 +79,29 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         when (v?.id) {
             binding.btnEditPhoto.id -> startGallery()
             binding.btnSave.id -> {
+                if (userProfile.phone_number.first().toString() == "0") {
+                    binding.layoutPhoneNumber.error =
+                        getString(R.string.edtProfile_phone_number_starts_with_zero)
+                    return
+                }
+
+                if (userProfile.phone_number.toLongOrNull() == null) {
+                    binding.layoutPhoneNumber.error =
+                        getString(R.string.edtProfile_phone_number_contains_invalid_characters)
+                    return
+                }
+
+                if (userProfile.phone_number.length > 15) {
+                    binding.layoutPhoneNumber.error =
+                        getString(R.string.edtProfile_phone_number_exceed_limit)
+                    return
+                }
+
+                userProfile.phone_number =
+                    getString(R.string.edtProfile_template_phone_number, userProfile.phone_number)
+                if (userProfile.address.isEmpty()) userProfile.address =
+                    getString(R.string.not_setup)
+
                 viewModel.updateProfile(userProfile).observe(this) { response ->
                     when (response) {
                         is NetworkResponse.GenericException -> {
@@ -88,11 +113,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                             if (binding.pbLoading.visibility != View.VISIBLE) isLoading(true)
                         }
                         is NetworkResponse.Success -> {
-                            Glide.with(this)
-                                .load(viewModel.getProfile().image)
-                                .fitCenter()
-                                .circleCrop()
-                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            Glide.with(this).load(viewModel.getProfile().image).fitCenter()
+                                .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(binding.ivProfile)
 
                             isLoading(false)
@@ -123,10 +145,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
             Log.d(ContentValues.TAG, " URI: $selectedImg")
-            Glide.with(this).load(selectedImg)
-                .fitCenter()
-                .circleCrop()
-                .into(binding.ivProfile)
+            Glide.with(this).load(selectedImg).fitCenter().circleCrop().into(binding.ivProfile)
             viewModel.setNewImageUri(selectedImg)
         }
     }
@@ -140,45 +159,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private fun requestMediaPermission() {
-        EasyPermissions.requestPermissions(
-            this,
-            getString(R.string.tv_gallery_permission_title),
-            READ_EXTERNAL,
-            Manifest.permission.READ_MEDIA_IMAGES
-        )
-    }
-
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private fun checkMediaPermission(): Boolean {
-        return EasyPermissions
-            .hasPermissions(this, Manifest.permission.READ_MEDIA_IMAGES)
-    }
-
-    private fun requestExternalAccessPermission() {
-        EasyPermissions.requestPermissions(
-            this,
-            getString(R.string.tv_gallery_permission_title),
-            READ_EXTERNAL,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-    }
-
-    private fun checkExternalAccessPermission(): Boolean {
-        return EasyPermissions
-            .hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-    }
-
     private fun startGallery() {
         when {
             Build.VERSION.SDK_INT >= 33 -> {
-                if (checkMediaPermission()) openGallery()
-                else requestMediaPermission()
+                if (checkPermission.accessMedia()) openGallery()
+                else requestPermission.accessMedia()
             }
             else -> {
-                if (checkExternalAccessPermission()) openGallery()
-                else requestExternalAccessPermission()
+                if (checkPermission.accessExternal()) openGallery()
+                else requestPermission.accessExternal()
             }
         }
     }

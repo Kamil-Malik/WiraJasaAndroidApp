@@ -122,6 +122,7 @@
     <string name="tv_slash_unit">/unit</string>
 
     <!--Profile Activity-->
+    <string name="profile_phone_number">+%s</string>
     <string name="profile">Profile</string>
     <string name="iv_profile_picture">Profile Picture</string>
     <string name="btn_edit_picture">Edit Photo</string>
@@ -208,5 +209,12 @@
     <string name="filter_by_province">Filter by Province</string>
     <string name="title_rent">Rent</string>
 
+
     <!--Detail Service-->
+
+<!--Edit Profile-->
+    <string name="edtProfile_phone_number_contains_invalid_characters">Phone number should consist only with Numbers</string>
+    <string name="edtProfile_phone_number_exceed_limit">Phone number cannot exceed more that 15 Characters</string>
+    <string name="edtProfile_phone_number_starts_with_zero">Phone number should start with number 8</string>
+    <string name="edtProfile_template_phone_number">62%s</string>
 </resources>

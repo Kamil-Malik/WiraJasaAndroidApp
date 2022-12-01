@@ -18,6 +18,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityAddingServiceBinding
 import com.wirajasa.wirajasabisnis.utility.Constant
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel.AddingServiceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

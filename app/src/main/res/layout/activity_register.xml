@@ -60,8 +60,11 @@
                 android:hint="@string/hint_email"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/dark_blue"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@id/tv_register"
                 app:startIconDrawable="@drawable/ic_email"
@@ -73,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress|text"
-                    android:textColor="?android:attr/textColorHint" />
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -85,8 +88,11 @@
                 android:hint="@string/tv_password"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
                 app:endIconMode="password_toggle"
                 app:endIconTint="?attr/endIconTint"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:startIconDrawable="@drawable/ic_lock"
@@ -98,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="?android:attr/textColorHint" />
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -110,8 +116,11 @@
                 android:hint="@string/hint_password_confirmation"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
                 app:endIconMode="password_toggle"
                 app:endIconTint="?attr/endIconTint"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@id/layout_password"
                 app:startIconDrawable="@drawable/ic_lock"
@@ -123,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="?android:attr/textColorHint" />
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
