@@ -6,9 +6,9 @@
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_buyer"
+        android:icon="@drawable/ic_basket_48"
+        android:title="@string/title_rent" />
 
     <item
         android:id="@+id/navigation_profile"

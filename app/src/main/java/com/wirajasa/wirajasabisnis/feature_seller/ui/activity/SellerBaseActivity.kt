@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_seller
+package com.wirajasa.wirajasabisnis.feature_seller.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -38,7 +38,7 @@ class SellerBaseActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragment_seller_base)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_profile
+                R.id.navigation_dashboard, R.id.navigation_buyer, R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
