@@ -46,7 +46,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivProfile)
-            else Glide.with(this@ProfileActivity).load(R.drawable.default_image).fitCenter()
+            else Glide.with(this@ProfileActivity).load(R.drawable.ic_profile_48).fitCenter()
                 .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(ivProfile)
 
             tvUsername.text = profile.username

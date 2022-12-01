@@ -32,15 +32,15 @@
     </style>
 
     <!-- Splash Screen Theme. -->
-    <style name="Theme.AppSplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/grey</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
-        <item name="windowSplashScreenAnimationDuration">300</item>
-        <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>
+<!--    <style name="Theme.AppSplash" parent="Theme.SplashScreen">-->
+<!--        <item name="windowSplashScreenBackground">@color/grey</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>-->
+<!--        <item name="windowSplashScreenAnimationDuration">300</item>-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>-->
 
-        <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor" >@color/grey</item>
-        <item name="android:navigationBarColor">@color/grey</item>
-        <item name="android:windowLightStatusBar">false</item>
-    </style>
+<!--        &lt;!&ndash; Status bar and Nav bar configs &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" >@color/grey</item>-->
+<!--        <item name="android:navigationBarColor">@color/grey</item>-->
+<!--        <item name="android:windowLightStatusBar">false</item>-->
+<!--    </style>-->
 </resources>

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
@@ -14,7 +15,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailServiceBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
-import com.wirajasa.wirajasabisnis.presentation.service.UpdateServiceActivity
+import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.UpdateServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,8 +38,9 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         val localProfile: UserProfile = viewModel.getProfile()
-        if (localProfile.isSeller){
-            binding.tvServiceName.text = getString(R.string.edit_service).uppercase()
+        Log.d(DetailServiceActivity::class.java.simpleName,localProfile.isSeller.toString())
+        if (localProfile.isSeller && localProfile.uid == post?.uid){
+            binding.btnContactEdit.text = getString(R.string.edit_service).uppercase()
             isSeller = true
         }
 

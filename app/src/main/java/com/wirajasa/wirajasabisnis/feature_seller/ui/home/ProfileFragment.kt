@@ -35,7 +35,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             .load(userData.image)
             .fitCenter()
             .circleCrop()
-            .error(R.drawable.default_image)
+            .error(R.drawable.ic_profile_48)
             .into(binding.ivProfile)
 
         binding.apply {

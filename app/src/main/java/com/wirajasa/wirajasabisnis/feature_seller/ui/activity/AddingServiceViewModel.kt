@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.presentation.service
+package com.wirajasa.wirajasabisnis.feature_seller.ui.activity
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
