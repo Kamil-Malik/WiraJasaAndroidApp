@@ -205,6 +205,8 @@
     <string name="dashboard_user_tv_welcome">Hi, %s</string>
     <string name="dashboard_user_btn_search">Button Search Dashboard User</string>
     <string name="dashboard_user_edt_search">Search</string>
+    <string name="filter_by_province">Filter by Province</string>
+    <string name="title_rent">Rent</string>
 
-<!--Detail Service-->
+    <!--Detail Service-->
 </resources>

@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.FragmentSellerDashboardBinding
+import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy.SellerProductEpoxyController
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.AddingServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +38,20 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         val uid = dashboardViewModel.getProfile().uid
         val controller = SellerProductEpoxyController(
             onSelected = {
-                Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, DetailServiceActivity::class.java)
+                val service = ServicePost(
+                    uid = it.uid,
+                    serviceId = it.serviceId,
+                    name = it.name,
+                    price = it.price,
+                    unit = it.unit,
+                    address = it.address,
+                    province = it.province,
+                    phoneNumber = it.phoneNumber,
+                    photoUrl = it.photoUrl
+                )
+                intent.putExtra(DetailServiceActivity.EXTRA_SERVICE_POST,service)
+                startActivity(intent)
             }, onRetry = {
 
             }

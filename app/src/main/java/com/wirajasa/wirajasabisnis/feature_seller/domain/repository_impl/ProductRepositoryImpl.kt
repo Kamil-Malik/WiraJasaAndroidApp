@@ -89,30 +89,46 @@ class ProductRepositoryImpl @Inject constructor(
         address: String,
         province: String,
         phoneNumber: String,
-        photo: Uri?
+        photo: Uri?,
+        photoUrl: String
     ):
             Flow<NetworkResponse<Boolean>> = flow {
         try {
-            storage.child("$SERVICE/$serviceId.jpg")
-                .delete().await()
-            val uploadPhoto = storage.child("$SERVICE/$serviceId.jpg")
-            uploadPhoto.putFile(photo!!)
-                .continueWithTask {
-                    uploadPhoto.downloadUrl
-                }.continueWithTask { downloadUrlTask ->
-                    val servicePost = mapOf(
-                        "uid" to uid,
-                        "service_id" to serviceId,
-                        "name" to name,
-                        "price" to price,
-                        "unit" to unit,
-                        "address" to address,
-                        "province" to province,
-                        "phone_number" to phoneNumber,
-                        "photo_url" to downloadUrlTask.result.toString()
-                    )
-                    db.collection(SERVICE).document(serviceId).set(servicePost)
-                }.await()
+            if (photo != null){
+                storage.child("$SERVICE/$serviceId.jpg")
+                    .delete().await()
+                val uploadPhoto = storage.child("$SERVICE/$serviceId.jpg")
+                uploadPhoto.putFile(photo)
+                    .continueWithTask {
+                        uploadPhoto.downloadUrl
+                    }.continueWithTask { downloadUrlTask ->
+                        val servicePost = mapOf(
+                            "uid" to uid,
+                            "service_id" to serviceId,
+                            "name" to name,
+                            "price" to price,
+                            "unit" to unit,
+                            "address" to address,
+                            "province" to province,
+                            "phone_number" to phoneNumber,
+                            "photo_url" to downloadUrlTask.result.toString()
+                        )
+                        db.collection(SERVICE).document(serviceId).set(servicePost)
+                    }.await()
+            }else{
+                val servicePost = mapOf(
+                    "uid" to uid,
+                    "service_id" to serviceId,
+                    "name" to name,
+                    "price" to price,
+                    "unit" to unit,
+                    "address" to address,
+                    "province" to province,
+                    "phone_number" to phoneNumber,
+                    "photo_url" to photoUrl
+                )
+                db.collection(SERVICE).document(serviceId).set(servicePost).await()
+            }
             emit(NetworkResponse.Success(data = true))
         }catch (e: Exception){
             emit(NetworkResponse.GenericException(HandleException(context, e).invoke()))

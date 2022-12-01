@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
+    android:background="@color/beige"
     tools:context=".feature_seller.ui.activity.UpdateServiceActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -254,7 +254,7 @@
 
 
                 <ImageView
-                    android:id="@+id/iv_service"
+                    android:id="@+id/iv_service_update"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
                     android:layout_marginTop="18dp"
@@ -270,11 +270,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_upload_photos"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_service"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_service"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_service_update"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_service_update"
                     app:layout_constraintHorizontal_bias="0.495"
-                    app:layout_constraintStart_toStartOf="@+id/iv_service"
-                    app:layout_constraintTop_toTopOf="@+id/iv_service"
+                    app:layout_constraintStart_toStartOf="@+id/iv_service_update"
+                    app:layout_constraintTop_toTopOf="@+id/iv_service_update"
                     app:layout_constraintVertical_bias="0.65999997" />
 
                 <ImageView
@@ -284,9 +284,9 @@
                     android:contentDescription="@string/iv_icon"
                     android:src="@drawable/ic_image"
                     app:layout_constraintBottom_toTopOf="@+id/tv_icon"
-                    app:layout_constraintEnd_toEndOf="@+id/iv_service"
-                    app:layout_constraintStart_toStartOf="@+id/iv_service"
-                    app:layout_constraintTop_toTopOf="@+id/iv_service"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_service_update"
+                    app:layout_constraintStart_toStartOf="@+id/iv_service_update"
+                    app:layout_constraintTop_toTopOf="@+id/iv_service_update"
                     app:layout_constraintVertical_bias="0.72"
                     app:tint="@color/white" />
 
@@ -302,7 +302,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tv_service_register"
                     app:layout_constraintStart_toStartOf="@+id/tv_service_register"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_service"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_service_update"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <ProgressBar
@@ -326,9 +326,9 @@
                     android:text="@string/tv_loading"
                     android:textColor="@color/orange"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@+id/pb_adding"
-                    app:layout_constraintStart_toStartOf="@+id/pb_adding"
-                    app:layout_constraintTop_toBottomOf="@+id/pb_adding" />
+                    app:layout_constraintEnd_toEndOf="@+id/pb_updating"
+                    app:layout_constraintStart_toStartOf="@+id/pb_updating"
+                    app:layout_constraintTop_toBottomOf="@+id/pb_updating" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/beige"
     android:padding="16dp"
-    tools:context=".feature_seller.ui.home.ProfileFragment">
+    tools:context=".feature_seller.ui.profile.ProfileFragment">
 
     <ImageView
         android:id="@+id/iv_profile"
