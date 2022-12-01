@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UpdatingServiceViewModel @Inject constructor(
     private val productRepository: ProductRepository
-) : ViewModel(){
+) : ViewModel() {
     fun updateProduct(
         uid: String,
         serviceId: String,
@@ -24,9 +24,14 @@ class UpdatingServiceViewModel @Inject constructor(
         address: String,
         province: String,
         phoneNumber: String,
-        photo: Uri?
+        photo: Uri?,
+        photoUrl: String
     ): LiveData<NetworkResponse<Boolean>> {
-        return productRepository.updateProduct(uid, serviceId, name, price, unit, address, province, phoneNumber, photo).flowOn(
-            Dispatchers.Main).asLiveData()
+        return productRepository.updateProduct(
+            uid, serviceId, name, price, unit, address,
+            province, phoneNumber, photo, photoUrl
+        ).flowOn(
+            Dispatchers.Main
+        ).asLiveData()
     }
 }

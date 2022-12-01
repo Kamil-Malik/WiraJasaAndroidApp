@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -18,7 +19,6 @@ import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.databinding.ActivityUpdateServiceBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
-import com.wirajasa.wirajasabisnis.feature_seller.SellerBaseActivity
 import com.wirajasa.wirajasabisnis.utility.Constant
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
@@ -41,11 +41,17 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
                 ServicePost::class.java
             )
         } else {
-            intent.getParcelableExtra<ServicePost>(DetailServiceActivity.EXTRA_SERVICE_POST) as ServicePost
+            intent.getParcelableExtra<ServicePost>(
+                DetailServiceActivity.EXTRA_SERVICE_POST
+            ) as ServicePost
         }
 
         val arrayAdapter =
-            ArrayAdapter(this, R.layout.textview, resources.getStringArray(R.array.province))
+            ArrayAdapter(
+                this, R.layout.textview, resources.getStringArray(
+                    R.array.province
+                )
+            )
         binding.edtAddress.setText(post?.address)
         binding.edtService.setText(post?.name)
         binding.edtPrice.setText(post?.price.toString())
@@ -58,15 +64,16 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
             binding.ivIcon.visibility = View.GONE
             Glide.with(this@UpdateServiceActivity)
                 .load(post?.photoUrl)
-                .into(binding.ivService)
+                .into(binding.ivServiceUpdate)
         }
         binding.btnUpdateService.setOnClickListener(this)
+        binding.ivServiceUpdate.setOnClickListener(this)
     }
 
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.iv_service -> startGallery()
+            binding.ivServiceUpdate.id -> startGallery()
             binding.btnUpdateService.id -> {
                 val name = binding.edtService.text.toString()
                 val price = binding.edtPrice.text.toString()
@@ -76,11 +83,14 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
                 val phoneNumber = binding.edtPhoneNumber.text.toString()
                 val uid = post?.uid
                 val serviceId = post?.serviceId
+                val photoUrl = post?.photoUrl
 
                 if (name.isEmpty() || price.isEmpty() || unit.isEmpty()
                     || address.isEmpty() || province.isEmpty()
-                    || phoneNumber.isEmpty() || (getUri == null || post?.photoUrl == null)
+                    || phoneNumber.isEmpty() || (getUri == null && photoUrl == null)
                 ) {
+                    Log.d(UpdateServiceActivity::class.java.simpleName, getUri.toString())
+                    Log.d(UpdateServiceActivity::class.java.simpleName, post?.photoUrl.toString())
                     Toast.makeText(
                         this@UpdateServiceActivity, getString(R.string.tv_form_have_to_be_filled),
                         Toast.LENGTH_SHORT
@@ -88,7 +98,7 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
                 } else {
                     updateViewModel.updateProduct(
                         uid!!, serviceId!!, name, price.toInt(),
-                        unit, address, province, phoneNumber, getUri
+                        unit, address, province, phoneNumber, getUri, photoUrl!!
                     ).observe(this) {
                         when (it) {
                             is NetworkResponse.GenericException -> Toast.makeText(
@@ -130,7 +140,7 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
             edtLayoutUnit.visibility = View.INVISIBLE
             ivIcon.visibility = View.GONE
             tvIcon.visibility = View.GONE
-            ivService.visibility = View.INVISIBLE
+            ivServiceUpdate.visibility = View.INVISIBLE
             tvLoading.visibility = View.VISIBLE
             pbUpdating.visibility = View.VISIBLE
             btnUpdateService.visibility = View.INVISIBLE
@@ -144,7 +154,7 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
             layoutProvince.visibility = View.VISIBLE
             ivIcon.visibility = View.VISIBLE
             tvIcon.visibility = View.VISIBLE
-            ivService.visibility = View.VISIBLE
+            ivServiceUpdate.visibility = View.VISIBLE
             tvLoading.visibility = View.GONE
             pbUpdating.visibility = View.GONE
             btnUpdateService.visibility = View.VISIBLE
@@ -172,7 +182,7 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
                 .with(this)
                 .load(selectedImg)
                 .fitCenter()
-                .into(binding.ivService)
+                .into(binding.ivServiceUpdate)
         }
     }
 
@@ -232,7 +242,8 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         when (requestCode) {
-            Constant.READ_EXTERNAL -> shortMessage(getString(R.string.tv_gallery_permission_denied))
+            Constant.READ_EXTERNAL ->
+                shortMessage(getString(R.string.tv_gallery_permission_denied))
         }
     }
 }

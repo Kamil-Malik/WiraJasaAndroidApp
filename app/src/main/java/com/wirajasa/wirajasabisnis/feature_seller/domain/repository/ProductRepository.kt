@@ -31,7 +31,8 @@ interface ProductRepository {
         address: String,
         province: String,
         phoneNumber: String,
-        photo: Uri?
+        photo: Uri?,
+        photoUrl: String
     ): Flow<NetworkResponse<Boolean>>
 
 //    fun getService() : Flow<NetworkResponse<List<ServicePost>>>
