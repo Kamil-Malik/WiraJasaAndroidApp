@@ -153,6 +153,7 @@
                     android:background="@color/white"
                     android:fontFamily="@font/inter"
                     android:hint="@string/tv_unit"
+                    app:helperText="Ex : Service Name is Babysitter, Unit is day"
                     android:importantForAutofill="no"
                     android:inputType="text|textMultiLine"
                     app:errorTextColor="@android:color/holo_red_light"

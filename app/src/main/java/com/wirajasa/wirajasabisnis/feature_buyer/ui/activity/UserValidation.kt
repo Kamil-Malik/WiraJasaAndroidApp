@@ -18,6 +18,7 @@ import com.wirajasa.wirajasabisnis.core.usecases.CheckPermission
 import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.UserValidationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
@@ -94,6 +95,11 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
                 is NetworkResponse.Success -> {
                     showLoading(false)
                     shortMessage("SUKSES")
+                    val intent = Intent(this@UserValidation,LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
