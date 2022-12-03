@@ -1,5 +1,6 @@
 package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -116,12 +118,28 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnEdit.id -> editProfileContract.launch(Unit)
-            binding.btnRegisterSeller.id -> if (isDataFilled()) startActivity(
-                Intent(
-                    this,
-                    UserValidation::class.java
-                )
-            )
+            binding.btnRegisterSeller.id -> {
+                if (isDataFilled()) {
+                    val builder = AlertDialog.Builder(this@ProfileActivity, com.google.android.material.R.style.Theme_Material3_Light_Dialog_Alert)
+                    builder.setTitle(R.string.alert_title)
+                    builder.setMessage(R.string.alert_message)
+                    builder.setIcon(R.drawable.ic_warning_24)
+                    builder.setPositiveButton(R.string.yes){ dialog: DialogInterface, id : Int ->
+                        startActivity(
+                            Intent(
+                                this,
+                                UserValidation::class.java
+                            )
+                        )
+                    }
+                    builder.setNegativeButton(R.string.no){ dialog: DialogInterface, id: Int ->
+                        dialog.cancel()
+                    }
+
+                    val dialog = builder.create()
+                    dialog.show()
+                }
+            }
         }
     }
 }

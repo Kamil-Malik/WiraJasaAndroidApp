@@ -43,6 +43,10 @@
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="title">Service Name</string>
     <string name="price">Rp. 00.000.00.,-</string>
+    <string name="alert_title">Warning</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert_message">Have you agreed to all the terms of service?</string>
 
     <string name="tv_service_register">Service Register</string>
     <string name="hint_service_name">Service Name</string>
