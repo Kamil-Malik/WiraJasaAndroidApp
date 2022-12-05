@@ -111,6 +111,8 @@
     <string name="tv_form_have_to_be_filled">Form have to be filled</string>
     <string name="tv_success_add_data">Successfully Added Data</string>
     <string name="image_type">image/*</string>
+    <string name="btn_about_us">About Us</string>
+    <string name="btn_term_of_reference">Term of Reference</string>
 
     <string name="choose_a_picture">Choose a Picture</string>
     <string name="not_setup">Not Setup</string>
@@ -227,6 +229,12 @@
     <string name="edtProfile_phone_number_exceed_limit">Phone number cannot exceed more that 15 Characters</string>
     <string name="edtProfile_phone_number_starts_with_zero">Phone number should start with number 8</string>
     <string name="edtProfile_template_phone_number">62%s</string>
-    <string name="about_us">About Us</string>
-    <string name="term_of_reference">Term of Reference</string>
+    <string name="iv_icon_service">icon service</string>
+    <string name="iv_icon_address">Icon Address</string>
+    <string name="iv_icon_phone">Icon Phone</string>
+    <string name="btn_contact_by_whatsapp">Contact by Whatsapp</string>
+    <string name="tv_welcome_back">Welcome Back</string>
+    <string name="tv_welcome">Welcome</string>
+    <string name="btn_retry">Retry</string>
+
 </resources>
