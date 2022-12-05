@@ -16,6 +16,7 @@ import com.wirajasa.wirajasabisnis.databinding.FragmentBuyerBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.MainViewModel
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +42,7 @@ class BuyerFragment : Fragment() {
         controller = ListOfServiceController(onSelected = {
             startActivity(
                 Intent(activity, DetailServiceActivity::class.java).putExtra(
-                    DetailServiceActivity.EXTRA_SERVICE_POST,
+                    EXTRA_SERVICE_POST,
                     it
                 )
             )

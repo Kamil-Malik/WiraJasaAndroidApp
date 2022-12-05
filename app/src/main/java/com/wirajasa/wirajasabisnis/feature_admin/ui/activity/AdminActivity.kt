@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -25,7 +23,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var controller: AdminApplicationFormController
     private val viewModel by viewModels<AdminViewModel>()
     private val contract = registerForActivityResult(FormResultContract()) {
-        if(it) subscribe()
+        if(it) viewModel.getApplicationList()
     }
     private val binding by lazy {
         ActivityAdminBinding.inflate(layoutInflater)
@@ -40,23 +38,18 @@ class AdminActivity : AppCompatActivity() {
         controller = AdminApplicationFormController(onSelected = {
             contract.launch(it)
         }, onRetry = {
-            subscribe()
+            viewModel.getApplicationList()
         })
         binding.apply {
             rvApplicationForm.setController(controller)
             rvApplicationForm.layoutManager = LinearLayoutManager(this@AdminActivity)
             rvApplicationForm.setItemSpacingDp(8)
-            rvApplicationForm.addItemDecoration(
-                DividerItemDecoration(
-                    this@AdminActivity, LinearLayout.VERTICAL
-                )
-            )
         }
         subscribe()
     }
 
     private fun subscribe() {
-        viewModel.getApplicationList().observe(this) {
+        viewModel.applicationList.observe(this) {
             controller.status = it
         }
     }

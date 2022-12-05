@@ -1,10 +1,10 @@
 package com.wirajasa.wirajasabisnis.feature_buyer.domain.repository_impl
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PROVINCE
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
@@ -30,13 +30,13 @@ class BuyerRepositoryImpl @Inject constructor(
         }catch (e: Exception) {
             emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
         }
-    }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
+    }.onStart { emit(NetworkResponse.Loading(mContext.getString(R.string.loading_status_fetching_data))) }.flowOn(ioDispatcher)
 
     override fun getAllServiceByProvince(provinceName: String): Flow<NetworkResponse<List<ServicePost>>> = flow {
         try {
             if(provinceName.isNotEmpty()) {
                 val data = db.collection(SERVICE)
-                    .whereIn("province", listOf(provinceName))
+                    .whereIn(PROVINCE, listOf(provinceName))
                     .get().await().toObjects(ServicePost::class.java)
                 emit(NetworkResponse.Success(data))
             } else {
@@ -44,8 +44,7 @@ class BuyerRepositoryImpl @Inject constructor(
                 emit(NetworkResponse.Success(data))
             }
         } catch (e: Exception) {
-            Log.e(TAG, "getAllService: ${e.message} ${e.stackTrace}")
             emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
         }
-    }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
+    }.onStart { emit(NetworkResponse.Loading(mContext.getString(R.string.loading_status_fetching_data))) }.flowOn(ioDispatcher)
 }

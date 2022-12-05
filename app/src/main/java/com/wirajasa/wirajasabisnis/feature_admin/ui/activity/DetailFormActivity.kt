@@ -16,10 +16,13 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
-import com.wirajasa.wirajasabisnis.databinding.ActivityDetailFormBinding
-import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl
-import com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel.DetailFormViewModel
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.databinding.ActivityDetailFormBinding
+import com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel.DetailFormViewModel
+import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.APPROVED
+import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.REJECTED
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.FORM
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.RAW_LINK
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,9 +63,10 @@ class DetailFormActivity : AppCompatActivity(), View.OnClickListener {
         window?.statusBarColor = getColor(R.color.dark_blue)
         setContentView(binding.root)
         form = if (VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra("FORM", SellerApplication::class.java)
+            intent.getParcelableExtra(FORM, SellerApplication::class.java)
         } else {
-            intent.getParcelableExtra("FORM")
+
+            intent.getParcelableExtra(FORM)
         } as SellerApplication
         binding.apply {
             Glide.with(this@DetailFormActivity)
@@ -83,16 +87,16 @@ class DetailFormActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnCallSeller.id -> {
-                val rawLink = "https://wa.me/${form.phoneNumber}"
+                val rawLink = RAW_LINK + form.phoneNumber
                 val link = Uri.parse(rawLink)
                 startActivity(Intent(Intent.ACTION_VIEW).setData(link))
             }
             binding.btnAcceptSeller.id -> {
-                form.applicationStatus = AdminRepositoryImpl.APPROVED
+                form.applicationStatus = APPROVED
                 subscribe()
             }
             binding.btnRejectSeller.id -> {
-                form.applicationStatus = AdminRepositoryImpl.REJECTED
+                form.applicationStatus = REJECTED
                 subscribe()
             }
         }

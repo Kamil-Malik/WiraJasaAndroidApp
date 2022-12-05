@@ -11,7 +11,7 @@ import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.UID
+import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_UID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -72,7 +72,7 @@ class ProductRepositoryImpl @Inject constructor(
             Flow<NetworkResponse<List<ServicePost>>> = flow {
         try {
             val productReference = db.collection(SERVICE)
-                .whereEqualTo(UID, uid)
+                .whereEqualTo(CRYPTO_PREF_UID, uid)
                 .get().await().toObjects(ServicePost::class.java)
             emit(NetworkResponse.Success(productReference))
         } catch (e: Exception) {
