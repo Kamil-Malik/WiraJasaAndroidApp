@@ -2,6 +2,7 @@ package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -138,6 +139,10 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
                     val dialog = builder.create()
                     dialog.show()
                 }
+            }
+            binding.btnTermOfReference.id -> {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/document/d/1061pzKw39f8D8TO-A7trCYjk113qb8W8m_yRS_QRXyI/edit?usp=sharing"))
+                startActivity(browserIntent)
             }
         }
     }
