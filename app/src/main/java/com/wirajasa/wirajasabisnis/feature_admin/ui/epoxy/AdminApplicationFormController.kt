@@ -7,8 +7,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 
 class AdminApplicationFormController(
-    val onSelected: (SellerApplication) -> Unit,
-    private val onRetry: () -> Unit
+    val onSelected: (SellerApplication) -> Unit, private val onRetry: (Boolean) -> Unit
 ) : EpoxyController() {
 
     var status: NetworkResponse<List<SellerApplication>> = NetworkResponse.Loading(null)
@@ -21,11 +20,13 @@ class AdminApplicationFormController(
 
         when (status) {
             is NetworkResponse.GenericException -> ScreenErrorEpoxyModel(
-                (status as NetworkResponse.GenericException).cause, onRetry
-            ).id("error").addTo(this)
-            is NetworkResponse.Loading -> ScreenLoadingEpoxyModel((status as NetworkResponse.Loading).status)
-                .id("loading")
-                .addTo(this)
+                (status as NetworkResponse.GenericException).cause
+            ) {
+                onRetry(it)
+            }.id("error").addTo(this)
+            is NetworkResponse.Loading -> ScreenLoadingEpoxyModel((status as NetworkResponse.Loading).status).id(
+                    "loading"
+                ).addTo(this)
             is NetworkResponse.Success -> {
                 val data = (status as NetworkResponse.Success).data
                 data.forEach { sellerApplication ->
