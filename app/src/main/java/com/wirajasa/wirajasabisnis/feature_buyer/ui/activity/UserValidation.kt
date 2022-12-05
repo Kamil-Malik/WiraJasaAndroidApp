@@ -16,7 +16,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.databinding.ActivityUserValidationBinding
 import com.wirajasa.wirajasabisnis.core.usecases.CheckPermission
 import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
-import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant.READ_EXTERNAL
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.UserValidationViewModel
@@ -62,12 +62,12 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
         when (v?.id) {
             binding.btnSubmit.id -> {
                 if (applicationForm.province.isEmpty()) {
-                    shortMessage("Select province first")
+                    shortMessage(getString(R.string.select_province))
                     return
                 }
 
-                if(viewModel.getImageUri().isEmpty()) {
-                    shortMessage("Select File")
+                if (viewModel.getImageUri().isEmpty()) {
+                    shortMessage(getString(R.string.btn_select_file))
                     return
                 }
 
@@ -94,11 +94,11 @@ class UserValidation : AppCompatActivity(), View.OnClickListener,
                 }
                 is NetworkResponse.Success -> {
                     showLoading(false)
-                    shortMessage("SUKSES")
-                    val intent = Intent(this@UserValidation,LoginActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
+                    val intent = Intent(this@UserValidation, LoginActivity::class.java)
+                    startActivity(
+                        intent
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    )
                     finish()
                 }
             }

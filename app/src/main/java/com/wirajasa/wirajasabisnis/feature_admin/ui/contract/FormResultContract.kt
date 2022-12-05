@@ -6,7 +6,7 @@ import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.DetailFormActivity
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.FORM
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.FORM
 
 class FormResultContract : ActivityResultContract<SellerApplication, Boolean>() {
     override fun createIntent(context: Context, input: SellerApplication): Intent {

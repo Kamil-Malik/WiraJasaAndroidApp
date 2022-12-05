@@ -16,8 +16,9 @@ import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailServiceBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.UpdateServiceActivity
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.RAW_LINK
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant.TEL
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.EXTRA_SERVICE_POST
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.RAW_LINK
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -86,7 +87,7 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(intent)
                 } else {
                     val dialPhoneIntent =
-                        Intent(Intent.ACTION_DIAL, Uri.parse("tel:+62${post?.phoneNumber}"))
+                        Intent(Intent.ACTION_DIAL, Uri.parse(TEL + post?.phoneNumber))
                     startActivity(dialPhoneIntent)
                 }
             }

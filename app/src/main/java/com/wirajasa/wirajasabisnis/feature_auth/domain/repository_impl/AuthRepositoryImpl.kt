@@ -13,9 +13,12 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.feature_auth.domain.repository.AuthRepository
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
-import com.wirajasa.wirajasabisnis.utility.Constant.COLLECTION_USER
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant.COLLECTION_USER
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_SELLER
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.CREATED_AT
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.GUEST
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.UPDATED_AT
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_SELLER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -46,9 +49,10 @@ class AuthRepositoryImpl @Inject constructor(
 
             saveProfile(userProfile)
 
-            if(userProfile.isSeller) {
-                emit(NetworkResponse.Loading("Getting Seller Data"))
-                val sellerData = db.collection(CRYPTO_PREF_SELLER).whereEqualTo(UserProfile.USERID, userProfile.uid).get()
+            if (userProfile.isSeller) {
+                emit(NetworkResponse.Loading(context.getString(R.string.loading_status_getting_seller_data)))
+                val sellerData = db.collection(CRYPTO_PREF_SELLER)
+                    .whereEqualTo(UserProfile.USERID, userProfile.uid).get()
                     .await().toObjects(SellerApplication::class.java)
                 cryptoPref.saveSellerData(sellerData[0])
             }
@@ -75,8 +79,8 @@ class AuthRepositoryImpl @Inject constructor(
                 .set(defaultProfile)
                 .continueWith {
                     val createdAndUpdated: HashMap<String, Timestamp?> = hashMapOf(
-                        "created_at" to Timestamp.now(),
-                        "updated_at" to null
+                        CREATED_AT to Timestamp.now(),
+                        UPDATED_AT to null
                     )
                     db.collection(COLLECTION_USER).document((getCurrentUser() as FirebaseUser).uid)
                         .set(createdAndUpdated, SetOptions.merge())
@@ -118,7 +122,7 @@ class AuthRepositoryImpl @Inject constructor(
         val notSetup = context.getString(R.string.tv_not_setup)
         return UserProfile(
             uid = (auth.currentUser as FirebaseUser).uid,
-            username = "Guest${UUID.randomUUID()}",
+            username = GUEST + UUID.randomUUID(),
             address = notSetup,
             phone_number = notSetup,
             isSeller = false,

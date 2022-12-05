@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.utility.constant
+package com.wirajasa.wirajasabisnis.core.utility.constant
 
 object PrefKey {
     const val CRYPTO_PREF_USER_PREF = "encrypted_user_pref"

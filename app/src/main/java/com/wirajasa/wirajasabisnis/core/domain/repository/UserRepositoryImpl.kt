@@ -13,7 +13,7 @@ import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.USER
+import com.wirajasa.wirajasabisnis.core.utility.constant.FirebaseCollection.USER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

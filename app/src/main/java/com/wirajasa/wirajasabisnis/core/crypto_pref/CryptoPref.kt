@@ -6,20 +6,20 @@ import androidx.security.crypto.MasterKey
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_ADDRESS
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_ADMIN
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_APPLICATION_ID
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_APPLICATION_STATUS
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_FULL_NAME
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_PHONE_NUMBER
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_PHOTO_ID_URL
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_PHOTO_URL
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_PROVINCE
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_SELLER
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_UID
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_USERNAME
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_USER_PREF
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_VERIFIED
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_ADDRESS
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_ADMIN
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_APPLICATION_ID
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_APPLICATION_STATUS
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_FULL_NAME
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_PHONE_NUMBER
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_PHOTO_ID_URL
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_PHOTO_URL
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_PROVINCE
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_SELLER
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_UID
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_USERNAME
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_USER_PREF
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_VERIFIED
 
 class CryptoPref(mContext: Context) {
 

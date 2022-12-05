@@ -4,9 +4,9 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.epoxy.utility.ViewBindingKotlinModel
 import com.wirajasa.wirajasabisnis.databinding.ItemRowApplicationFormBinding
-import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.APPROVED
-import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.PENDING
-import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.REJECTED
+import com.wirajasa.wirajasabisnis.core.utility.constant.ApplicationStatus.APPROVED
+import com.wirajasa.wirajasabisnis.core.utility.constant.ApplicationStatus.PENDING
+import com.wirajasa.wirajasabisnis.core.utility.constant.ApplicationStatus.REJECTED
 
 data class ApplicationFormEpoxyModel(
     val applicationForm: SellerApplication,

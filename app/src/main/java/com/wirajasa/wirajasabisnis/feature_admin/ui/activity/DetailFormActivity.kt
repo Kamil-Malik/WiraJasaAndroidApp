@@ -19,10 +19,10 @@ import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailFormBinding
 import com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel.DetailFormViewModel
-import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.APPROVED
-import com.wirajasa.wirajasabisnis.utility.constant.ApplicationStatus.REJECTED
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.FORM
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.RAW_LINK
+import com.wirajasa.wirajasabisnis.core.utility.constant.ApplicationStatus.APPROVED
+import com.wirajasa.wirajasabisnis.core.utility.constant.ApplicationStatus.REJECTED
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.FORM
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.RAW_LINK
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

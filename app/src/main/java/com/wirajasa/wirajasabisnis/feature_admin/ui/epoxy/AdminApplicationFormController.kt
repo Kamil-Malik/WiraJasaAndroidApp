@@ -5,8 +5,8 @@ import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenErrorEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenLoadingEpoxyModel
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.utility.constant.EpoxyId.EPOXY_ERROR
-import com.wirajasa.wirajasabisnis.utility.constant.EpoxyId.EPOXY_LOADING
+import com.wirajasa.wirajasabisnis.core.utility.constant.EpoxyUtil.EPOXY_ERROR
+import com.wirajasa.wirajasabisnis.core.utility.constant.EpoxyUtil.EPOXY_LOADING
 
 class AdminApplicationFormController(
     val onSelected: (SellerApplication) -> Unit, private val onRetry: (Boolean) -> Unit
