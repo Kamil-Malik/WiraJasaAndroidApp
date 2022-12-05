@@ -104,6 +104,7 @@
         tools:targetApi="p" />
 
     <ImageView
+        android:contentDescription="@string/iv_icon_service"
         android:id="@+id/iv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,6 +133,7 @@
         tools:targetApi="p" />
 
     <ImageView
+        android:contentDescription="@string/iv_icon_address"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -160,6 +162,7 @@
         tools:text="Address (Province)" />
 
     <ImageView
+        android:contentDescription="@string/iv_icon_phone"
         android:id="@+id/iv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -197,7 +200,7 @@
         android:drawableEnd="@drawable/whatsapp"
         android:drawableTint="@color/btn_accept"
         android:fontFamily="@font/inter_medium"
-        android:text="Contact by Whatsapp"
+        android:text="@string/btn_contact_by_whatsapp"
         android:textAlignment="textStart"
         android:textColor="@color/btn_accept"
         app:cornerRadius="5dp"

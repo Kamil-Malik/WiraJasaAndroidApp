@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/term_of_reference"
+            android:text="@string/btn_term_of_reference"
             android:textColor="@color/black"
             app:cornerRadius="5dp" />
 
@@ -125,7 +125,7 @@
             android:layout_marginBottom="8dp"
             android:textAlignment="textStart"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/about_us"
+            android:text="@string/btn_about_us"
             android:textColor="@color/black"
             app:cornerRadius="5dp" />
     </LinearLayout>

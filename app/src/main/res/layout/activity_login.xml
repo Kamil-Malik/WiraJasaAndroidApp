@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Welcome Back"
+                android:text="@string/tv_welcome_back"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
