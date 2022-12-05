@@ -35,7 +35,8 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
         setView()
         binding.apply {
             btnEdit.setOnClickListener(this@ProfileActivity)
-            btnRegisterSeller.setOnClickListener(this@ProfileActivity)
+            btnRegisterAsSeller.setOnClickListener(this@ProfileActivity)
+            btnTermOfReference.setOnClickListener(this@ProfileActivity)
         }
     }
 
@@ -58,11 +59,9 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             tvName.text = profile.uid
 
             if (profile.isSeller) {
-                btnRegisterSeller.visibility = View.GONE
-                spacerBottom.visibility = View.VISIBLE
+                btnRegisterAsSeller.visibility = View.GONE
             } else {
-                btnRegisterSeller.visibility = View.VISIBLE
-                spacerBottom.visibility = View.VISIBLE
+                btnRegisterAsSeller.visibility = View.VISIBLE
             }
         }
     }
@@ -118,7 +117,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnEdit.id -> editProfileContract.launch(Unit)
-            binding.btnRegisterSeller.id -> {
+            binding.btnRegisterAsSeller.id -> {
                 if (isDataFilled()) {
                     val builder = AlertDialog.Builder(this@ProfileActivity, com.google.android.material.R.style.Theme_Material3_Light_Dialog_Alert)
                     builder.setTitle(R.string.alert_title)
