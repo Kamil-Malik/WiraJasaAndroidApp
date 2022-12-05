@@ -1,6 +1,7 @@
 package com.wirajasa.wirajasabisnis.feature_seller.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +45,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             tvProfileAddress.text = sellerData.address
             tvProfilePhoneNumber.text = sellerData.phoneNumber
             tvProfileVerificationStatus.text = "Status : ${sellerData.applicationStatus}"
-            btnLogout.setOnClickListener(this@ProfileFragment)
+            btnLogOut.setOnClickListener(this@ProfileFragment)
+            btnTermOfReference.setOnClickListener(this@ProfileFragment)
         }
         return binding.root
     }
@@ -61,13 +63,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
-            binding.btnLogout.id -> {
+            binding.btnLogOut.id -> {
                 Firebase.auth.signOut()
                 val intent = Intent(context, LoginActivity::class.java)
                 startActivity(
                     intent
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 )
+            }
+            binding.btnTermOfReference.id -> {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/document/d/1061pzKw39f8D8TO-A7trCYjk113qb8W8m_yRS_QRXyI/edit?usp=sharing"))
+                startActivity(browserIntent)
             }
         }
     }

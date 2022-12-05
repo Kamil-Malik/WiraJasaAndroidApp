@@ -227,4 +227,6 @@
     <string name="edtProfile_phone_number_exceed_limit">Phone number cannot exceed more that 15 Characters</string>
     <string name="edtProfile_phone_number_starts_with_zero">Phone number should start with number 8</string>
     <string name="edtProfile_template_phone_number">62%s</string>
+    <string name="about_us">About Us</string>
+    <string name="term_of_reference">Term of Reference</string>
 </resources>
