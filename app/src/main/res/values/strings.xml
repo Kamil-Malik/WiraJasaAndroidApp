@@ -126,7 +126,7 @@
     <string name="tv_slash_unit">/unit</string>
 
     <!--Profile Activity-->
-    <string name="profile_phone_number">+%s</string>
+    <string name="profile_phone_number">+62%s</string>
     <string name="profile">Profile</string>
     <string name="iv_profile_picture">Profile Picture</string>
     <string name="btn_edit_picture">Edit Photo</string>
@@ -138,6 +138,11 @@
     <string name="loading_status_uploading_image">Uploading Image…</string>
     <string name="loading_status_updating_profile_data">Updating Profile Data…</string>
     <string name="loading_status_uploading_application_form">Uploading application form…</string>
+    <string name="loading_status_fetching_data">Fetching Data</string>
+    <string name="loading_status_updating_seller_status">Updating Seller Status</string>
+    <string name="loading_status_updating_form_status">Updating Form Status</string>
+
+
 
 
     <string name="tv_gallery_permission_title">Need gallery access</string>
@@ -215,6 +220,7 @@
 
 
     <!--Detail Service-->
+    <string name="detail_service_phone_number">+62%s</string>
 
 <!--Edit Profile-->
     <string name="edtProfile_phone_number_contains_invalid_characters">Phone number should consist only with Numbers</string>

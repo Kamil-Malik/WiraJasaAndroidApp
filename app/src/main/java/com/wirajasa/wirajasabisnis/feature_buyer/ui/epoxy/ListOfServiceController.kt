@@ -10,12 +10,15 @@ import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 
 class ListOfServiceController(
     onSelected: (ServicePost) -> Unit,
-    onRetry: () -> Unit) : GenericServiceEpoxyController(onSelected, onRetry) {
+    onRetry: (Boolean) -> Unit
+) : GenericServiceEpoxyController(onSelected, onRetry) {
 
     override fun buildModels() {
         when (data) {
             is NetworkResponse.GenericException -> {
-                ScreenErrorEpoxyModel((data as NetworkResponse.GenericException).cause, onRetry).id(
+                ScreenErrorEpoxyModel((data as NetworkResponse.GenericException).cause) {
+                   onRetry(true)
+                }.id(
                     "error"
                 ).addTo(this)
             }
@@ -26,7 +29,8 @@ class ListOfServiceController(
             is NetworkResponse.Success -> {
                 val result = (data as NetworkResponse.Success).data
                 if (result.isEmpty()) {
-                    ScreenEmptyEpoxyModel("No Service Found on this Area").id("emptyScreen").addTo(this)
+                    ScreenEmptyEpoxyModel("No Service Found on this Area").id("emptyScreen")
+                        .addTo(this)
                 } else result.forEach {
                     ServiceEpoxyModel(it, onSelected).id(it.serviceId).addTo(this)
                 }

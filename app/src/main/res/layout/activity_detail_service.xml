@@ -187,6 +187,27 @@
         tools:text="Phone Number" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContactWhatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/whatsapp"
+        android:drawableTint="@color/btn_accept"
+        android:fontFamily="@font/inter_medium"
+        android:text="Contact by Whatsapp"
+        android:textAlignment="textStart"
+        android:textColor="@color/btn_accept"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@id/btnContactEdit"
+        app:layout_constraintEnd_toEndOf="@+id/ivDetail"
+        app:layout_constraintStart_toStartOf="@+id/ivDetail"
+        app:strokeColor="@color/btn_accept"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContactEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

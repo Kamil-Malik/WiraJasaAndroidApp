@@ -7,15 +7,15 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityMainBinding
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity.Companion.EXTRA_SERVICE_POST
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.MainViewModel
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,18 +34,17 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllService()
 
         val currentUser = viewModel.getUser()
-        if(!currentUser.username.contains("Guest"))
-            binding.tvGreetUser.text = "Hi, ${currentUser.username}"
+        if (!currentUser.username.contains("Guest")) binding.tvGreetUser.text =
+            "Hi, ${currentUser.username}"
 
         controller = ListOfServiceController(onSelected = {
             startActivity(
                 Intent(this, DetailServiceActivity::class.java).putExtra(
-                    EXTRA_SERVICE_POST,
-                    it
+                    EXTRA_SERVICE_POST, it
                 )
             )
         }, onRetry = {
-            Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+            viewModel.getAllService()
         })
 
         val arrayAdapter =
@@ -53,7 +52,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             edtSearch.setAdapter(arrayAdapter)
-            edtSearch.addTextChangedListener(textWatcher)
+            edtSearch.addTextChangedListener {
+                viewModel.getServiceByName(it.toString())
+            }
             epoxyService.apply {
                 setController(controller)
                 layoutManager = LinearLayoutManager(this@MainActivity)
@@ -94,6 +95,5 @@ class MainActivity : AppCompatActivity() {
         override fun afterTextChanged(s: Editable?) {
             return
         }
-
     }
 }

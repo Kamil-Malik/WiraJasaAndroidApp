@@ -12,9 +12,10 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.databinding.FragmentSellerDashboardBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
-import com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy.SellerProductEpoxyController
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.AddingServiceActivity
+import com.wirajasa.wirajasabisnis.feature_seller.ui.epoxy.SellerProductEpoxyController
 import com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel.DashboardViewModel
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,10 +51,10 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                     phoneNumber = it.phoneNumber,
                     photoUrl = it.photoUrl
                 )
-                intent.putExtra(DetailServiceActivity.EXTRA_SERVICE_POST,service)
+                intent.putExtra(EXTRA_SERVICE_POST,service)
                 startActivity(intent)
             }, onRetry = {
-
+                dashboardViewModel.getAllProductsAccordingUID(uid)
             }
         )
         binding.apply {
@@ -66,9 +67,9 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             }
         }
         dashboardViewModel.getAllProductsAccordingUID(uid)
-            .observe(viewLifecycleOwner){
-               controller.data = it
-            }
+        dashboardViewModel.sellerItem.observe(viewLifecycleOwner){
+            controller.data = it
+        }
     }
 
     override fun onClick(v: View?) {

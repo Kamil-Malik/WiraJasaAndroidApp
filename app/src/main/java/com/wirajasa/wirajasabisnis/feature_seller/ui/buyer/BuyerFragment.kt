@@ -4,18 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.FragmentBuyerBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.ProfileActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.MainViewModel
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,12 +42,12 @@ class BuyerFragment : Fragment() {
         controller = ListOfServiceController(onSelected = {
             startActivity(
                 Intent(activity, DetailServiceActivity::class.java).putExtra(
-                    DetailServiceActivity.EXTRA_SERVICE_POST,
+                    EXTRA_SERVICE_POST,
                     it
                 )
             )
         }, onRetry = {
-            Toast.makeText(activity, "Test", Toast.LENGTH_SHORT).show()
+            viewModel.getAllService()
         })
 
         val arrayAdapter =

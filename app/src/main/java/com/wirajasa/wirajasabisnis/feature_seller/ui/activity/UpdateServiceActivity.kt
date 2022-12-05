@@ -21,6 +21,7 @@ import com.wirajasa.wirajasabisnis.databinding.ActivityUpdateServiceBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel.UpdatingServiceViewModel
 import com.wirajasa.wirajasabisnis.utility.Constant
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -38,12 +39,12 @@ class UpdateServiceActivity : AppCompatActivity(), View.OnClickListener,
 
         post = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(
-                DetailServiceActivity.EXTRA_SERVICE_POST,
+                EXTRA_SERVICE_POST,
                 ServicePost::class.java
             )
         } else {
             intent.getParcelableExtra<ServicePost>(
-                DetailServiceActivity.EXTRA_SERVICE_POST
+                EXTRA_SERVICE_POST
             ) as ServicePost
         }
 
