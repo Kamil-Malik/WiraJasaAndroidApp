@@ -7,11 +7,10 @@ import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenErrorEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.model.ScreenLoadingEpoxyModel
 import com.wirajasa.wirajasabisnis.core.epoxy.model.ServiceEpoxyModel
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 
 class SellerProductEpoxyController(
     onSelected: (ServicePost) -> Unit,
-    onRetry: () -> Unit
+    onRetry: (Boolean) -> Unit
 ) : GenericServiceEpoxyController(onSelected, onRetry) {
 
     override fun buildModels() {

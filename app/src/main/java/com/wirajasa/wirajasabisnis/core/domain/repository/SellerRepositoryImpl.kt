@@ -11,6 +11,7 @@ import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.feature_admin.domain.repository_impl.AdminRepositoryImpl.Companion.PENDING
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.USER
 import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SELLER
 import kotlinx.coroutines.CoroutineDispatcher
@@ -39,7 +40,9 @@ class SellerRepositoryImpl @Inject constructor(
             val id = db.collection(SELLER).document().id
             form.applicationId = id
             db.collection(SELLER).document(id)
-                .set(form, SetOptions.merge()).await()
+                .set(form.apply {
+                    applicationStatus = PENDING
+                }, SetOptions.merge()).await()
 
             emit(NetworkResponse.Loading(context.getString(R.string.loading_status_updating_profile_data)))
             val user = cryptoPref.getProfile()

@@ -32,11 +32,11 @@ class BuyerRepositoryImpl @Inject constructor(
         }
     }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
 
-    override fun getAllServiceByProvince(province: String): Flow<NetworkResponse<List<ServicePost>>> = flow {
+    override fun getAllServiceByProvince(provinceName: String): Flow<NetworkResponse<List<ServicePost>>> = flow {
         try {
-            if(province.isNotEmpty()) {
+            if(provinceName.isNotEmpty()) {
                 val data = db.collection(SERVICE)
-                    .whereIn("province", listOf(province))
+                    .whereIn("province", listOf(provinceName))
                     .get().await().toObjects(ServicePost::class.java)
                 emit(NetworkResponse.Success(data))
             } else {
@@ -48,8 +48,4 @@ class BuyerRepositoryImpl @Inject constructor(
             emit(NetworkResponse.GenericException(HandleException(mContext, e).invoke()))
         }
     }.onStart { emit(NetworkResponse.Loading("Fetching Data")) }.flowOn(ioDispatcher)
-
-    companion object {
-        private const val NAME = "name"
-    }
 }

@@ -79,7 +79,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         when (v?.id) {
             binding.btnEditPhoto.id -> startGallery()
             binding.btnSave.id -> {
-                if (userProfile.phone_number.first().toString() == "0") {
+                if (userProfile.phone_number.first().toString() != "8") {
                     binding.layoutPhoneNumber.error =
                         getString(R.string.edtProfile_phone_number_starts_with_zero)
                     return
@@ -97,8 +97,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                     return
                 }
 
-                userProfile.phone_number =
-                    getString(R.string.edtProfile_template_phone_number, userProfile.phone_number)
                 if (userProfile.address.isEmpty()) userProfile.address =
                     getString(R.string.not_setup)
 

@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }, onRetry = {
-            Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+           viewModel.getAllService()
         })
 
         val arrayAdapter =

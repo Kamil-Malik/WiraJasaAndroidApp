@@ -55,7 +55,7 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         binding.apply {
-            tvPhoneNumber.text = post?.phoneNumber
+            tvPhoneNumber.text = getString(R.string.detail_service_phone_number, post?.phoneNumber)
             tvAddress.text = getString(R.string.detail_address, post?.address, post?.province)
             tvPrice.text = CurrencyFormatter().invoke(post?.price.toString())
             tvServiceName.text = post?.name
@@ -70,6 +70,9 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            binding.btnContactWhatsapp.id -> {
+
+            }
             binding.btnContactEdit.id -> {
                 if (isSeller) {
                     val intent =
@@ -78,7 +81,7 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(intent)
                 } else {
                     val dialPhoneIntent =
-                        Intent(Intent.ACTION_DIAL, Uri.parse("tel:${post?.phoneNumber}"))
+                        Intent(Intent.ACTION_DIAL, Uri.parse("tel:+62${post?.phoneNumber}"))
                     startActivity(dialPhoneIntent)
                 }
             }
