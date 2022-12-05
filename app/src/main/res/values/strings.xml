@@ -138,6 +138,11 @@
     <string name="loading_status_uploading_image">Uploading Image…</string>
     <string name="loading_status_updating_profile_data">Updating Profile Data…</string>
     <string name="loading_status_uploading_application_form">Uploading application form…</string>
+    <string name="loading_status_fetching_data">Fetching Data</string>
+    <string name="loading_status_updating_seller_status">Updating Seller Status</string>
+    <string name="loading_status_updating_form_status">Updating Form Status</string>
+
+
 
 
     <string name="tv_gallery_permission_title">Need gallery access</string>

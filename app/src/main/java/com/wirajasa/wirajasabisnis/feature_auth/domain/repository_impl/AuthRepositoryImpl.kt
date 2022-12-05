@@ -15,7 +15,7 @@ import com.wirajasa.wirajasabisnis.feature_auth.domain.repository.AuthRepository
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.utility.Constant.COLLECTION_USER
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.SELLER
+import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_SELLER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -48,7 +48,7 @@ class AuthRepositoryImpl @Inject constructor(
 
             if(userProfile.isSeller) {
                 emit(NetworkResponse.Loading("Getting Seller Data"))
-                val sellerData = db.collection(SELLER).whereEqualTo(UserProfile.USERID, userProfile.uid).get()
+                val sellerData = db.collection(CRYPTO_PREF_SELLER).whereEqualTo(UserProfile.USERID, userProfile.uid).get()
                     .await().toObjects(SellerApplication::class.java)
                 cryptoPref.saveSellerData(sellerData[0])
             }

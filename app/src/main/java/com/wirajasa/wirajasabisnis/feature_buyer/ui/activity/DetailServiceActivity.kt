@@ -16,6 +16,8 @@ import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.databinding.ActivityDetailServiceBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.UpdateServiceActivity
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
+import com.wirajasa.wirajasabisnis.utility.constant.Dump.RAW_LINK
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,13 +67,16 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
                 .into(ivDetail)
 
             btnContactEdit.setOnClickListener(this@DetailServiceActivity)
+            btnContactWhatsapp.setOnClickListener(this@DetailServiceActivity)
         }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             binding.btnContactWhatsapp.id -> {
-
+                val rawLink = RAW_LINK + post?.phoneNumber
+                val link = Uri.parse(rawLink)
+                startActivity(Intent(Intent.ACTION_VIEW).setData(link))
             }
             binding.btnContactEdit.id -> {
                 if (isSeller) {
@@ -86,9 +91,5 @@ class DetailServiceActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-    }
-
-    companion object {
-        const val EXTRA_SERVICE_POST = "extra_service_post"
     }
 }
