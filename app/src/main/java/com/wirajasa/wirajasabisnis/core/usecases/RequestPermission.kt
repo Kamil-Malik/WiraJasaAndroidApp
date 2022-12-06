@@ -6,7 +6,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.wirajasa.wirajasabisnis.R
-import com.wirajasa.wirajasabisnis.utility.Constant
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant
 import pub.devrel.easypermissions.EasyPermissions
 
 class RequestPermission(private val context: Context) {

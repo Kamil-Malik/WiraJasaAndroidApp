@@ -8,7 +8,7 @@ import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PROVI
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
-import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
+import com.wirajasa.wirajasabisnis.core.utility.constant.FirebaseCollection.SERVICE
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

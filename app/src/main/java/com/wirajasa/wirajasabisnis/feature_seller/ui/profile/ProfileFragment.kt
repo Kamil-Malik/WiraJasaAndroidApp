@@ -44,16 +44,11 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             tvProfileName.text = sellerData.fullName
             tvProfileAddress.text = sellerData.address
             tvProfilePhoneNumber.text = sellerData.phoneNumber
-            tvProfileVerificationStatus.text = "Status : ${sellerData.applicationStatus}"
+            tvProfileVerificationStatus.text = getString(R.string.tv_application_status, sellerData.applicationStatus)
             btnLogOut.setOnClickListener(this@ProfileFragment)
             btnTermOfReference.setOnClickListener(this@ProfileFragment)
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {

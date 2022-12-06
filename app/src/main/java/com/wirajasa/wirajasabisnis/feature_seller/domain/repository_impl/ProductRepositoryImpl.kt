@@ -3,15 +3,27 @@ package com.wirajasa.wirajasabisnis.feature_seller.domain.repository_impl
 import android.content.Context
 import android.net.Uri
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.StorageReference
 import com.wirajasa.wirajasabisnis.core.crypto_pref.CryptoPref
 import com.wirajasa.wirajasabisnis.core.domain.model.SellerApplication
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.ADDRESS
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.NAME
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PHONE_NUMBER
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PHOTO
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PRICE
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.PROVINCE
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.SERVICE_ID
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.SLASH
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.UID
+import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost.Companion.UNIT
 import com.wirajasa.wirajasabisnis.core.usecases.HandleException
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_seller.domain.repository.ProductRepository
-import com.wirajasa.wirajasabisnis.utility.constant.FirebaseCollection.SERVICE
-import com.wirajasa.wirajasabisnis.utility.constant.PrefKey.CRYPTO_PREF_UID
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.JPG
+import com.wirajasa.wirajasabisnis.core.utility.constant.FirebaseCollection.SERVICE
+import com.wirajasa.wirajasabisnis.core.utility.constant.PrefKey.CRYPTO_PREF_UID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -91,43 +103,42 @@ class ProductRepositoryImpl @Inject constructor(
         phoneNumber: String,
         photo: Uri?,
         photoUrl: String
-    ):
-            Flow<NetworkResponse<Boolean>> = flow {
+    ): Flow<NetworkResponse<Boolean>> = flow {
         try {
             if (photo != null){
-                storage.child("$SERVICE/$serviceId.jpg")
+                storage.child(SERVICE + SLASH + serviceId + JPG )
                     .delete().await()
-                val uploadPhoto = storage.child("$SERVICE/$serviceId.jpg")
+                val uploadPhoto = storage.child(SERVICE + SLASH + serviceId + JPG)
                 uploadPhoto.putFile(photo)
                     .continueWithTask {
                         uploadPhoto.downloadUrl
                     }.continueWithTask { downloadUrlTask ->
                         val servicePost = mapOf(
-                            "uid" to uid,
-                            "service_id" to serviceId,
-                            "name" to name,
-                            "price" to price,
-                            "unit" to unit,
-                            "address" to address,
-                            "province" to province,
-                            "phone_number" to phoneNumber,
-                            "photo_url" to downloadUrlTask.result.toString()
+                            UID to uid,
+                            SERVICE_ID to serviceId,
+                            NAME to name,
+                            PRICE to price,
+                            UNIT to unit,
+                            ADDRESS to address,
+                            PROVINCE to province,
+                            PHONE_NUMBER to phoneNumber,
+                            PHOTO to downloadUrlTask.result.toString()
                         )
-                        db.collection(SERVICE).document(serviceId).set(servicePost)
+                        db.collection(SERVICE).document(serviceId).set(servicePost, SetOptions.merge())
                     }.await()
             }else{
                 val servicePost = mapOf(
-                    "uid" to uid,
-                    "service_id" to serviceId,
-                    "name" to name,
-                    "price" to price,
-                    "unit" to unit,
-                    "address" to address,
-                    "province" to province,
-                    "phone_number" to phoneNumber,
-                    "photo_url" to photoUrl
+                    UID to uid,
+                    SERVICE_ID to serviceId,
+                    NAME to name,
+                    PRICE to price,
+                    UNIT to unit,
+                    ADDRESS to address,
+                    PROVINCE to province,
+                    PHONE_NUMBER to phoneNumber,
+                    PHOTO to photoUrl
                 )
-                db.collection(SERVICE).document(serviceId).set(servicePost).await()
+                db.collection(SERVICE).document(serviceId).set(servicePost ,SetOptions.merge()).await()
             }
             emit(NetworkResponse.Success(data = true))
         }catch (e: Exception){

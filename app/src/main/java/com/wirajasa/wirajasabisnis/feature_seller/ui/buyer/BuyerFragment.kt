@@ -2,12 +2,11 @@ package com.wirajasa.wirajasabisnis.feature_seller.ui.buyer
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +15,7 @@ import com.wirajasa.wirajasabisnis.databinding.FragmentBuyerBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.epoxy.ListOfServiceController
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.MainViewModel
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +25,6 @@ class BuyerFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var controller: ListOfServiceController
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,7 +53,9 @@ class BuyerFragment : Fragment() {
 
         binding.apply {
             edtSearch.setAdapter(arrayAdapter)
-            edtSearch.addTextChangedListener(textWatcher)
+            edtSearch.addTextChangedListener {
+                viewModel.getServiceByName(it.toString())
+            }
             epoxyService.apply {
                 setController(controller)
                 layoutManager = LinearLayoutManager(requireContext())
@@ -70,21 +70,6 @@ class BuyerFragment : Fragment() {
         viewModel.listOfService.observe(viewLifecycleOwner) {
             controller.data = it
         }
-    }
-
-    private val textWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            return
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            viewModel.getServiceByName(s.toString())
-        }
-
-        override fun afterTextChanged(s: Editable?) {
-            return
-        }
-
     }
 
     override fun onDestroyView() {

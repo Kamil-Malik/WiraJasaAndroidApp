@@ -18,10 +18,9 @@ import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.databinding.ActivityUpdateServiceBinding
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import com.wirajasa.wirajasabisnis.feature_seller.ui.viewmodel.UpdatingServiceViewModel
-import com.wirajasa.wirajasabisnis.utility.Constant
-import com.wirajasa.wirajasabisnis.utility.constant.Dump.EXTRA_SERVICE_POST
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant
+import com.wirajasa.wirajasabisnis.core.utility.constant.Dump.EXTRA_SERVICE_POST
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 

@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.utility.constant
+package com.wirajasa.wirajasabisnis.core.utility.constant
 
 object FirebaseCollection {
     const val SELLER = "seller"

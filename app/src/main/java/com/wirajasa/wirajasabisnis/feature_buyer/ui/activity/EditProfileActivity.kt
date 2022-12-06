@@ -1,12 +1,10 @@
 package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -23,7 +21,7 @@ import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.EditProfileViewModel
-import com.wirajasa.wirajasabisnis.utility.Constant.READ_EXTERNAL
+import com.wirajasa.wirajasabisnis.core.utility.constant.Constant.READ_EXTERNAL
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -116,7 +114,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                                 .into(binding.ivProfile)
 
                             isLoading(false)
-                            shortMessage("Profile Updated")
+                            shortMessage(getString(R.string.profile_updated))
                             setResult(Activity.RESULT_OK)
                         }
                     }
@@ -142,7 +140,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            Log.d(ContentValues.TAG, " URI: $selectedImg")
             Glide.with(this).load(selectedImg).fitCenter().circleCrop().into(binding.ivProfile)
             viewModel.setNewImageUri(selectedImg)
         }
