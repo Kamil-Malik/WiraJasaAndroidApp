@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,7 +52,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
                     phoneNumber = it.phoneNumber,
                     photoUrl = it.photoUrl
                 )
-                intent.putExtra(EXTRA_SERVICE_POST,service)
+                intent.putExtra(EXTRA_SERVICE_POST, service)
                 startActivity(intent)
             }, onRetry = {
                 dashboardViewModel.getAllProductsAccordingUID(uid)
@@ -67,7 +68,7 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             }
         }
         dashboardViewModel.getAllProductsAccordingUID(uid)
-        dashboardViewModel.sellerItem.observe(viewLifecycleOwner){
+        dashboardViewModel.sellerItem.observe(viewLifecycleOwner) {
             controller.data = it
         }
     }
@@ -75,7 +76,15 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.fab_add -> {
-                activity?.startActivity(Intent(activity, AddingServiceActivity::class.java))
+                val data = dashboardViewModel.getProfile()
+                if (data.isVerified)
+                    activity?.startActivity(Intent(activity, AddingServiceActivity::class.java))
+                else
+                    Toast.makeText(
+                        activity,
+                        getString(R.string.verified_first),
+                        Toast.LENGTH_SHORT
+                    ).show()
             }
         }
     }
