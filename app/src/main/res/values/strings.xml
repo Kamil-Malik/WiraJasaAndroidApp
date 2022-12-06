@@ -240,7 +240,8 @@
     <string name="tv_welcome">Welcome</string>
     <string name="btn_retry">Retry</string>
 
-    <string name="info">Kami merupakan sebuah organisasi non-profit yang tengah berusaha memajukan ekonomi masyarakat dengan cara menyediakan platform yang dapat dipergunakan sebagai media pemasaran oleh pengusaha-pengusaha skala mikro. Dengan adanya aplikasi ini, diharapkan masyarakat dapat menjangkau lebih banyak pelanggan didaerahnya.</string>
+    <string name="info">We are a non-profit organization that is trying to advance the community\'s economy by providing a platform that can be used as a marketing medium by micro-scale entrepreneurs. With this application, it is hoped that people can reach more customers in their area.</string>
     <string name="info_title">Wirajasa</string>
+    <string name="verified_first">You need to be verified before you can\'t make a post</string>
     <string name="edit_my_form">Edit My Form</string>
 </resources>
