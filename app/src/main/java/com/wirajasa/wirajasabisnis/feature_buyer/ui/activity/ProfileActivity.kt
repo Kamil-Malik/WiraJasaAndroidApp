@@ -16,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
+import com.wirajasa.wirajasabisnis.core.ui.InformationActivity
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.ProfileViewModel
@@ -38,6 +39,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
             btnEdit.setOnClickListener(this@ProfileActivity)
             btnRegisterAsSeller.setOnClickListener(this@ProfileActivity)
             btnTermOfReference.setOnClickListener(this@ProfileActivity)
+            btnAboutUs.setOnClickListener(this@ProfileActivity)
         }
     }
 
@@ -117,6 +119,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            binding.btnAboutUs.id -> startActivity(Intent(this, InformationActivity::class.java))
             binding.btnEdit.id -> editProfileContract.launch(Unit)
             binding.btnRegisterAsSeller.id -> {
                 if (isDataFilled()) {

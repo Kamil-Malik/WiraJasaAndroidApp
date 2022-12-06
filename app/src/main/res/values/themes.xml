@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,16 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/dark_blue</item>
         <!-- Customize your theme here. -->
-<!--        <item name="android:textColorHint">@color/dark_blue</item>-->
-<!--        <item name="startIconTint">@color/dark_blue</item>-->
         <item name="endIconTint">@color/dark_blue</item>
-
-
-
-
         <item name="startIconTint">@color/dark_blue</item>
-
-
         <item name="android:colorPrimaryDark">@color/orange</item>
         <item name="colorPrimaryDark">@color/orange</item>
         <item name="background">@color/orange</item>
@@ -29,23 +21,20 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/dark_blue</item>
         <item name="android:textColorHint">@color/dark_blue</item>
-
-
         <item name="colorOnSecondaryContainer">@color/white</item>
         <item name="colorOnSurfaceVariant">@color/dark_blue</item>
         <item name="colorSecondaryContainer">@color/dark_blue</item>
     </style>
 
-    <!-- Splash Screen Theme. -->
-<!--    <style name="Theme.AppSplash" parent="Theme.SplashScreen">-->
-<!--        <item name="windowSplashScreenBackground">@color/grey</item>-->
-<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>-->
-<!--        <item name="windowSplashScreenAnimationDuration">300</item>-->
-<!--        <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>-->
+    <style name="Theme.AppSplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/grey</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_2</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>
 
-<!--        &lt;!&ndash; Status bar and Nav bar configs &ndash;&gt;-->
-<!--        <item name="android:statusBarColor" >@color/grey</item>-->
-<!--        <item name="android:navigationBarColor">@color/grey</item>-->
-<!--        <item name="android:windowLightStatusBar">false</item>-->
-<!--    </style>-->
+        <!-- Status bar and Nav bar configs -->
+        <item name="android:statusBarColor" >@color/grey</item>
+        <item name="android:navigationBarColor">@color/grey</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>

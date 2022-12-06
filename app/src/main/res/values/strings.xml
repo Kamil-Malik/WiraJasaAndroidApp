@@ -146,7 +146,6 @@
     <string name="loading_status_getting_seller_data">Getting Seller Data…</string>
 
 
-
     <string name="tv_application_status">Status : %s</string>
     <string name="tv_gallery_permission_title">Need gallery access</string>
     <string name="tv_gallery_permission_denied">Permission Denied, please grant access to select picture</string>
@@ -204,7 +203,7 @@
         <item>Papua Barat Daya</item>
     </string-array>
 
-<!--Admin-->
+    <!--Admin-->
     <string name="admin_application_form_id">Application ID\t\t\t: %s</string>
     <string name="admin_applicant_name">Applicant Name\t: %s</string>
     <string name="admin_actionbar_title">Admin Dashboard</string>
@@ -217,7 +216,7 @@
     <string name="admin_tv_address">Address\t\t: %s</string>
     <string name="admin_toolbar_application_form_title">Seller Application Form</string>
 
-<!--Dashboard-->
+    <!--Dashboard-->
     <string name="dashboard_user_tv_welcome">Hi, %s</string>
     <string name="dashboard_user_btn_search">Button Search Dashboard User</string>
     <string name="dashboard_user_edt_search">Search</string>
@@ -228,7 +227,7 @@
     <!--Detail Service-->
     <string name="detail_service_phone_number">+62%s</string>
 
-<!--Edit Profile-->
+    <!--Edit Profile-->
     <string name="edtProfile_phone_number_contains_invalid_characters">Phone number should consist only with Numbers</string>
     <string name="edtProfile_phone_number_exceed_limit">Phone number cannot exceed more that 15 Characters</string>
     <string name="edtProfile_phone_number_starts_with_zero">Phone number should start with number 8</string>
@@ -241,4 +240,7 @@
     <string name="tv_welcome">Welcome</string>
     <string name="btn_retry">Retry</string>
 
+    <string name="info">Kami merupakan sebuah organisasi non-profit yang tengah berusaha memajukan ekonomi masyarakat dengan cara menyediakan platform yang dapat dipergunakan sebagai media pemasaran oleh pengusaha-pengusaha skala mikro. Dengan adanya aplikasi ini, diharapkan masyarakat dapat menjangkau lebih banyak pelanggan didaerahnya.</string>
+    <string name="info_title">Wirajasa</string>
+    <string name="edit_my_form">Edit My Form</string>
 </resources>
