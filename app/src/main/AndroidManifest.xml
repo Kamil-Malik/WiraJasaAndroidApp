@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -12,41 +14,70 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_2"
         android:supportsRtl="true"
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.service.DetailServiceActivity"
+            android:name=".core.ui.InformationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.edit_profile.EditProfileActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".presentation.service.AddingServiceActivity"
+            android:name=".feature_admin.ui.activity.DetailFormActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.profile.ProfileActivity"
+            android:name=".feature_admin.ui.activity.AdminActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.seller.SellerBaseActivity"
+            android:name=".feature_buyer.ui.activity.DetailServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_buyer.ui.activity.EditProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_seller.ui.activity.AddingServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_seller.ui.activity.UpdateServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_buyer.ui.activity.ProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".feature_seller.ui.activity.SellerBaseActivity"
             android:exported="false"
             android:label="@string/title_activity_seller_base">
             <meta-data
@@ -54,42 +85,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.user.UserValidation"
+            android:name=".feature_buyer.ui.activity.UserValidation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.BuyerDashboardActivity"
+            android:name=".feature_auth.ui.activity.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.dashboard.SellerDashboardActivity"
+            android:name=".feature_auth.ui.activity.ResetPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.register.RegisterActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".presentation.reset_password.ResetPasswordActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".presentation.login.LoginActivity"
+            android:name=".feature_auth.ui.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -102,12 +119,11 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.main_activity.MainActivity"
+            android:name=".feature_buyer.ui.activity.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
     </application>
-
 </manifest>

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.wirajasa.wirajasabisnis.ui.seller.ui.home.ProfileFragment"
+        android:name="com.wirajasa.wirajasabisnis.feature_seller.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.wirajasa.wirajasabisnis.ui.seller.ui.dashboard.DashboardFragment"
+        android:name="com.wirajasa.wirajasabisnis.feature_seller.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_seller_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.wirajasa.wirajasabisnis.ui.seller.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_buyer"
+        android:name="com.wirajasa.wirajasabisnis.feature_seller.ui.buyer.BuyerFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_buyer" />
 </navigation>

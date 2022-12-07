@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange">
+    android:background="@color/beige">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -12,8 +12,10 @@
         android:layout_margin="24dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,10 +30,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/default_image" />
+                tools:src="@drawable/ic_profile_48" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_username"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -40,6 +43,9 @@
                 android:hint="@string/tv_username"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@+id/iv_profile"
                 app:startIconDrawable="@drawable/ic_person"
@@ -47,6 +53,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_username"
+                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -55,7 +62,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_phonenumber"
+                android:id="@+id/layout_phoneNumber"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -65,13 +73,22 @@
                 android:hint="@string/hint_phone_number"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
                 app:layout_constraintTop_toBottomOf="@+id/layout_username"
+                app:prefixText="+62"
+                app:prefixTextColor="@color/black"
                 app:startIconDrawable="@drawable/ic_phone"
                 app:startIconTint="@color/dark_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_phonenumber"
+                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number|phone"
@@ -81,6 +98,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_address"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -91,13 +109,19 @@
                 android:inputType="textMultiLine"
                 android:textColorHint="@color/dark_blue"
                 app:boxStrokeColor="@color/dark_blue"
+                app:boxStrokeErrorColor="@android:color/holo_red_light"
+                app:counterEnabled="true"
+                app:endIconMode="clear_text"
+                app:errorIconTint="@android:color/holo_red_light"
+                app:errorTextColor="@android:color/holo_red_light"
                 app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@+id/layout_phonenumber"
+                app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber"
                 app:startIconDrawable="@drawable/ic_map"
                 app:startIconTint="@color/dark_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_address"
+                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textImeMultiLine"
