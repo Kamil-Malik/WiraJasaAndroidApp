@@ -48,12 +48,12 @@
     <string name="no">No</string>
     <string name="alert_message">Have you agreed to all the terms of service?</string>
 
-    <string name="tv_service_register">Service Register</string>
+    <string name="tv_service_register">Register Service</string>
     <string name="hint_service_name">Service Name</string>
     <string name="hint_address">Address</string>
     <string name="hint_email">Email</string>
     <string name="hint_phone_number">Phone Number</string>
-    <string name="tv_upload_photos">Upload Photos</string>
+    <string name="tv_upload_photos">Upload Picture</string>
     <string name="btn_open_service">OPEN SERVICE</string>
     <string name="btn_save">SAVE</string>
     <string name="iv_service_photo">Service Photo</string>
@@ -90,6 +90,7 @@
     <string name="tv_title">Title</string>
     <string name="tv_price">Rp. 00.000.00.,-</string>
     <string name="hint_price_rupiah">Price (Rupiah)</string>
+
 
     <string name="title_activity_seller">SellerActivity</string>
     <string name="title_activity_seller_base">SellerBaseActivity</string>
@@ -244,4 +245,5 @@
     <string name="info_title">Wirajasa</string>
     <string name="verified_first">You need to be verified before you can\'t make a post</string>
     <string name="edit_my_form">Edit My Form</string>
+    <string name="change_language">change language</string>
 </resources>

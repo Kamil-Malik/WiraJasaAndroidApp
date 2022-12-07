@@ -2,6 +2,7 @@ package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -48,7 +49,19 @@ class MainActivity : AppCompatActivity() {
 
         val arrayAdapter =
             ArrayAdapter(this, R.layout.textview, resources.getStringArray(R.array.province))
-
+        binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                R.id.menu_language -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                    true
+                }
+                else -> false
+            }
+        }
         binding.apply {
             edtSearch.setAdapter(arrayAdapter)
             edtSearch.addTextChangedListener {
@@ -75,10 +88,4 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_profile -> startActivity(Intent(this, ProfileActivity::class.java))
-        }
-        return true
-    }
 }

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">WiraJasa Bisnis</string>
+        <!-- TODO: Remove or change this placeholder text -->
+        <string name="hello_blank_fragment">Hello blank fragment</string>
+        <string name="service_register">Daftar Jasa</string>
+        <string name="service_name">Nama Jasa</string>
+        <string name="address">Alamat</string>
+        <string name="email">Email</string>
+        <string name="phone_number">Nomor Telepon</string>
+        <string name="upload_photos">Unggah Foto</string>
+        <string name="open_service">BUKA JASA</string>
+        <string name="save">SIMPAN</string>
+        <string name="service_photo">Foto Jasa</string>
+        <string name="image_icon">Ikon Gambar</string>
+        <string name="edit_service">Edit Jasa</string>
+        <string name="password">Kata Sandi</string>
+        <string name="login">Masuk</string>
+        <string name="or">atau</string>
+        <string name="register">Daftar</string>
+        <string name="forgot_password">Lupa Kata Sandi ?</string>
+        <string name="password_confirmation">Konfirmasi Kata Sandi</string>
+        <string name="have_an_account">Sudah punya  akun ?</string>
+        <string name="forgot_password_2">Lupa Kata Sandi ?</string>
+        <string name="send_reset_link">Kirim Tautan Reset</string>
+        <string name="input_address">Masukan alamat</string>
+        <string name="input_phone_number">Masukan nomor telepon</string>
+        <string name="submit">Kirim</string>
+        <string name="register_success">Akun berhasil dibuat</string>
+        <string name="success_update_data">Berhasil memperbarui data</string>
+        <string name="reset_success">Konfirmasi email telah dikirimkan kepada Anda</string>
+        <string name="empty_invalid_email">Email kosong atau tidak valid</string>
+        <string name="empty_password">Kata sandi kosong atau kurang dari 8 karakter</string>
+        <string name="empty_confirmation_password">Kata Sandi konfirmasi kosong atau kurang dari 8 karakter</string>
+        <string name="different_password">Kata sandi dan konfirmasi tidak sama</string>
+        <string name="connection_error">Periksa konektivitas Anda dan coba lagi nanti</string>
+        <string name="invalid_email">Email tidak ada</string>
+        <string name="invalid_credential">Email/Kata Sandi salah</string>
+        <string name="invalid_account">Akun tidak ditemukan atau telah ditangguhkan</string>
+        <string name="something_went_wrong">Terdapat kesalahan</string>
+        <string name="loading">Memuat</string>
+        <string name="detail_picture">Detail Gambar</string>
+        <string name="contact_the_provider">Kontak Penjual</string>
+        <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+        <string name="title">Nama Jasa</string>
+        <string name="price">Rp. 00.000.00.,-</string>
+        <string name="alert_title">Peringatan</string>
+        <string name="yes">Ya</string>
+        <string name="no">Tidak</string>
+        <string name="alert_message">Apakah Anda menyetujui semua persyaratan layanan?</string>
+
+        <string name="tv_service_register">Daftar Jasa</string>
+        <string name="hint_service_name">Nama Jasa</string>
+        <string name="hint_address">Alamat</string>
+        <string name="hint_email">Email</string>
+        <string name="hint_phone_number">Nomor Telepon</string>
+        <string name="tv_upload_photos">Unggah Gambar</string>
+        <string name="btn_open_service">BUKA JASA</string>
+        <string name="btn_save">SIMPAN</string>
+        <string name="iv_service_photo">Gambar Jasa</string>
+        <string name="iv_icon">Ikon Gambar</string>
+        <string name="tv_edit_service">Edit Jasa</string>
+        <string name="tv_password">Kata Sandi</string>
+        <string name="btn_login">Masuk</string>
+        <string name="tv_login">Masuk</string>
+        <string name="tv_or">atau</string>
+        <string name="btn_register">Daftar</string>
+        <string name="tv_register">Daftar</string>
+        <string name="tv_forgot_password">Lupa Kata Sandi?</string>
+        <string name="hint_password_confirmation">Konfirmasi Kata Sandi</string>
+        <string name="tv_have_an_account">Sudah punya akun ?</string>
+        <string name="btn_send_reset_link">Kirim tautan reset</string>
+        <string name="tv_input_address">Masukan alamat</string>
+        <string name="tv_input_phone_number">Masukan Nomor Telepon</string>
+        <string name="btn_submit">Kirim</string>
+        <string name="tv_register_success">Akun berhasil dibuat</string>
+        <string name="tv_reset_success">Email konfirmasi telah dikirimkan kepada anda</string>
+        <string name="tv_empty_invalid_email">Email kosong atau tidak valid</string>
+        <string name="tv_empty_password">Kata Sandi kosong atau kurang dari 8 karakter</string>
+        <string name="tv_empty_confirmation_password">Kata Sandi Konfirmasi kosong atau kurang dari 8 karakter</string>
+        <string name="tv_different_password">Kata Sandi dan Kata Sandi Konfirmasi tidak sama</string>
+        <string name="tv_connection_error">Periksa konektivitas kamu dan coba lagi</string>
+        <string name="tv_invalid_email">Email tidak ada</string>
+        <string name="tv_invalid_credential">Email / Kata Sandi salah</string>
+        <string name="tv_invalid_account">Akun tidak ada atau telah ditangguhkan</string>
+        <string name="tv_something_went_wrong">Terdapat kesalahan</string>
+        <string name="tv_loading">Memuat</string>
+        <string name="tv_detail_picture">Detail Gambar</string>
+        <string name="tv_contact_the_provider">Kontak Penjual</string>
+        <string name="tv_lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+        <string name="tv_title">Judul</string>
+        <string name="tv_price">Rp. 00.000.00.,-</string>
+        <string name="hint_price_rupiah">Harga (Rupiah)</string>
+
+        <string name="title_activity_seller">Aktivitas Penjual</string>
+        <string name="title_activity_seller_base">Aktivitas Dasar Penjual</string>
+        <string name="title_activity_bottom_navigation_seller">Navigasi Bawah Aktivitas Penjual</string>
+        <string name="title_profile">Profil</string>
+        <string name="title_dashboard">Beranda</string>
+        <string name="title_notifications">Notifikasi</string>
+        <string name="tv_unit">Unit</string>
+        <string name="btn_save_profile">simpan</string>
+        <string name="btn_change_password">Ubah Kata Sandi ?</string>
+        <string name="tv_notification">Notifikasi</string>
+        <string name="btn_logout">Keluar</string>
+        <string name="tv_welcome_user">Selamat Datang %s</string>
+        <string name="tv_signing_in">Masuk…</string>
+        <string name="tv_getting_profile">Mendapatkan Profil…</string>
+        <string name="tv_signing_up">Membuat Akun…</string>
+        <string name="tv_uploading_profile">Membuat Profil…</string>
+        <string name="iv_app_logo">Logo Aplikasi</string>
+        <string name="tv_form_have_to_be_filled">Formulir harus diisi</string>
+        <string name="tv_success_add_data">Berhasil menambahkan data</string>
+        <string name="image_type">gambar/*</string>
+        <string name="btn_about_us">Tentang kami</string>
+        <string name="btn_term_of_reference">Term of Reference</string>
+
+        <string name="choose_a_picture">Pilih Gambar</string>
+        <string name="not_setup">Tidak diatur</string>
+        <string name="pending">Tertunda</string>
+        <string name="slash_unit">/unit</string>
+        <string name="rupiah">Rp %1$d</string>
+        <string name="detail_unit">/%1$s</string>
+        <string name="detail_address">%1$s (%2$s)</string>
+
+        <string name="tv_choose_a_picture">Pilih Gambar</string>
+        <string name="tv_not_setup">Tidak diatur</string>
+        <string name="tv_pending">Tertunda</string>
+        <string name="tv_slash_unit">/unit</string>
+
+        <!--Profile Activity-->
+        <string name="profile_phone_number">+62%s</string>
+        <string name="profile">Profil</string>
+        <string name="iv_profile_picture">Gambar Profil</string>
+        <string name="btn_edit_picture">Edit foto</string>
+        <string name="btn_upload_picture">Unggah Gambar</string>
+        <string name="btn_register_as_seller">Mendaftar sebagai Penjual</string>
+        <string name="btn_edit_profile_data">Edit</string>
+
+
+        <string name="loading_status_uploading_image">Mengunggah Gambar…</string>
+        <string name="loading_status_updating_profile_data">Memperbaharui Data Profil…</string>
+        <string name="loading_status_uploading_application_form">Menggunggah Formulir Pendaftaran…</string>
+        <string name="loading_status_fetching_data">Mengambil Data…</string>
+        <string name="loading_status_updating_seller_status">Memperbaharui Status Penjual…</string>
+        <string name="loading_status_updating_form_status">Memperbaharui status formulir…</string>
+        <string name="loading_status_getting_seller_data">Mendapatkan Data Penjual…</string>
+
+
+        <string name="tv_application_status">Status : %s</string>
+        <string name="tv_gallery_permission_title">Membutuhkan akses galeri</string>
+        <string name="tv_gallery_permission_denied">Izin ditolak, berikan akses untuk memilih gambar</string>
+        <string name="tv_select_image">Tolong pilih gambar</string>
+        <string name="tv_username">Username</string>
+        <string name="tv_please_fill_current_Profile">Harap isi informasi profil saat ini sebelum melanjutkan</string>
+        <string name="btn_select_file">Pilih file</string>
+        <string name="hint_province">Provinsi</string>
+        <string name="hint_full_name">Nama Lengkap</string>
+        <string name="floating_action_button_for_adding_service">Tombol untuk menambahkan jasa </string>
+        <string name="btn_sign_out">Keluar</string>
+        <string name="tv_greeting">Hi, %s</string>
+        <string name="select_province">Pilih Provinsi</string>
+
+        <string name="profile_updated">Profil Diperbaharui</string>
+
+        <string-array name="province">
+            <item>Nanggroe Aceh Darussalam</item>
+            <item>Sumatera Utara</item>
+            <item>Sumatera Selatan</item>
+            <item>Sumatera Barat</item>
+            <item>Bengkulu</item>
+            <item>Riau</item>
+            <item>Kepulauan Riau</item>
+            <item>Jambi</item>
+            <item>Lampung</item>
+            <item>Bangka Belitung</item>
+            <item>Kalimantan Barat</item>
+            <item>Kalimantan Timur</item>
+            <item>Kalimantan Selatan</item>
+            <item>Kalimantan Tengah</item>
+            <item>Kalimantan Utara</item>
+            <item>Banten</item>
+            <item>DKI Jakarta</item>
+            <item>Jawa Barat</item>
+            <item>Jawa Tengah</item>
+            <item>Daerah Istimewa Yogyakarta</item>
+            <item>Jawa Timur</item>
+            <item>Bali</item>
+            <item>Nusa Tenggara Timur</item>
+            <item>Nusa Tenggara Barat</item>
+            <item>Gorontalo</item>
+            <item>Sulawesi Barat</item>
+            <item>Sulawesi Tengah</item>
+            <item>Sulawesi Utara</item>
+            <item>Sulawesi Tenggara</item>
+            <item>Sulawesi Selatan</item>
+            <item>Maluku Utara</item>
+            <item>Maluku</item>
+            <item>Papua Barat</item>
+            <item>Papua</item>
+            <item>Papua Tengah</item>
+            <item>Papua Pegunungan</item>
+            <item>Papua Selatan</item>
+            <item>Papua Barat Daya</item>
+        </string-array>
+
+        <!--Admin-->
+        <string name="admin_application_form_id">ID Pendaftaran \t\t\t: %s</string>
+        <string name="admin_applicant_name">Nama Pendaftar\t: %s</string>
+        <string name="admin_actionbar_title">Admin Dashboard</string>
+        <string name="admin_btn_contact_seller">Kontak Penjual</string>
+        <string name="admin_btn_reject_seller">Tolak Pendaftar</string>
+        <string name="admin_btn_accept_seller">Terima Penjual</string>
+        <string name="admin_tv_form_id">ID Formulir\t\t\t: %s</string>
+        <string name="admin_tv_full_name">Nama Lengkap\t: %s</string>
+        <string name="admin_tv_province">Provinsi\t\t: %s</string>
+        <string name="admin_tv_address">Alamat\t\t: %s</string>
+        <string name="admin_toolbar_application_form_title">Formulir Pendaftaran Penjual</string>
+
+        <!--Dashboard-->
+        <string name="dashboard_user_tv_welcome">Hi, %s</string>
+        <string name="dashboard_user_btn_search">Tombol Cari Dashboard User</string>
+        <string name="dashboard_user_edt_search">Cari</string>
+        <string name="filter_by_province">Saring bedasarkan provinsi</string>
+        <string name="title_rent">Sewa</string>
+
+
+        <!--Detail Service-->
+        <string name="detail_service_phone_number">+62%s</string>
+
+        <!--Edit Profile-->
+        <string name="edtProfile_phone_number_contains_invalid_characters">Nomor telepon hanya boleh terdiri dari angka</string>
+        <string name="edtProfile_phone_number_exceed_limit">Nomor telepon tidak dapat diisi lebih dari 15 karakter</string>
+        <string name="edtProfile_phone_number_starts_with_zero">Nomor telepon harus dimulai dari angka 8</string>
+        <string name="edtProfile_template_phone_number">62%s</string>
+        <string name="iv_icon_service">Ikon Jasa</string>
+        <string name="iv_icon_address">Ikon Jasa</string>
+        <string name="iv_icon_phone">Ikon Telepon</string>
+        <string name="btn_contact_by_whatsapp">Kontak dengan Whatsapp</string>
+        <string name="tv_welcome_back">Selamat datang kembali</string>
+        <string name="tv_welcome">Selamat datang</string>
+        <string name="btn_retry">Ulangi</string>
+
+        <string name="info">Kami adalah organisasi nirlaba yang berusaha untuk memajukan ekonomi masyarakat dengan menyediakan platform yang dapat digunakan sebagai media pemasaran oleh para pengusaha skala mikro. Dengan adanya aplikasi ini diharapkan masyarakat dapat menjangkau lebih banyak pelanggan di wilayahnya.</string>
+        <string name="info_title">Wirajasa</string>
+        <string name="verified_first">Anda harus diverifikasi sebelum dapat membuat postingan</string>
+        <string name="edit_my_form">Edit Formulir Saya</string>
+
+</resources>
