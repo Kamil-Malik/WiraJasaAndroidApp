@@ -22,3 +22,8 @@
 
 7. Untuk melihat detail salah satu jasa, pengguna hanya perlu memilih salah satu jasa, dan akan diarahkan ke halaman detail. Pengguna dapat menghubungi penjual melalui nomor handphone yang telah disediakan beserta detail jasa yang disediakan.<br>
 ![Detail Screen](https://firebasestorage.googleapis.com/v0/b/wirajasa-bisnis.appspot.com/o/screenshot%2FWhatsApp%20Image%202022-12-11%20at%2012.52.31%20PM.jpeg?alt=media&token=938a3ee1-c680-43c5-853d-07c71002da55)
+
+# Admin Manual Guide
+Dalam aplikasi ini, terdapat 3 jenis role yaitu admin, seller, dan buyyer. Untuk masuk sebagai admin, maka silahkan menggunakan email dan password dibawah ini :
+email    : lelestacia@gmail.com
+password : kamilmalik
