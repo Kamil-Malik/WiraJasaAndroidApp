@@ -146,12 +146,12 @@
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical">
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_term_of_reference"
+            android:id="@+id/btn_term_of_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/btn_term_of_reference"
+            android:text="@string/btn_term_of_service"
             android:textColor="@color/black"
             app:cornerRadius="5dp" />
 

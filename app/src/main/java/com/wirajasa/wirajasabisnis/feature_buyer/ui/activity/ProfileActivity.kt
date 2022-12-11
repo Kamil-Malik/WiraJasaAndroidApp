@@ -38,7 +38,7 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
         binding.apply {
             btnEdit.setOnClickListener(this@ProfileActivity)
             btnRegisterAsSeller.setOnClickListener(this@ProfileActivity)
-            btnTermOfReference.setOnClickListener(this@ProfileActivity)
+            btnTermOfService.setOnClickListener(this@ProfileActivity)
             btnAboutUs.setOnClickListener(this@ProfileActivity)
         }
     }
@@ -143,10 +143,14 @@ class ProfileActivity : AppCompatActivity(), View.OnClickListener {
                     dialog.show()
                 }
             }
-            binding.btnTermOfReference.id -> {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/document/d/1061pzKw39f8D8TO-A7trCYjk113qb8W8m_yRS_QRXyI/edit?usp=sharing"))
+            binding.btnTermOfService.id -> {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(TERM_OF_SERVICE_URL))
                 startActivity(browserIntent)
             }
         }
+    }
+
+    companion object{
+        private const val TERM_OF_SERVICE_URL = "https://docs.google.com/document/d/1kKvvU00q73ssaCz9cK0HcYdlYff7Ya27/edit"
     }
 }

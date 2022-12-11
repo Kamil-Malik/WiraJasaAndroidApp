@@ -113,7 +113,7 @@
     <string name="tv_success_add_data">Successfully Added Data</string>
     <string name="image_type">image/*</string>
     <string name="btn_about_us">About Us</string>
-    <string name="btn_term_of_reference">Term of Reference</string>
+    <string name="btn_term_of_service">Term of Service</string>
 
     <string name="choose_a_picture">Choose a Picture</string>
     <string name="not_setup">Not Setup</string>
