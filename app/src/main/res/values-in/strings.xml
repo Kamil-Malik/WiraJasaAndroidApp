@@ -113,7 +113,7 @@
         <string name="tv_success_add_data">Berhasil menambahkan data</string>
         <string name="image_type">gambar/*</string>
         <string name="btn_about_us">Tentang kami</string>
-        <string name="btn_term_of_reference">Term of Reference</string>
+        <string name="btn_term_of_service">Term of Service</string>
 
         <string name="choose_a_picture">Pilih Gambar</string>
         <string name="not_setup">Tidak diatur</string>

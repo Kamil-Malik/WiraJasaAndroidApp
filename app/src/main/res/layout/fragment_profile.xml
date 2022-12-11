@@ -105,11 +105,11 @@
             android:background="@color/grey" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_term_of_reference"
+            android:id="@+id/btn_term_of_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:text="@string/btn_term_of_reference"
+            android:text="@string/btn_term_of_service"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             app:cornerRadius="5dp" />
