@@ -9,7 +9,7 @@
 3. Ketika berada dihalaman profil, pengguna dapat melakukan pengeditan terhadap profil pengguna, membaca ketentuan-ketentuan dari kami, melakukan logout atau mendaftarkan dirinya sebagai penyedia jasa.
 ![Profil Screen](https://firebasestorage.googleapis.com/v0/b/wirajasa-bisnis.appspot.com/o/screenshot%2FWhatsApp%20Image%202022-12-11%20at%2012.48.46%20PM(1).jpeg?alt=media&token=ed1938e5-4d7d-4ce6-9360-82a53688541a)
 
-4. Jika ingin menjadi seorang penyedia jasa, Pengguna hanya perlu menekan tombol Register as Seller ketika telah melengkapi profil terlebih dahulu. Dan ketika berada dihalaman Registrasi Seller, pengguna perlu memasukkan informasi-informasi tertentu untuk menjadi jaminan nantinya bahwa pengguna tidak akan melakukan tindak kriminalitas apapun.
+4. Jika ingin menjadi seorang penyedia jasa, Pengguna hanya perlu menekan tombol Register as Seller ketika telah melengkapi profil terlebih dahulu. Dan ketika berada dihalaman Registrasi Seller, pengguna perlu memasukkan informasi-informasi tertentu untuk menjadi jaminan nantinya bahwa pengguna tidak akan melakukan tindak kriminalitas apapun.<br>
 ![Register Seller Screen](https://firebasestorage.googleapis.com/v0/b/wirajasa-bisnis.appspot.com/o/screenshot%2FWhatsApp%20Image%202022-12-11%20at%2012.48.45%20PM.jpeg?alt=media&token=081fec55-9a56-492a-b6af-e2e2186d111d)
 
 5. Selamat, pengguna akan diarahkan kedalam dashboard Seller ketika selesai melakukan pengisian form. Pengguna hanya perlu menunggu admin untuk memeriksa informasi-informasi yang disediakan oleh pengguna sebelumnya untuk dapat melakukan upload jasa yang akan disediakan. Dashboard halaman pertama akan menampilkan daftar jasa yang disediakan oleh pengguna jika ada.
