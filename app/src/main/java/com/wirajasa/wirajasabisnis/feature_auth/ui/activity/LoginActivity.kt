@@ -17,8 +17,8 @@ import com.wirajasa.wirajasabisnis.databinding.ActivityLoginBinding
 import com.wirajasa.wirajasabisnis.feature_admin.ui.activity.AdminActivity
 import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.LoginViewModel
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.MainActivity
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.SellerBaseActivity
+import com.wirajasa.wirajasabisnis.buyer.BuyerActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             } else if (localProfile.isSeller) {
                 Intent(this, SellerBaseActivity::class.java)
             } else {
-                Intent(this, MainActivity::class.java)
+                Intent(this, BuyerActivity::class.java)
             }
             startActivity(intent)
             finish()
@@ -99,7 +99,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             } else if (response.data.isAdmin) {
                                 Intent(this, AdminActivity::class.java)
                             } else {
-                                Intent(this, MainActivity::class.java)
+                                Intent(this, BuyerActivity::class.java)
                             }
                             startActivity(intent)
                             finish()

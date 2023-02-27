@@ -14,14 +14,14 @@ import com.wirajasa.wirajasabisnis.core.utility.constant.EpoxyUtil.NO_SERVICE
 
 class ListOfServiceController(
     onSelected: (ServicePost) -> Unit,
-    onRetry: (Boolean) -> Unit
+    onRetry: () -> Unit
 ) : GenericServiceEpoxyController(onSelected, onRetry) {
 
     override fun buildModels() {
         when (data) {
             is NetworkResponse.GenericException -> {
                 ScreenErrorEpoxyModel((data as NetworkResponse.GenericException).cause) {
-                    onRetry(true)
+                    onRetry.invoke()
                 }.id(EPOXY_ERROR)
                     .addTo(this)
             }

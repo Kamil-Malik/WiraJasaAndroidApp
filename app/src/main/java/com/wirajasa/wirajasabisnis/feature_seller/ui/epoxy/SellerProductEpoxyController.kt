@@ -14,21 +14,24 @@ import com.wirajasa.wirajasabisnis.core.utility.constant.EpoxyUtil.EPOXY_LOADING
 
 class SellerProductEpoxyController(
     onSelected: (ServicePost) -> Unit,
-    onRetry: (Boolean) -> Unit
+    onRetry: () -> Unit
 ) : GenericServiceEpoxyController(onSelected, onRetry) {
 
     override fun buildModels() {
         when (data) {
             is NetworkResponse.GenericException -> {
-                ScreenErrorEpoxyModel((data as NetworkResponse.GenericException).cause, onRetry)
-                    .id(EPOXY_ERROR)
+                ScreenErrorEpoxyModel((data as NetworkResponse.GenericException).cause) {
+                    onRetry.invoke()
+                }.id(EPOXY_ERROR)
                     .addTo(this)
             }
+
             is NetworkResponse.Loading -> {
                 ScreenLoadingEpoxyModel((data as NetworkResponse.Loading).status)
                     .id(EPOXY_LOADING)
                     .addTo(this)
             }
+
             is NetworkResponse.Success -> {
                 val result = (data as NetworkResponse.Success).data
                 if (result.isEmpty()) {

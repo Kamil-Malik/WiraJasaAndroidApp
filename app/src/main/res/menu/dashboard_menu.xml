@@ -5,13 +5,15 @@
     <item
         android:id="@+id/menu_language"
         android:icon="@drawable/ic_baseline_language_24"
-        android:title="@string/change_language"
         app:iconTint="@color/dark_blue"
-        app:showAsAction="always"/>
+        android:iconTint="@color/dark_blue"
+        android:title="@string/change_language"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_profile"
-        android:title="@string/profile"
         app:iconTint="@color/dark_blue"
-        app:showAsAction="always" />
+        android:iconTint="@color/dark_blue"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom" />
 </menu>

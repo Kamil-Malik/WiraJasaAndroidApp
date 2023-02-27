@@ -21,6 +21,9 @@
         android:theme="@style/Theme.WiraJasaBisnis"
         tools:targetApi="31">
         <activity
+            android:name=".buyer.BuyerActivity"
+            android:exported="false" />
+        <activity
             android:name=".core.ui.InformationActivity"
             android:exported="false">
             <meta-data
@@ -126,4 +129,5 @@
                 android:value="" />
         </activity>
     </application>
+
 </manifest>

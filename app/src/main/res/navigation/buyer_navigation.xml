@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buyer_navigation"
+    app:startDestination="@id/dashboard_screen">
+    <fragment
+        android:id="@+id/dashboard_screen"
+        android:name="com.wirajasa.wirajasabisnis.buyer.dashboard.DashboardBuyerFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard_buyer">
+        <action
+            android:id="@+id/dashboard_to_profile"
+            app:destination="@id/buyyer_profile_screen" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyyer_profile_screen"
+        android:name="com.wirajasa.wirajasabisnis.buyer.profile.ProfileBuyerFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_buyer">
+        <action
+            android:id="@+id/profile_to_registration"
+            app:destination="@id/seller_registration_screen" />
+        <action
+            android:id="@+id/profile_to_wirajasa_screen"
+            app:destination="@id/wirajasa_screen" />
+    </fragment>
+    <fragment
+        android:id="@+id/seller_registration_screen"
+        android:name="com.wirajasa.wirajasabisnis.buyer.SellerRegistrationFragment"
+        android:label="Register as Seller"
+        tools:layout="@layout/fragment_seller_registration" />
+    <fragment
+        android:id="@+id/wirajasa_screen"
+        android:name="com.wirajasa.wirajasabisnis.WirajasaFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_wirajasa" />
+</navigation>

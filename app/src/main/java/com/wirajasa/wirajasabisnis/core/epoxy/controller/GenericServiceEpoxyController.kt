@@ -6,7 +6,7 @@ import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 
 open class GenericServiceEpoxyController(
     val onSelected: (ServicePost) -> Unit,
-    val onRetry: (Boolean) -> Unit
+    val onRetry: () -> Unit
 ) : EpoxyController() {
 
     var data: NetworkResponse<List<ServicePost>> = NetworkResponse.Loading(null)
