@@ -24,9 +24,7 @@ import com.wirajasa.wirajasabisnis.core.rv_adapter.ErrorScreenAdapter
 import com.wirajasa.wirajasabisnis.core.rv_adapter.LoadingScreenAdapter
 import com.wirajasa.wirajasabisnis.core.rv_adapter.ServiceItemAdapter
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.core.utility.constant.Dump
 import com.wirajasa.wirajasabisnis.databinding.FragmentDashboardBuyerBinding
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.DetailServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -84,12 +82,10 @@ class DashboardBuyerFragment : Fragment(R.layout.fragment_dashboard_buyer), Menu
                     }
 
                     is NetworkResponse.Success -> {
-                        val itemAdapter = ServiceItemAdapter {service ->
-                            startActivity(
-                                Intent(requireContext(), DetailServiceActivity::class.java).putExtra(
-                                    Dump.EXTRA_SERVICE_POST, service
-                                )
-                            )
+                        val itemAdapter = ServiceItemAdapter { service ->
+                            val destination = DashboardBuyerFragmentDirections
+                                .dashboardToDetailService(service = service)
+                            findNavController().navigate(directions = destination)
                         }
                         binding.rvServiceItem.adapter = itemAdapter
                         itemAdapter.submitList(services.data)
@@ -115,7 +111,9 @@ class DashboardBuyerFragment : Fragment(R.layout.fragment_dashboard_buyer), Menu
             }
 
             R.id.menu_profile -> {
-                findNavController().navigate(R.id.dashboard_to_profile)
+                findNavController().navigate(
+                    directions = DashboardBuyerFragmentDirections.dashboardToProfile()
+                )
                 true
             }
 

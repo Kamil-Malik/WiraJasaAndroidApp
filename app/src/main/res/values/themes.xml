@@ -1,10 +1,10 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.WiraJasaBisnis" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/dark_blue</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -21,9 +21,10 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/dark_blue</item>
         <item name="android:textColorHint">@color/dark_blue</item>
-        <item name="colorOnSecondaryContainer">@color/white</item>
+        <item name="colorOnSecondaryContainer">@color/dark_blue</item>
         <item name="colorOnSurfaceVariant">@color/dark_blue</item>
         <item name="colorSecondaryContainer">@color/dark_blue</item>
+
     </style>
 
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">
@@ -36,5 +37,21 @@
         <item name="android:statusBarColor" >@color/grey</item>
         <item name="android:navigationBarColor">@color/grey</item>
         <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="toolbar_text">
+        <item name="titleTextColor">@color/dark_blue</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Toolbar.Button.Navigation.Tinted" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">@color/dark_blue</item>
     </style>
 </resources>

@@ -1,236 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/beige"
-    android:orientation="vertical"
-    tools:context=".feature_buyer.ui.activity.UserValidation">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="0dp">
+        android:layout_height="match_parent"
+        android:background="@color/beige">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_full_name"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/hint_full_name"
+            android:textColorHint="@color/dark_blue"
+            app:boxStrokeColor="@color/dark_blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/dark_blue"
+            app:helperText="Please insert your real full name based on ID"
+            app:helperTextTextColor="@color/dark_blue"
+            app:hintTextColor="@color/dark_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:passwordToggleTint="@color/dark_blue"
+            app:startIconDrawable="@drawable/ic_person"
+            app:startIconTint="@color/dark_blue">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_full_name"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/hint_full_name"
-                android:textColorHint="@color/dark_blue"
-                app:boxStrokeColor="@color/dark_blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/dark_blue"
-                app:helperText="Please insert your real full name based on ID"
-                app:helperTextTextColor="@color/dark_blue"
-                app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:passwordToggleTint="@color/dark_blue"
-                app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="@color/dark_blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_phone_number"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/hint_phone_number"
-                android:textColorHint="@color/dark_blue"
-                app:boxStrokeColor="@color/dark_blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/dark_blue"
-                app:helperText="Please insert your Whatsapp phone number"
-                app:helperTextTextColor="@color/dark_blue"
-                app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@id/layout_full_name"
-                app:startIconDrawable="@drawable/ic_phone"
-                app:startIconTint="@color/dark_blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_province"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/transparent"
-                android:hint="@string/hint_province"
-                android:textColorHint="@color/dark_blue"
-                app:boxStrokeColor="@color/dark_blue"
-                app:endIconTint="@color/dark_blue"
-                app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@id/layout_phone_number">
-
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/edt_province"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_full_address"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/hint_address"
-                android:textColorHint="@color/dark_blue"
-                app:boxStrokeColor="@color/dark_blue"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/dark_blue"
-                app:hintTextColor="@color/dark_blue"
-                app:layout_constraintTop_toBottomOf="@id/layout_province"
-                app:layout_goneMarginTop="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_full_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:textColor="@color/black"
-                    tools:ignore="TextContrastCheck" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_service_description"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:hint="Service Description"
-                app:counterEnabled="true"
-                app:counterMaxLength="200"
-                app:helperText="Please tell us about what service you want to sell in our platform"
-                app:layout_constraintTop_toBottomOf="@id/layout_full_address">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_service_description"
-                    style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:maxLength="200" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_file_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/inter_bold"
+                android:inputType="text"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/btn_select_file"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_select_file"
-                app:layout_constraintTop_toTopOf="@id/btn_select_file"
-                tools:text="INI NAMA FILE KTP" />
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_select_file"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/btn_select_file"
-                android:textColor="@color/dark_blue"
-                app:cornerRadius="2dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_service_description"
-                app:strokeColor="@color/dark_blue"
-                app:strokeWidth="1dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_phone_number"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/hint_phone_number"
+            android:textColorHint="@color/dark_blue"
+            app:boxStrokeColor="@color/dark_blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/dark_blue"
+            app:helperText="Please insert your Whatsapp phone number"
+            app:helperTextTextColor="@color/dark_blue"
+            app:hintTextColor="@color/dark_blue"
+            app:layout_constraintTop_toBottomOf="@id/layout_full_name"
+            app:startIconDrawable="@drawable/ic_phone"
+            app:startIconTint="@color/dark_blue">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_submit"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/dark_blue"
-                android:text="@string/btn_submit"
-                android:textColor="@color/white"
-                app:cornerRadius="5dp"
-                app:layout_constraintTop_toBottomOf="@+id/btn_select_file"
-                tools:visibility="invisible" />
-
-            <ProgressBar
-                android:id="@+id/pb_loading"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/dark_blue"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/btn_submit"
-                app:layout_constraintEnd_toStartOf="@id/tv_loading"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@id/btn_submit"
-                app:layout_constraintTop_toTopOf="@id/btn_submit"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tv_loading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/tv_loading"
+                android:inputType="number"
                 android:textColor="@color/black"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/btn_submit"
-                app:layout_constraintEnd_toEndOf="@id/btn_submit"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/pb_loading"
-                app:layout_constraintTop_toTopOf="@id/btn_submit"
-                tools:visibility="visible" />
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <Space
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_province"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="@string/hint_province"
+            android:textColorHint="@color/dark_blue"
+            app:boxStrokeColor="@color/dark_blue"
+            app:endIconTint="@color/dark_blue"
+            app:hintTextColor="@color/dark_blue"
+            app:layout_constraintTop_toBottomOf="@id/layout_phone_number">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/edt_province"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
-                app:layout_constraintTop_toBottomOf="@id/btn_submit" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/black"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_full_address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/hint_address"
+            android:textColorHint="@color/dark_blue"
+            app:boxStrokeColor="@color/dark_blue"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/dark_blue"
+            app:hintTextColor="@color/dark_blue"
+            app:layout_constraintTop_toBottomOf="@id/layout_province"
+            app:layout_goneMarginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_full_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_service_description"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="Service Description"
+            app:counterEnabled="true"
+            app:counterMaxLength="200"
+            app:helperText="Please tell us about what service you want to sell in our platform"
+            app:layout_constraintTop_toBottomOf="@id/layout_full_address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_service_description"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="200" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_select_file"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/btn_select_file"
+            android:textColor="@color/dark_blue"
+            app:cornerRadius="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_service_description"
+            app:strokeColor="@color/dark_blue"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_select_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Please upload your identity card"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toStartOf="@id/btn_select_file"
+            app:layout_constraintTop_toBottomOf="@id/btn_select_file" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/dark_blue"
+            android:text="@string/btn_submit"
+            android:textColor="@color/white"
+            app:cornerRadius="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_select_file"
+            tools:layout_editor_absoluteX="16dp"
+            tools:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_blue"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btn_submit"
+            app:layout_constraintEnd_toStartOf="@id/tv_loading"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/btn_submit"
+            app:layout_constraintTop_toTopOf="@id/btn_submit"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/tv_loading"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btn_submit"
+            app:layout_constraintEnd_toEndOf="@id/btn_submit"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/pb_loading"
+            app:layout_constraintTop_toTopOf="@id/btn_submit"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

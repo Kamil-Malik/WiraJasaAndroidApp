@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".feature_buyer.ui.activity.DetailServiceActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/detail_picture"
+        android:maxHeight="240dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/price"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivDetail" />
+
+    <TextView
+        android:id="@+id/tv_unit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/slash_unit"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@id/tv_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_price"
+        app:layout_constraintTop_toTopOf="@id/tv_price" />
+
+    <ImageView
+        android:id="@+id/iv_service_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/iv_icon_service"
+        android:src="@drawable/ic_service"
+        app:layout_constraintStart_toStartOf="@+id/tv_price"
+        app:layout_constraintTop_toBottomOf="@id/tv_price"
+        app:tint="@color/dark_blue" />
+
+    <TextView
+        android:id="@+id/tv_service_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@id/iv_service_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_service_name"
+        app:layout_constraintTop_toTopOf="@id/iv_service_name" />
+
+    <ImageView
+        android:id="@+id/iv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/iv_icon_address"
+        android:src="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="@id/iv_service_name"
+        app:layout_constraintTop_toBottomOf="@id/iv_service_name"
+        app:tint="@color/dark_blue" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@id/iv_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_address"
+        app:layout_constraintTop_toTopOf="@id/iv_address"
+        tools:text="Address (Province)" />
+
+    <ImageView
+        android:id="@+id/iv_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/iv_icon_phone"
+        android:src="@drawable/ic_phone"
+        app:layout_constraintStart_toStartOf="@id/iv_address"
+        app:layout_constraintTop_toBottomOf="@id/iv_address"
+        app:tint="@color/dark_blue" />
+
+    <TextView
+        android:id="@+id/tv_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/inter_medium"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@id/iv_phone_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_phone_number"
+        app:layout_constraintTop_toTopOf="@id/iv_phone_number"
+        tools:text="Phone Number" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContactWhatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/whatsapp"
+        android:drawableTint="@color/btn_accept"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/btn_contact_by_whatsapp"
+        android:textAlignment="textStart"
+        android:textColor="@color/btn_accept"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@id/btnContactEdit"
+        app:strokeColor="@color/btn_accept"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContactEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/btn_accept"
+        android:drawableEnd="@drawable/ic_call"
+        android:drawableTint="@color/white"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/contact_the_provider"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

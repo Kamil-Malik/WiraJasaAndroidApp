@@ -12,6 +12,14 @@
         <action
             android:id="@+id/dashboard_to_profile"
             app:destination="@id/buyyer_profile_screen" />
+        <action
+            android:id="@+id/dashboard_to_detail_service"
+            app:destination="@+id/detail_service_navigation">
+
+            <argument
+                android:name="service"
+                app:argType="com.wirajasa.wirajasabisnis.core.domain.model.ServicePost" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/buyyer_profile_screen"
@@ -27,12 +35,14 @@
     </fragment>
     <fragment
         android:id="@+id/seller_registration_screen"
-        android:name="com.wirajasa.wirajasabisnis.buyer.SellerRegistrationFragment"
+        android:name="com.wirajasa.wirajasabisnis.buyer.seller_registration.SellerRegistrationFragment"
         android:label="Register as Seller"
         tools:layout="@layout/fragment_seller_registration" />
     <fragment
         android:id="@+id/wirajasa_screen"
-        android:name="com.wirajasa.wirajasabisnis.WirajasaFragment"
+        android:name="com.wirajasa.wirajasabisnis.core.ui.about_us.WirajasaFragment"
         android:label="About Us"
         tools:layout="@layout/fragment_wirajasa" />
+
+    <include app:graph="@navigation/detail_service_navigation" />
 </navigation>
