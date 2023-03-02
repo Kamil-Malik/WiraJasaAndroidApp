@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_buyer.ui.activity
+package com.wirajasa.wirajasabisnis.role_buyer.edit_profile
 
 import android.app.Activity
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.viewbinding.library.activity.viewBinding
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,26 +21,23 @@ import com.wirajasa.wirajasabisnis.core.usecases.CheckPermission
 import com.wirajasa.wirajasabisnis.core.usecases.RequestPermission
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.databinding.ActivityEditProfileBinding
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.EditProfileViewModel
 import com.wirajasa.wirajasabisnis.core.utility.constant.Constant.READ_EXTERNAL
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
-class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
+class EditProfileActivity : AppCompatActivity(),
+    View.OnClickListener,
     EasyPermissions.PermissionCallbacks {
 
     private lateinit var profile: UserProfile
     private val checkPermission: CheckPermission = CheckPermission(this)
     private val requestPermission = RequestPermission(this)
     private val viewModel by viewModels<EditProfileViewModel>()
-    private val binding by lazy {
-        ActivityEditProfileBinding.inflate(layoutInflater)
-    }
+    private val binding: ActivityEditProfileBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         profile = viewModel.getProfile()
         binding.apply {
             if (profile.image.isNotBlank()) Glide.with(this@EditProfileActivity).load(profile.image)
@@ -104,10 +102,12 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                             isLoading(false)
                             response.cause?.let { shortMessage(it) }
                         }
+
                         is NetworkResponse.Loading -> {
                             response.status?.let { binding.tvLoading.text = it }
                             if (binding.pbLoading.visibility != View.VISIBLE) isLoading(true)
                         }
+
                         is NetworkResponse.Success -> {
                             Glide.with(this).load(viewModel.getProfile().image).fitCenter()
                                 .circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -116,6 +116,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                             isLoading(false)
                             shortMessage(getString(R.string.profile_updated))
                             setResult(Activity.RESULT_OK)
+                            finish()
                         }
                     }
                 }
@@ -160,6 +161,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                 if (checkPermission.accessMedia()) openGallery()
                 else requestPermission.accessMedia()
             }
+
             else -> {
                 if (checkPermission.accessExternal()) openGallery()
                 else requestPermission.accessExternal()

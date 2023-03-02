@@ -9,13 +9,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import com.google.android.material.snackbar.Snackbar
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.databinding.ActivityRegisterBinding
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.MainActivity
 import com.wirajasa.wirajasabisnis.feature_auth.ui.viewmodel.RegisterViewModel
 import com.wirajasa.wirajasabisnis.feature_auth.domain.usecases.Validate
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
+import com.wirajasa.wirajasabisnis.role_buyer.navhost.BuyerActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -91,7 +90,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         is NetworkResponse.Success -> {
                             showToast(getString(R.string.tv_welcome_user, response.data.username))
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, BuyerActivity::class.java)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
                         }

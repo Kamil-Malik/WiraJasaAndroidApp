@@ -68,7 +68,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/white"
-        app:labelVisibilityMode="unlabeled"
+        android:theme="@style/AppTheme.CustomBottomBar"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 

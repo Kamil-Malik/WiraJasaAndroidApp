@@ -3,7 +3,7 @@ package com.wirajasa.wirajasabisnis.core.rv_adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.wirajasa.wirajasabisnis.databinding.ScreenErrorBinding
+import com.wirajasa.wirajasabisnis.databinding.ErrorScreenBinding
 
 class ErrorScreenAdapter(
     private val errorMessage: String?,
@@ -14,7 +14,7 @@ class ErrorScreenAdapter(
         viewType: Int
     ): ErrorScreenAdapter.ViewHolder {
         return ViewHolder(
-            binding = ScreenErrorBinding.inflate(
+            binding = ErrorScreenBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -28,7 +28,7 @@ class ErrorScreenAdapter(
 
     override fun getItemCount(): Int = 1
 
-    inner class ViewHolder(private val binding: ScreenErrorBinding) :
+    inner class ViewHolder(private val binding: ErrorScreenBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {

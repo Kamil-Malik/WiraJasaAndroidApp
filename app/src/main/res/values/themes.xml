@@ -34,12 +34,12 @@
         <item name="postSplashScreenTheme">@style/Theme.WiraJasaBisnis</item>
 
         <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor" >@color/grey</item>
+        <item name="android:statusBarColor">@color/grey</item>
         <item name="android:navigationBarColor">@color/grey</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -53,5 +53,12 @@
 
     <style name="Toolbar.Button.Navigation.Tinted" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="tint">@color/dark_blue</item>
+    </style>
+
+    <style name="AppTheme.CustomBottomBar" parent="Theme.Material3.Light">
+        <item name="colorOnSecondaryContainer">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/dark_blue</item>
+        <item name="colorSecondaryContainer">@color/dark_blue</item>
+        <item name="colorOnSurface">@color/dark_blue</item>
     </style>
 </resources>

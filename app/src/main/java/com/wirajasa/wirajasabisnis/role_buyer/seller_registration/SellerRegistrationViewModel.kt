@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.buyer.seller_registration
+package com.wirajasa.wirajasabisnis.role_buyer.seller_registration
 
 import android.net.Uri
 import androidx.lifecycle.LiveData

@@ -20,6 +20,7 @@ import com.wirajasa.wirajasabisnis.core.ui.InformationActivity
 import com.wirajasa.wirajasabisnis.databinding.ActivityProfileBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel.ProfileViewModel
+import com.wirajasa.wirajasabisnis.role_buyer.contract.EditProfileContract
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

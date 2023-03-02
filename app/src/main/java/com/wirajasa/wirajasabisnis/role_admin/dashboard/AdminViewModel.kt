@@ -1,5 +1,6 @@
-package com.wirajasa.wirajasabisnis.feature_admin.ui.viewmodel
+package com.wirajasa.wirajasabisnis.role_admin.dashboard
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class AdminViewModel @Inject constructor(
     val applicationList: LiveData<NetworkResponse<List<SellerApplication>>> get() = _applicationList
 
     init {
+        Log.d("VM Admin", "VM Created")
         getApplicationList()
     }
 

@@ -1,15 +1,14 @@
-package com.wirajasa.wirajasabisnis.buyer.profile
+package com.wirajasa.wirajasabisnis.role_buyer.profile
 
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
+import android.viewbinding.library.fragment.viewBinding
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuProvider
@@ -23,33 +22,25 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
-import com.wirajasa.wirajasabisnis.databinding.FragmentProfileBuyerBinding
+import com.wirajasa.wirajasabisnis.databinding.ProfileBuyerScreenBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
-import com.wirajasa.wirajasabisnis.feature_buyer.ui.activity.EditProfileContract
+import com.wirajasa.wirajasabisnis.role_buyer.contract.EditProfileContract
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileBuyerFragment : Fragment(), MenuProvider, View.OnClickListener {
+class ProfileBuyerFragment : Fragment(R.layout.profile_buyer_screen),
+    MenuProvider,
+    View.OnClickListener {
 
-    private var _binding: FragmentProfileBuyerBinding? = null
-    private val binding get() = _binding!!
+    private val binding: ProfileBuyerScreenBinding by viewBinding()
     private val viewModel: ProfileViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProfileBuyerBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         requireActivity().addMenuProvider(
             this,
             viewLifecycleOwner
         )
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.btnEdit.setOnClickListener(this)
         binding.btnRegisterAsSeller.setOnClickListener(this)
         binding.btnTermOfService.setOnClickListener(this)
@@ -96,11 +87,6 @@ class ProfileBuyerFragment : Fragment(), MenuProvider, View.OnClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.profile_menu, menu)
     }
@@ -126,17 +112,16 @@ class ProfileBuyerFragment : Fragment(), MenuProvider, View.OnClickListener {
             }
 
             binding.btnRegisterAsSeller.id -> {
-                val builder = AlertDialog.Builder(
+                val builder: AlertDialog.Builder = AlertDialog.Builder(
                     requireContext(),
                     Theme_Material3_Light_Dialog_Alert
                 )
                 builder.setTitle(R.string.alert_title)
                 builder.setMessage(R.string.alert_message)
                 builder.setIcon(R.drawable.ic_warning_24)
-                builder.setPositiveButton(R.string.yes) { _, _ ->
-                   findNavController().navigate(
-                       directions = ProfileBuyerFragmentDirections.profileToRegistration()
-                   )
+                builder.setPositiveButton(R.string.yes) { dialog: DialogInterface, _ ->
+                    dialog.dismiss()
+                    findNavController().navigate(directions = ProfileBuyerFragmentDirections.profileToRegistration())
                 }
                 builder.setNegativeButton(R.string.no) { dialog: DialogInterface, _ ->
                     dialog.cancel()

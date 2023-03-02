@@ -9,7 +9,7 @@
         android:id="@+id/detail_service_screen"
         android:name="com.wirajasa.wirajasabisnis.core.ui.detail_service.DetailServiceFragment"
         android:label="Detail Service"
-        tools:layout="@layout/fragment_detail_service" >
+        tools:layout="@layout/detail_service_screen" >
         <argument
             android:name="service"
             app:argType="com.wirajasa.wirajasabisnis.core.domain.model.ServicePost" />

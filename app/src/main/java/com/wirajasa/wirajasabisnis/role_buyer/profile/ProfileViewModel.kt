@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.buyer.profile
+package com.wirajasa.wirajasabisnis.role_buyer.profile
 
 import androidx.lifecycle.ViewModel
 import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile

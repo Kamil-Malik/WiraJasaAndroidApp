@@ -6,9 +6,9 @@
     app:startDestination="@id/dashboard_screen">
     <fragment
         android:id="@+id/dashboard_screen"
-        android:name="com.wirajasa.wirajasabisnis.buyer.dashboard.DashboardBuyerFragment"
+        android:name="com.wirajasa.wirajasabisnis.role_buyer.dashboard.DashboardBuyerFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_dashboard_buyer">
+        tools:layout="@layout/dashboard_buyer_screen">
         <action
             android:id="@+id/dashboard_to_profile"
             app:destination="@id/buyyer_profile_screen" />
@@ -23,9 +23,9 @@
     </fragment>
     <fragment
         android:id="@+id/buyyer_profile_screen"
-        android:name="com.wirajasa.wirajasabisnis.buyer.profile.ProfileBuyerFragment"
+        android:name="com.wirajasa.wirajasabisnis.role_buyer.profile.ProfileBuyerFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile_buyer">
+        tools:layout="@layout/profile_buyer_screen">
         <action
             android:id="@+id/profile_to_registration"
             app:destination="@id/seller_registration_screen" />
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/seller_registration_screen"
-        android:name="com.wirajasa.wirajasabisnis.buyer.seller_registration.SellerRegistrationFragment"
+        android:name="com.wirajasa.wirajasabisnis.role_buyer.seller_registration.SellerRegistrationFragment"
         android:label="Register as Seller"
         tools:layout="@layout/fragment_seller_registration" />
     <fragment

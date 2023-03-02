@@ -1,12 +1,11 @@
-package com.wirajasa.wirajasabisnis.buyer.seller_registration
+package com.wirajasa.wirajasabisnis.role_buyer.seller_registration
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.viewbinding.library.fragment.viewBinding
 import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,32 +24,19 @@ import com.wirajasa.wirajasabisnis.databinding.FragmentSellerRegistrationBinding
 import com.wirajasa.wirajasabisnis.feature_auth.ui.activity.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.EasyPermissions
-import java.io.File
-import java.net.URI
-
 
 @AndroidEntryPoint
-class SellerRegistrationFragment : Fragment(),
+class SellerRegistrationFragment : Fragment(R.layout.fragment_seller_registration),
     EasyPermissions.PermissionCallbacks,
     View.OnClickListener {
 
     private val viewModel: SellerRegistrationViewModel by viewModels()
-    private var _binding: FragmentSellerRegistrationBinding? = null
-    private val binding get() = _binding!!
-    private val requestPermission = RequestPermission(requireContext())
-    private val checkPermission = CheckPermission(requireContext())
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSellerRegistrationBinding.inflate(
-            inflater,
-            container,
-            false
-        )
-        return binding.root
+    private val binding: FragmentSellerRegistrationBinding by viewBinding()
+    private val requestPermission by lazy {
+        RequestPermission(requireContext())
+    }
+    private val checkPermission by lazy {
+        CheckPermission(requireContext())
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -72,19 +58,14 @@ class SellerRegistrationFragment : Fragment(),
         binding.btnSubmit.setOnClickListener(this)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        when(requestCode) {
+        when (requestCode) {
             READ_EXTERNAL -> openGallery()
         }
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        when(requestCode) {
+        when (requestCode) {
             READ_EXTERNAL -> Snackbar.make(
                 binding.root,
                 getString(R.string.tv_gallery_permission_denied),
@@ -99,10 +80,15 @@ class SellerRegistrationFragment : Fragment(),
             fullName = binding.edtFullName.text.toString(),
             address = binding.edtFullAddress.text.toString(),
             phoneNumber = binding.edtPhoneNumber.text.toString(),
+            serviceDescription = binding.edtServiceDescription.text.toString(),
             province = binding.edtProvince.text.toString()
         )
         when (v?.id) {
             binding.btnSelectFile.id -> {
+                startGallery()
+            }
+
+            binding.btnSubmit.id -> {
                 if (applicationForm.province.isEmpty()) {
                     Snackbar.make(
                         binding.root,
@@ -123,10 +109,6 @@ class SellerRegistrationFragment : Fragment(),
 
                 uploadApplication(applicationForm)
             }
-
-            binding.btnSubmit.id -> {
-                startGallery()
-            }
         }
     }
 
@@ -143,12 +125,12 @@ class SellerRegistrationFragment : Fragment(),
                         ).show()
                     }
                 }
+
                 is NetworkResponse.Loading -> {
-                    response.status?.let {
-                        binding.tvLoading.text = it
-                    }
+                    binding.tvLoading.text = response.status
                     showLoading(true)
                 }
+
                 is NetworkResponse.Success -> {
                     showLoading(false)
                     val intent = Intent(requireContext(), LoginActivity::class.java)
@@ -177,8 +159,6 @@ class SellerRegistrationFragment : Fragment(),
     ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            val file = File(URI.create(selectedImg.toString()))
-            Snackbar.make(binding.root, file.nameWithoutExtension, Snackbar.LENGTH_SHORT).show()
             viewModel.setImageUri(selectedImg)
         }
     }
@@ -201,6 +181,7 @@ class SellerRegistrationFragment : Fragment(),
                 }
                 requestPermission.accessMedia()
             }
+
             else -> {
                 if (checkPermission.accessExternal()) {
                     openGallery()

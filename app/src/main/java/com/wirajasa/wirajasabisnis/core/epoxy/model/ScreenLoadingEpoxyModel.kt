@@ -2,13 +2,13 @@ package com.wirajasa.wirajasabisnis.core.epoxy.model
 
 import com.wirajasa.wirajasabisnis.R
 import com.wirajasa.wirajasabisnis.core.epoxy.utility.ViewBindingKotlinModel
-import com.wirajasa.wirajasabisnis.databinding.ScreenLoadingBinding
+import com.wirajasa.wirajasabisnis.databinding.LoadingScreenBinding
 
 data class ScreenLoadingEpoxyModel(
     val title: String?
-): ViewBindingKotlinModel<ScreenLoadingBinding>(R.layout.screen_loading) {
+): ViewBindingKotlinModel<LoadingScreenBinding>(R.layout.loading_screen) {
 
-    override fun ScreenLoadingBinding.bind() {
+    override fun LoadingScreenBinding.bind() {
         title?.let {
             tvScreenLoadingStatus.text = title
         }

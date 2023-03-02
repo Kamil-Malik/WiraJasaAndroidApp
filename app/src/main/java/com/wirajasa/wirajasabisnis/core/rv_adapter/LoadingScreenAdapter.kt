@@ -3,7 +3,7 @@ package com.wirajasa.wirajasabisnis.core.rv_adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.wirajasa.wirajasabisnis.databinding.ScreenLoadingBinding
+import com.wirajasa.wirajasabisnis.databinding.LoadingScreenBinding
 
 class LoadingScreenAdapter(
     val title: String?
@@ -13,7 +13,7 @@ class LoadingScreenAdapter(
         viewType: Int
     ): LoadingScreenAdapter.ViewHolder {
         return ViewHolder(
-           binding = ScreenLoadingBinding.inflate(
+           binding = LoadingScreenBinding.inflate(
                LayoutInflater.from(parent.context),
                parent,
                false
@@ -27,7 +27,7 @@ class LoadingScreenAdapter(
 
     override fun getItemCount(): Int = 1
 
-    inner class ViewHolder(private val binding: ScreenLoadingBinding) :
+    inner class ViewHolder(private val binding: LoadingScreenBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {

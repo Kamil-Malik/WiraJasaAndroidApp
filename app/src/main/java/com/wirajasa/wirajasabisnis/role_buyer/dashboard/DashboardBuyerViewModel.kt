@@ -1,5 +1,7 @@
-package com.wirajasa.wirajasabisnis.buyer.dashboard
+package com.wirajasa.wirajasabisnis.role_buyer.dashboard
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wirajasa.wirajasabisnis.core.domain.model.ServicePost
@@ -8,9 +10,6 @@ import com.wirajasa.wirajasabisnis.core.domain.repository.UserRepository
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
 import com.wirajasa.wirajasabisnis.feature_buyer.domain.repository.BuyerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,19 +23,17 @@ class DashboardBuyerViewModel @Inject constructor(
         getAllService()
     }
 
-    private val _listOfService: MutableStateFlow<NetworkResponse<List<ServicePost>>> =
-        MutableStateFlow(NetworkResponse.Loading(status = null))
-    val listOfService: StateFlow<NetworkResponse<List<ServicePost>>> = _listOfService.asStateFlow()
+    private val _listOfService: MutableLiveData<NetworkResponse<List<ServicePost>>> =
+        MutableLiveData()
+    val listOfService: LiveData<NetworkResponse<List<ServicePost>>> = _listOfService
 
     fun getUser(): UserProfile {
         return userRepository.getLocalProfile()
     }
 
-    fun getAllService() {
-        viewModelScope.launch {
-            buyerRepository.getAllService().collect {
-                _listOfService.emit(it)
-            }
+    fun getAllService() = viewModelScope.launch {
+        buyerRepository.getAllService().collect {
+            _listOfService.value = it
         }
     }
 }

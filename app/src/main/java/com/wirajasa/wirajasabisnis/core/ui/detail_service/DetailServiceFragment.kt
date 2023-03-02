@@ -17,14 +17,14 @@ import com.wirajasa.wirajasabisnis.core.domain.model.UserProfile
 import com.wirajasa.wirajasabisnis.core.usecases.CurrencyFormatter
 import com.wirajasa.wirajasabisnis.core.utility.constant.Constant
 import com.wirajasa.wirajasabisnis.core.utility.constant.Dump
-import com.wirajasa.wirajasabisnis.databinding.FragmentDetailServiceBinding
+import com.wirajasa.wirajasabisnis.databinding.DetailServiceScreenBinding
 import com.wirajasa.wirajasabisnis.feature_seller.ui.activity.UpdateServiceActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailServiceFragment : Fragment() {
 
-    private var _binding: FragmentDetailServiceBinding? = null
+    private var _binding: DetailServiceScreenBinding? = null
     private val binding get() = _binding!!
     private val args: DetailServiceFragmentArgs by navArgs()
     private val viewModel: DetailServiceViewModel by viewModels()
@@ -34,7 +34,7 @@ class DetailServiceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailServiceBinding.inflate(inflater, container, false)
+        _binding = DetailServiceScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 

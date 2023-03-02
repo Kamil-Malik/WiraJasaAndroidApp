@@ -1,4 +1,4 @@
-package com.wirajasa.wirajasabisnis.feature_buyer.ui.viewmodel
+package com.wirajasa.wirajasabisnis.role_buyer.edit_profile
 
 import android.net.Uri
 import androidx.lifecycle.LiveData

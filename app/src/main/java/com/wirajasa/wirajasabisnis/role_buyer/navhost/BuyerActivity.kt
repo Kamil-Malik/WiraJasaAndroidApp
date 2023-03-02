@@ -1,6 +1,7 @@
-package com.wirajasa.wirajasabisnis.buyer
+package com.wirajasa.wirajasabisnis.role_buyer.navhost
 
 import android.os.Bundle
+import android.viewbinding.library.activity.viewBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -14,13 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BuyerActivity : AppCompatActivity() {
 
-    private val binding: ActivityBuyerBinding by lazy {
-        ActivityBuyerBinding.inflate(layoutInflater)
-    }
+    private val binding: ActivityBuyerBinding by viewBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.toolbar)
-        setContentView(binding.root)
 
         val fragmentContainerView: NavHostFragment =
             supportFragmentManager.findFragmentById(binding.buyerNavhost.id) as NavHostFragment

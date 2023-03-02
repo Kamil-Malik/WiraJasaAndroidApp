@@ -1,16 +1,15 @@
-package com.wirajasa.wirajasabisnis.buyer.dashboard
+package com.wirajasa.wirajasabisnis.role_buyer.dashboard
 
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.transition.AutoTransition
 import android.transition.TransitionManager
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
+import android.viewbinding.library.fragment.viewBinding
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,31 +23,22 @@ import com.wirajasa.wirajasabisnis.core.rv_adapter.ErrorScreenAdapter
 import com.wirajasa.wirajasabisnis.core.rv_adapter.LoadingScreenAdapter
 import com.wirajasa.wirajasabisnis.core.rv_adapter.ServiceItemAdapter
 import com.wirajasa.wirajasabisnis.core.utility.NetworkResponse
-import com.wirajasa.wirajasabisnis.databinding.FragmentDashboardBuyerBinding
+import com.wirajasa.wirajasabisnis.databinding.DashboardBuyerScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class DashboardBuyerFragment : Fragment(R.layout.fragment_dashboard_buyer), MenuProvider {
+class DashboardBuyerFragment : Fragment(R.layout.dashboard_buyer_screen),
+    MenuProvider {
 
-    private var _binding: FragmentDashboardBuyerBinding? = null
-    private val binding: FragmentDashboardBuyerBinding get() = _binding!!
+    private val binding: DashboardBuyerScreenBinding by viewBinding()
     private val viewModel: DashboardBuyerViewModel by viewModels()
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDashboardBuyerBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         requireActivity().addMenuProvider(
             this,
             viewLifecycleOwner
         )
-        return binding.root
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -65,7 +55,7 @@ class DashboardBuyerFragment : Fragment(R.layout.fragment_dashboard_buyer), Menu
 
     private fun subscribeToService() =
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.listOfService.collectLatest { services ->
+            viewModel.listOfService.observe(viewLifecycleOwner) { services ->
                 TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
                 when (services) {
                     is NetworkResponse.GenericException -> {
@@ -93,11 +83,6 @@ class DashboardBuyerFragment : Fragment(R.layout.fragment_dashboard_buyer), Menu
                 }
             }
         }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.dashboard_menu, menu)
